@@ -1,0 +1,17 @@
+export default {
+  none: "0px",
+  small1: "4px",
+  small2: "8px",
+  small3: "12px",
+  medium1: "16px",
+  medium2: "20px",
+  medium3: "24px",
+  medium4: "28px",
+  large1: "32px",
+  large2: "36px",
+  large3: "40px",
+  large4: "48px",
+  xlarge1: "60px",
+  xlarge2: "72px",
+  xlarge3: "80px",
+};
