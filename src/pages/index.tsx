@@ -11,7 +11,7 @@ import {
   SecondContainer,
 } from "./index.styles";
 
-export default function Home() {
+const Home = (): JSX.Element => {
   return (
     <>
       <FirstContainer>
@@ -29,4 +29,6 @@ export default function Home() {
       </Footer>
     </>
   );
-}
+};
+
+export default Home;
