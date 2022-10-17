@@ -4,7 +4,7 @@ import Logo from "../../components/common/Logo/Logo";
 import QuestionText from "../../components/common/QuestionText/QuestionText";
 import { Container, FormContainer } from "./Register.styles";
 
-export default function Login(): JSX.Element {
+const Register = (): JSX.Element => {
   return (
     <Container>
       <Logo showImage={true} imageSide="bottom" />
@@ -55,4 +55,6 @@ export default function Login(): JSX.Element {
       </FormContainer>
     </Container>
   );
-}
+};
+
+export default Register;
