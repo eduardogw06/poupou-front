@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { ThemeProvider } from "styled-components";
-import usePersistedState from "../../../utils/usePersistedState";
+// import usePersistedState from "../../../utils/usePersistedState";
 
 import GlobalStyle from "../../../styles/global";
 import dark from "../../../styles/themes/dark";
-import light from "../../../styles/themes/light";
+// import light from "../../../styles/themes/light";
 import Content from "../Content/Content";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 import { ContentContainer } from "./Layout.styles";
-import { DefaultTheme } from "../../../types/DefaultTheme";
+// import { DefaultTheme } from "../../../types/DefaultTheme";
 import Footer from "../Footer/Footer";
 
 interface LayoutProps {
@@ -18,7 +18,8 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {
-  const [theme, setTheme] = usePersistedState<DefaultTheme>("theme", dark);
+  // const [theme, setTheme] = usePersistedState<DefaultTheme>("theme", dark);
+  const theme = dark;
   const [menuOpened, setMenuOpened] = useState(false);
 
   // const toggleTheme = () => {
