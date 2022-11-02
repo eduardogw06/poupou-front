@@ -1,17 +1,9 @@
 import Link from "next/link";
-import React from "react";
 import Button from "../../components/common/Button/Button";
 import Input from "../../components/common/Input/Input";
 import Logo from "../../components/common/Logo/Logo";
 import QuestionText from "../../components/common/QuestionText/QuestionText";
-import {
-  Container,
-  DontHaveAccountYet,
-  FormContainer,
-  NewAccountContainer,
-  PasswordRecovery,
-  RegisterNow,
-} from "./Login.styles";
+import { Container, FormContainer, PasswordRecovery } from "./Login.styles";
 
 export default function Login(): JSX.Element {
   return (
