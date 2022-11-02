@@ -12,6 +12,9 @@ export default {
 
     text: "#FFFFFF",
     buttonText: "#FFFFFF",
+
+    menuHamburger: "#FFFFFF",
+    menuIcon: "#FA58B6",
   },
 
   sizes,
