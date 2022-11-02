@@ -60,4 +60,6 @@ const Register = (): JSX.Element => {
   );
 };
 
+Register.displayName = "Register";
+
 export default Register;

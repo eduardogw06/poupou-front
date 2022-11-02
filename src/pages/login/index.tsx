@@ -9,7 +9,7 @@ import {
   PasswordRecovery,
 } from "../../components/pages/login/Login.styles";
 
-export default function Login(): JSX.Element {
+function Login(): JSX.Element {
   return (
     <Container>
       <Logo showImage={true} imageSide="bottom" />
@@ -51,3 +51,7 @@ export default function Login(): JSX.Element {
     </Container>
   );
 }
+
+Login.displayName = "Login";
+
+export default Login;
