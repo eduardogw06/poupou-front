@@ -2,7 +2,10 @@ import Button from "../../components/common/Button/Button";
 import Input from "../../components/common/Input/Input";
 import Logo from "../../components/common/Logo/Logo";
 import QuestionText from "../../components/common/QuestionText/QuestionText";
-import { Container, FormContainer } from "./Register.styles";
+import {
+  Container,
+  FormContainer,
+} from "../../components/pages/register/Register.styles";
 
 const Register = (): JSX.Element => {
   return (

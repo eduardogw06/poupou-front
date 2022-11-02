@@ -3,7 +3,11 @@ import Button from "../../components/common/Button/Button";
 import Input from "../../components/common/Input/Input";
 import Logo from "../../components/common/Logo/Logo";
 import QuestionText from "../../components/common/QuestionText/QuestionText";
-import { Container, FormContainer, PasswordRecovery } from "./Login.styles";
+import {
+  Container,
+  FormContainer,
+  PasswordRecovery,
+} from "../../components/pages/login/Login.styles";
 
 export default function Login(): JSX.Element {
   return (
