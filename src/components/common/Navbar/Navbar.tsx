@@ -11,13 +11,6 @@ interface NavbarProps {
 const Navbar = ({ menuOpened, setMenuOpened }: NavbarProps): JSX.Element => {
   const theme = useTheme() as DefaultTheme;
 
-  const onToggle = (isToggled: boolean): JSX.Element => {
-    if (isToggled) {
-      return <h1>Alooo</h1>;
-    }
-    return <h1>Testw</h1>;
-  };
-
   return (
     <>
       <Container>
