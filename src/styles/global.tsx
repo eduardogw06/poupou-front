@@ -1,4 +1,5 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, ThemeProps } from "styled-components";
+import { DefaultTheme } from "../types/DefaultTheme";
 
 export default createGlobalStyle`
     * {
@@ -8,6 +9,7 @@ export default createGlobalStyle`
     }
 
     html {
-        background: ${(props) => props.theme.colors.primary};
+        background: ${(props: ThemeProps<DefaultTheme>) =>
+          props.theme.colors.primary};
     }
 `;
