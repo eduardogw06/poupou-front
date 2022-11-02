@@ -21,9 +21,9 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
   const [theme, setTheme] = usePersistedState<DefaultTheme>("theme", dark);
   const [menuOpened, setMenuOpened] = useState(false);
 
-  const toggleTheme = () => {
-    setTheme(theme.title === "light" ? dark : light);
-  };
+  // const toggleTheme = () => {
+  //   setTheme(theme.title === "light" ? dark : light);
+  // };
 
   return (
     <>
