@@ -16,7 +16,7 @@ const StyledButton = styled.div < {
     border-radius: 10px;
     height: ${(props: any) => getButtonSize(props.size)};
     width: ${(props: any): string => props.fullWidth ? "100%" : "100px"};
-    border: ${(props: any): string => props.outlined ? "1px solid #fff" : "0px"};
+    border: ${(props: any): string => props.outlined ? `1px solid ${props.theme.colors.text}` : "0px"};
     display: flex;
     flex-direction: row;
     align-content: center;
@@ -27,7 +27,7 @@ const StyledButton = styled.div < {
     font-family: "Work Sans";
     font-weight: 500;
     font-size: 10px;
-    color: #ffffff;
+    color: ${(props: any): string => props.outlined ? props.theme.colors.text : props.theme.colors.buttonText};
     text-decoration: none;
 
     &:hover {
