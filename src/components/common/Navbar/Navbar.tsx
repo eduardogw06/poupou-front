@@ -6,9 +6,14 @@ import { Container } from "./Navbar.styles";
 interface NavbarProps {
   menuOpened: boolean;
   setMenuOpened: (boolean) => void;
+  toggleTheme: () => void;
 }
 
-const Navbar = ({ menuOpened, setMenuOpened }: NavbarProps): JSX.Element => {
+const Navbar = ({
+  menuOpened,
+  setMenuOpened,
+  toggleTheme,
+}: NavbarProps): JSX.Element => {
   const theme = useTheme() as DefaultTheme;
 
   return (
@@ -19,6 +24,7 @@ const Navbar = ({ menuOpened, setMenuOpened }: NavbarProps): JSX.Element => {
           toggle={setMenuOpened}
           color={theme.colors.menuHamburger}
         />
+        <button onClick={toggleTheme}>Alterar tema</button>
       </Container>
     </>
   );
