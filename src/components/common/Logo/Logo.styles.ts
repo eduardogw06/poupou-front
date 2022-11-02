@@ -18,11 +18,6 @@ const LogoContainer = styled.div<{
     props.imageSide === "right" ? "row" : "column"};
     align-items: center;
     cursor: pointer;
-    background: #1a1a40;
-    
-    > * {
-      background: #1a1a40;
-    }
 `;
 
 const LogoName = styled.h1`
