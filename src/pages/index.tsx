@@ -4,12 +4,8 @@ import SectionHeader from "../components/pages/home/SectionHeader/SectionHeader"
 import SectionBrand from "../components/pages/home/SectionBrand/SectionBrand";
 import SectionWhyUse from "../components/pages/home/SectionWhyUse/SectionWhyUse";
 import SectionGrid from "../components/pages/home/SectionGrid/SectionGrid";
-import {
-  FirstContainer,
-  Footer,
-  FooterText,
-  SecondContainer,
-} from "./index.styles";
+import { FirstContainer, SecondContainer } from "./index.styles";
+import Footer from "../components/common/Footer/Footer";
 
 const Home = (): JSX.Element => {
   return (
@@ -24,9 +20,7 @@ const Home = (): JSX.Element => {
         <SectionGrid />
       </SecondContainer>
 
-      <Footer>
-        <FooterText>Desenvolvido por Eduardo Guidio Wolf</FooterText>
-      </Footer>
+      <Footer />
     </>
   );
 };

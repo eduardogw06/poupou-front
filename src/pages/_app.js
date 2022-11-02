@@ -1,7 +1,15 @@
 import Layout from "../components/common/Layout/Layout";
+import LayoutNoAuth from "../components/common/Layout/LayoutNoAuth";
 
 export default function App({ Component, pageProps }) {
-  return (
+  console.log(Component.name);
+
+  const pagesWithoutLayout = ["Home", "Login"];
+  return pagesWithoutLayout.includes(Component.name) ? (
+    <LayoutNoAuth>
+      <Component {...pageProps} />
+    </LayoutNoAuth>
+  ) : (
     <Layout>
       <Component {...pageProps} />
     </Layout>

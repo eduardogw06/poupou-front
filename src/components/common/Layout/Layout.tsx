@@ -1,13 +1,25 @@
-import React from "react";
-import { DefaultTheme, ThemeProvider } from "styled-components";
+import { useState } from "react";
+import { ThemeProvider } from "styled-components";
 import usePersistedState from "../../../utils/usePersistedState";
 
 import GlobalStyle from "../../../styles/global";
-import light from "../../../styles/themes/light";
 import dark from "../../../styles/themes/dark";
+import light from "../../../styles/themes/light";
+import Content from "../Content/Content";
+import Navbar from "../Navbar/Navbar";
+import Sidebar from "../Sidebar/Sidebar";
+import { ContentContainer } from "./Layout.styles";
+import { DefaultTheme } from "../../../types/DefaultTheme";
+import Footer from "../Footer/Footer";
 
-const Layout = ({ children }: any): JSX.Element => {
+interface LayoutProps {
+  children: any;
+  isAuth: boolean;
+}
+
+const Layout = ({ children }: LayoutProps): JSX.Element => {
   const [theme, setTheme] = usePersistedState<DefaultTheme>("theme", dark);
+  const [menuOpened, setMenuOpened] = useState(false);
 
   const toggleTheme = () => {
     setTheme(theme.title === "light" ? dark : light);
@@ -17,7 +29,13 @@ const Layout = ({ children }: any): JSX.Element => {
     <>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        {children}
+        <Navbar menuOpened={menuOpened} setMenuOpened={setMenuOpened} />
+
+        <ContentContainer>
+          {menuOpened && <Sidebar />}
+          <Content menuOpened={menuOpened} children={children} />
+        </ContentContainer>
+        <Footer />
       </ThemeProvider>
     </>
   );

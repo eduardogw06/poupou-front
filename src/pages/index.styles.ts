@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FirstContainer = styled.div`
+const FirstContainer = styled.div`
   height: 100%;
   background: #1a1a40;
   display: flex;
@@ -22,7 +22,7 @@ export const FirstContainer = styled.div`
   }
 `;
 
-export const SecondContainer = styled.div`
+const SecondContainer = styled.div`
   height: 100%;
   background: #ffffff;
   display: flex;
@@ -35,26 +35,4 @@ export const SecondContainer = styled.div`
   }};
 `;
 
-export const Footer = styled.footer`
-  height: 100%;
-  background: #1a1a40;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 24px 0;
-
-  @media (${(props) => props.theme.media.md}) {
-    padding: 40px 0;
-  }
-`;
-
-export const FooterText = styled.h1`
-  font-family: "Circular Std";
-  font-style: normal;
-  font-size: 12px;
-  line-height: 25px;
-  color: #ffffff;
-  background: #1a1a40;
-`;
-
+export { FirstContainer, SecondContainer }
