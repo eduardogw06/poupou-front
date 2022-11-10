@@ -29,7 +29,6 @@ const Sidebar = (): JSX.Element => {
 
   const theme = useTheme() as DefaultTheme;
   const { menuIcon } = theme.colors;
-  console.log(menuIcon);
 
   return (
     <Container>
