@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import usePersistedState from "../../../utils/usePersistedState";
 
@@ -11,6 +11,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import { ContentContainer } from "./Layout.styles";
 import { DefaultTheme } from "../../../types/DefaultTheme";
 import Footer from "../Footer/Footer";
+import Router from "next/router";
 
 interface LayoutProps {
   children: any;
@@ -25,6 +26,18 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
     setTheme(theme.title === "light" ? dark : light);
   };
 
+  const isLoggedIn = () => {
+    const sessionToken = localStorage.getItem("sessionToken");
+
+    if (!sessionToken) {
+      Router.push("login");
+    }
+  };
+
+  useEffect(() => {
+    isLoggedIn();
+  }, [isLoggedIn]);
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -33,6 +46,7 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
           menuOpened={menuOpened}
           setMenuOpened={setMenuOpened}
           toggleTheme={toggleTheme}
+          isDarkTheme={theme.title === "dark"}
         />
 
         <ContentContainer>
