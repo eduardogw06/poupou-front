@@ -11,6 +11,8 @@ interface ButtonProps {
   outlined?: boolean;
   loading?: boolean;
   disabled?: boolean;
+  onClick?: () => void;
+  form?: string;
 }
 
 const Button = ({
@@ -21,6 +23,8 @@ const Button = ({
   outlined = false,
   loading = false,
   disabled = false,
+  onClick,
+  form,
 }: ButtonProps): JSX.Element => {
   const theme = useTheme() as DefaultTheme;
   const { tertiary } = theme.colors;
@@ -34,6 +38,8 @@ const Button = ({
           fullWidth={fullWidth}
           outlined={outlined}
           disabled={disabled}
+          onClick={onClick}
+          form={form}
         >
           {text}
         </StyledButton>
