@@ -13,7 +13,7 @@ import {
 } from "../../components/pages/login/Login.styles";
 import { login } from "../../services/login/login";
 import { ILoginPayload } from "../../types/ILoginPayload";
-import { ILoginResponse } from "../../types/ILoginResponse";
+import { IApiResponse } from "../../types/IApiResponse";
 
 const defaultValues: ILoginPayload = {
   email: "",
@@ -47,13 +47,14 @@ function Login(): JSX.Element {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [error, setError] = useState<IError>(defaultError);
+  const isComingSoon = true;
 
   const onSubmit = async (data: ILoginPayload): Promise<void> => {
     setError(defaultError);
     setIsLoading(true);
     setButtonDisabled(true);
 
-    const result = (await login(data)) as ILoginResponse;
+    const result = (await login(data)) as IApiResponse;
 
     if (result.success) {
       setIsLoading(false);
@@ -97,9 +98,11 @@ function Login(): JSX.Element {
           helperText={error.message}
         />
 
-        <Link href="#">
-          <PasswordRecovery>Recuperar senha</PasswordRecovery>
-        </Link>
+        {!isComingSoon && (
+          <Link href="#">
+            <PasswordRecovery>Recuperar senha</PasswordRecovery>
+          </Link>
+        )}
 
         <Button
           type="submit"
@@ -110,12 +113,14 @@ function Login(): JSX.Element {
           disabled={buttonDisabled}
         />
 
-        <Button
-          text="Fazer login com o Google"
-          size="medium"
-          fullWidth={true}
-          outlined={true}
-        />
+        {!isComingSoon && (
+          <Button
+            text="Fazer login com o Google"
+            size="medium"
+            fullWidth={true}
+            outlined={true}
+          />
+        )}
 
         <QuestionText
           text="Ainda não tem conta?"
