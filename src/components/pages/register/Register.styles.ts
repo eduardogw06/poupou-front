@@ -16,7 +16,7 @@ const Container = styled.div`
     overflow: hidden;
 `;
 
-const FormContainer = styled.div`
+const FormContainer = styled.form`
     display: flex;
     flex-direction: column;
     padding: ${(props: any) => {
