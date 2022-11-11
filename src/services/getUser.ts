@@ -1,18 +1,16 @@
-import { ILoginPayload } from '../../types/ILoginPayload';
-import { IApiResponse } from '../../types/IApiResponse';
-import api from '../../utils/api';
+import { IApiResponse } from "../types/IApiResponse";
+import { IUserInfo } from "../types/IUserInfo";
+import api from "../utils/api";
+import { getSessionTokenHeader } from "../utils/getSessionToken";
 
-export const login = async (payload: ILoginPayload): Promise<IApiResponse> => {
+export const getUser = async (): Promise<IApiResponse> => {
     try {
-        const response = await api.post('/login', payload);
+        const config = getSessionTokenHeader();
+        const response = await api.get('/users', config);
 
-        if (Object.keys(response).length) {
-
-            const { token } = response.data;
-            localStorage.setItem('sessionToken', JSON.stringify(token));
-
+        if (Object.keys(response.data).length) {
             return new Promise((resolve: (value: IApiResponse) => void): any =>
-                resolve({ success: true }));
+                resolve({ success: true, data: response.data as IUserInfo }));
         }
 
     } catch (error) {

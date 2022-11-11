@@ -11,7 +11,7 @@ import {
   FormContainer,
   PasswordRecovery,
 } from "../../components/pages/login/Login.styles";
-import { login } from "../../services/login/login";
+import { login } from "../../services/login";
 import { ILoginPayload } from "../../types/ILoginPayload";
 import { IApiResponse } from "../../types/IApiResponse";
 

@@ -11,7 +11,7 @@ import {
 } from "../../components/pages/register/Register.styles";
 import { IApiResponse } from "../../types/IApiResponse";
 import { IRegisterPayload } from "../../types/IRegisterPayload";
-import { userRegister } from "../../services/userRegister/userRegister";
+import { userRegister } from "../../services/userRegister";
 import { Alert, Snackbar } from "@mui/material";
 
 interface IError {
@@ -63,8 +63,6 @@ const Register = (): JSX.Element => {
     setButtonDisabled(true);
 
     const result = (await userRegister(data)) as IApiResponse;
-    console.log(result);
-
     if (result.success) {
       setIsLoading(false);
       setButtonDisabled(false);
@@ -89,7 +87,7 @@ const Register = (): JSX.Element => {
           type="text"
           variant="outlined"
           size="small"
-          autocomplete="off"
+          autoComplete="off"
           value={watch("name")}
           onChange={(e: any): void => setValue("name", e.target.value)}
           error={error.hasError}

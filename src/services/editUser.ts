@@ -1,15 +1,13 @@
-import { IApiResponse } from "../../types/IApiResponse";
-import { IRegisterPayload } from "../../types/IRegisterPayload";
-import api from "../../utils/api";
+import { IApiResponse } from "../types/IApiResponse";
+import { IEditUserPayload } from "../types/IEditUserPayload";
+import api from "../utils/api";
+import { getSessionTokenHeader } from "../utils/getSessionToken";
 
-export const userRegister = async (payload: IRegisterPayload): Promise<IApiResponse> => {
+export const editUser = async (payload: IEditUserPayload): Promise<IApiResponse> => {
     try {
-        const response = await api.post('/users', payload);
-
-        if (Object.keys(response).length) {
-
-            console.log(response);
-
+        const config = getSessionTokenHeader();
+        const response = await api.patch('/users', payload, config);
+        if (response.status === 204) {
             return new Promise((resolve: (value: IApiResponse) => void): any =>
                 resolve({ success: true }));
         }
