@@ -71,7 +71,10 @@ const DropDownContentItem = styled.li`
     color: ${props => props.theme.colors.text};
 
     > * { 
-        margin-right: 16px;
+        > * {
+            margin-right: 16px;
+        }
+        
     }  
 
     &:hover {

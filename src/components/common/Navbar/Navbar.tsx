@@ -2,6 +2,7 @@ import { faKey, faSignOut, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Hamburguer from "hamburger-react";
 import Image from "next/image";
+import Link from "next/link";
 import Router from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { useTheme } from "styled-components";
@@ -71,7 +72,6 @@ const Navbar = ({
           ref={wrapperRef}
         >
           <Image
-            // src="/assets/du.jpg"
             src="/assets/user-profile-default.png"
             width="60"
             height="60"
@@ -82,12 +82,20 @@ const Navbar = ({
         <DropDown>
           <DropDownContent ref={wrapperRef}>
             <DropDownContentItem>
-              <FontAwesomeIcon icon={faUser} size="1x" color={menuIcon} />
-              Perfil
+              <Link href="/perfil">
+                <div>
+                  <FontAwesomeIcon icon={faUser} size="1x" color={menuIcon} />
+                  Perfil
+                </div>
+              </Link>
             </DropDownContentItem>
             <DropDownContentItem>
-              <FontAwesomeIcon icon={faKey} size="1x" color={menuIcon} />
-              Alterar Senha
+              <Link href="/alterar-senha">
+                <div>
+                  <FontAwesomeIcon icon={faKey} size="1x" color={menuIcon} />
+                  Alterar Senha
+                </div>
+              </Link>
             </DropDownContentItem>
             <DropDownContentItem>
               <MaterialUISwitch
@@ -98,8 +106,10 @@ const Navbar = ({
               Tema
             </DropDownContentItem>
             <DropDownContentItem onClick={logout}>
-              <FontAwesomeIcon icon={faSignOut} size="1x" color={menuIcon} />
-              Sair
+              <div>
+                <FontAwesomeIcon icon={faSignOut} size="1x" color={menuIcon} />
+                Sair
+              </div>
             </DropDownContentItem>
           </DropDownContent>
         </DropDown>
