@@ -1,8 +1,8 @@
 import { ILoginPayload } from '../../types/ILoginPayload';
-import { ILoginResponse } from '../../types/ILoginResponse';
+import { IApiResponse } from '../../types/IApiResponse';
 import api from '../../utils/api';
 
-export const login = async (payload: ILoginPayload): Promise<ILoginResponse> => {
+export const login = async (payload: ILoginPayload): Promise<IApiResponse> => {
     try {
         const response = await api.post('/login', payload);
 
@@ -11,19 +11,19 @@ export const login = async (payload: ILoginPayload): Promise<ILoginResponse> => 
             const { token } = response.data;
             localStorage.setItem('sessionToken', JSON.stringify(token));
 
-            return new Promise((resolve: (value: ILoginResponse) => void): any =>
+            return new Promise((resolve: (value: IApiResponse) => void): any =>
                 resolve({ success: true }));
         }
 
     } catch (error) {
         const { message } = error.response.data
         if (message) {
-            return new Promise((resolve: (value: ILoginResponse) => void): void =>
+            return new Promise((resolve: (value: IApiResponse) => void): void =>
                 resolve({ success: false, message: message }))
         }
 
         return new Promise(
-            (resolve: (value: ILoginResponse) => void): void =>
+            (resolve: (value: IApiResponse) => void): void =>
                 resolve({ success: false, message: process.env.NEXT_PUBLIC_API_DEFAULT_ERROR })
         );
     }

@@ -1,4 +1,4 @@
-export interface ILoginResponse {
+export interface IApiResponse {
     success: boolean;
     message?: string;
 }
