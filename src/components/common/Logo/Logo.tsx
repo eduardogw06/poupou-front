@@ -1,6 +1,4 @@
 import Link from "next/link";
-import Router from "next/router";
-import React from "react";
 import { LogoContainer, LogoIcon, LogoName } from "./Logo.styles";
 
 interface LogoProps {
