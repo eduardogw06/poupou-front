@@ -24,6 +24,7 @@ import { IUserInfo } from "../../types/IUserInfo";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import Router from "next/router";
+import Link from "next/link";
 
 interface IError {
   hasError: boolean;
@@ -177,12 +178,14 @@ const UserProfile = (): JSX.Element => {
                 onClick={(): void => setEditModOn(!editModeOn)}
               />
 
-              <Button
-                text="Alterar senha"
-                size="small"
-                fullWidth={false}
-                outlined={true}
-              />
+              <Link href="/alterar-senha">
+                <Button
+                  text="Alterar senha"
+                  size="small"
+                  fullWidth={false}
+                  outlined={true}
+                />
+              </Link>
             </ButtonContainer>
           </UserInfo>
         </UserProfileContainer>
