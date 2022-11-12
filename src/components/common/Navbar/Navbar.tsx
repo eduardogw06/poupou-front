@@ -32,7 +32,7 @@ const Navbar = ({
 }: NavbarProps): JSX.Element => {
   const theme = useTheme() as DefaultTheme;
   const [dropdownMenuOpened, setDropdownMenuOpened] = useState<boolean>(false);
-  const { menuIcon } = theme.colors;
+  const { menuIcon, menuHamburger } = theme.colors;
 
   const useOutsideAlerter = (ref) => {
     useEffect(() => {
@@ -66,7 +66,7 @@ const Navbar = ({
         <Hamburguer
           toggled={menuOpened}
           toggle={setMenuOpened}
-          color={theme.colors.menuHamburger}
+          color={menuHamburger}
         />
         <Logo showImage={false} />
         <ProfilePhoto
@@ -103,7 +103,7 @@ const Navbar = ({
               <MaterialUISwitch
                 checked={isDarkTheme}
                 onChange={toggleTheme}
-                sx={{ width: 70, height: 40 }}
+                sx={{ width: 83, height: 40 }}
               />
               Tema
             </DropDownContentItem>

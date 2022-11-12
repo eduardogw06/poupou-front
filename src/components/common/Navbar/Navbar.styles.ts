@@ -83,9 +83,7 @@ const DropDownContentItem = styled.li`
 `
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
-    width: 70,
-    height: 40,
-    padding: 7,
+    padding: 12,
     '& .MuiSwitch-switchBase': {
         margin: 4,
         padding: 0,
