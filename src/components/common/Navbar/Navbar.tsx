@@ -7,6 +7,7 @@ import Router from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { useTheme } from "styled-components";
 import { DefaultTheme } from "../../../types/DefaultTheme";
+import Logo from "../Logo/Logo";
 import {
   Container,
   DropDown,
@@ -67,6 +68,7 @@ const Navbar = ({
           toggle={setMenuOpened}
           color={theme.colors.menuHamburger}
         />
+        <Logo showImage={false} />
         <ProfilePhoto
           onClick={() => setDropdownMenuOpened(!dropdownMenuOpened)}
           ref={wrapperRef}
