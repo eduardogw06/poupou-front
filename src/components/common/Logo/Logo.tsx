@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useEffect } from "react";
 import { LogoContainer, LogoIcon, LogoName } from "./Logo.styles";
 
 interface LogoProps {
@@ -6,13 +7,16 @@ interface LogoProps {
   imageSide?: "right" | "bottom";
 }
 
-const Logo = ({ showImage, imageSide }: LogoProps): JSX.Element => {
-  const isLoggedIn = () => {
-    return localStorage.getItem("sessionToken");
-  };
+const isLoggedIn = (): string => {
+  console.log("aloOO");
+  return typeof window !== "undefined"
+    ? localStorage.getItem("sessionToken")
+    : null;
+};
 
+const Logo = ({ showImage, imageSide }: LogoProps): JSX.Element => {
   return (
-    <Link href={isLoggedIn ? "/dashboard" : "/"}>
+    <Link href={isLoggedIn() != null ? "/dashboard" : "/"}>
       <LogoContainer imageSide={imageSide ?? "right"}>
         <LogoIcon src="/assets/logo.png" showImage={showImage} />
         <LogoName>POUPOU</LogoName>
