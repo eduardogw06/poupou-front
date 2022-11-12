@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Router from "next/router";
 import React from "react";
 import { LogoContainer, LogoIcon, LogoName } from "./Logo.styles";
 
@@ -8,8 +9,12 @@ interface LogoProps {
 }
 
 const Logo = ({ showImage, imageSide }: LogoProps): JSX.Element => {
+  const isLoggedIn = () => {
+    return localStorage.getItem("sessionToken");
+  };
+
   return (
-    <Link href="/">
+    <Link href={isLoggedIn ? "/dashboard" : "/"}>
       <LogoContainer imageSide={imageSide ?? "right"}>
         <LogoIcon src="/assets/logo.png" showImage={showImage} />
         <LogoName>POUPOU</LogoName>
