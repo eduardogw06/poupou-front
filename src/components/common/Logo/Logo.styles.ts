@@ -26,7 +26,7 @@ const LogoName = styled.h1`
     font-weight: bold;
     display: flex;
     align-items: center;
-    color: #ffffff;   
+    color: ${props => props.theme.colors.text};   
 `;
 
 export { LogoIcon, LogoContainer, LogoName }
