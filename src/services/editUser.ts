@@ -7,7 +7,7 @@ export const editUser = async (payload: IEditUserPayload): Promise<IApiResponse>
     try {
         const config = getSessionTokenHeader();
         const response = await api.patch('/users', payload, config);
-        if (response.status === 204) {
+        if (response.status === 200) {
             return new Promise((resolve: (value: IApiResponse) => void): any =>
                 resolve({ success: true }));
         }
