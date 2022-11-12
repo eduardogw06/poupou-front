@@ -11,7 +11,7 @@ const FormContainer = styled.form`
     flex-direction: column;
     width: 50%;
 
-    > * {
+    > div {
         &:first-child {
             margin-top: 0px;
         }
