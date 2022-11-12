@@ -7,7 +7,7 @@ const StyledTextField = styled(TextField)`
     
      > div > input {
         background: ${rgba(255, 255, 255, 0.05)};
-        color: ${(props: any): string => props.theme.colors.text}
+        color: ${(props: any): string => props.theme.colors.text}  !important;
         border-radius: 4px;
      }
 
