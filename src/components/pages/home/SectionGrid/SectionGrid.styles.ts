@@ -20,6 +20,15 @@ const GridContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+
+  @media (${(props) => props.theme.media.md}) {
+    .line-container:nth-child(odd) {
+      flex-direction: row;
+    }
+    .line-container:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+  }
 `;
 
 const Column = styled.div`
