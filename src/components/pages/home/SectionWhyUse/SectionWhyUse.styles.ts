@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+const Container = styled.div`
   display: flex;
+  flex-direction: row;
   align-items: center;
-  flex-direction: column;
+  justify-content: center;
+  width: 100%;
   padding-top: 24px;
 
   @media (${(props: any): string => props.theme.media.sm}) {
@@ -11,7 +13,14 @@ export const Container = styled.div`
   }
 `;
 
-export const Title = styled.h1`
+const ContentWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;    
+
+`;
+
+const Title = styled.h1`
   font-family: "Circular Std";
   font-size: 16px;
   font-weight: bold;
@@ -24,7 +33,7 @@ export const Title = styled.h1`
   }
 `;
 
-export const Description = styled.p`
+const Description = styled.p`
   font-family: "Circular Std";
   font-size: 12px;
   font-weight: light;
@@ -38,3 +47,10 @@ export const Description = styled.p`
     line-height: 24px;
   }
 `;
+
+export {
+  Description,
+  Title,
+  ContentWrapper,
+  Container
+}
