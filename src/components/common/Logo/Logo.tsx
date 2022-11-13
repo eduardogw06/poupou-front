@@ -8,7 +8,6 @@ interface LogoProps {
 }
 
 const isLoggedIn = (): string => {
-  console.log("aloOO");
   return typeof window !== "undefined"
     ? localStorage.getItem("sessionToken")
     : null;
