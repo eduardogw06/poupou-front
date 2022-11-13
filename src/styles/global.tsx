@@ -27,4 +27,23 @@ export default createGlobalStyle`
         url("../fonts/Circular/CircularStd-Medium.otf") format("otf")
         url("../fonts/Circular/CircularStd-MediumItalic.otf") format("otf");
     }
+
+    @font-face {
+        font-family: "Work Sans",
+        src:local("Work Sans"), 
+        url("../fonts/Work Sans/WorkSans-Black.tff") format("tff")
+        url("../fonts/Work Sans/WorkSans-BlackItalic.tff") format("tff")
+        url("../fonts/Work Sans/WorkSans-Bold.tff") format("tff")
+        url("../fonts/Work Sans/WorkSans-BoldItalic.tff") format("tff")
+        url("../fonts/Work Sans/WorkSans-ExtraBold.tff") format("tff")
+        url("../fonts/Work Sans/WorkSans-ExtraBoldItalic.tff") format("tff")
+        url("../fonts/Work Sans/WorkSans-Light.tff") format("tff")
+        url("../fonts/Work Sans/WorkSans-LightItalic.tff") format("tff")
+        url("../fonts/Work Sans/WorkSans-Medium.tff") format("tff")
+        url("../fonts/Work Sans/WorkSans-MediumItalic.tff") format("tff")
+        url("../fonts/Work Sans/WorkSans-Regular.tff") format("tff")
+        url("../fonts/Work Sans/WorkSans-Italic.tff") format("tff")
+        url("../fonts/Work Sans/WorkSans-SemiBold.tff") format("tff")
+        url("../fonts/Work Sans/WorkSans-SemiBoldItalic.tff") format("tff");
+    }
 `;
