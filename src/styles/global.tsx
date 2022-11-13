@@ -31,19 +31,19 @@ export default createGlobalStyle`
     @font-face {
         font-family: "Work Sans",
         src:local("Work Sans"), 
-        url("../fonts/WorkSans/WorkSans-Black.ttf") format("ttf")
-        url("../fonts/WorkSans/WorkSans-BlackItalic.ttf") format("ttf")
-        url("../fonts/WorkSans/WorkSans-Bold.ttf") format("ttf")
-        url("../fonts/WorkSans/WorkSans-BoldItalic.ttf") format("ttf")
-        url("../fonts/WorkSans/WorkSans-ExtraBold.ttf") format("ttf")
-        url("../fonts/WorkSans/WorkSans-ExtraBoldItalic.ttf") format("ttf")
-        url("../fonts/WorkSans/WorkSans-Light.ttf") format("ttf")
-        url("../fonts/WorkSans/WorkSans-LightItalic.ttf") format("ttf")
-        url("../fonts/WorkSans/WorkSans-Medium.ttf") format("ttf")
-        url("../fonts/WorkSans/WorkSans-MediumItalic.ttf") format("ttf")
-        url("../fonts/WorkSans/WorkSans-Regular.ttf") format("ttf")
-        url("../fonts/WorkSans/WorkSans-Italic.ttf") format("ttf")
-        url("../fonts/WorkSans/WorkSans-SemiBold.ttf") format("ttf")
-        url("../fonts/WorkSans/WorkSans-SemiBoldItalic.ttf") format("ttf");
+        url("../fonts/WorkSans/WorkSans-Black.ttf") format('truetype')
+        url("../fonts/WorkSans/WorkSans-BlackItalic.ttf") format('truetype')
+        url("../fonts/WorkSans/WorkSans-Bold.ttf") format('truetype')
+        url("../fonts/WorkSans/WorkSans-BoldItalic.ttf") format('truetype')
+        url("../fonts/WorkSans/WorkSans-ExtraBold.ttf") format('truetype')
+        url("../fonts/WorkSans/WorkSans-ExtraBoldItalic.ttf") format('truetype')
+        url("../fonts/WorkSans/WorkSans-Light.ttf") format('truetype')
+        url("../fonts/WorkSans/WorkSans-LightItalic.ttf") format('truetype')
+        url("../fonts/WorkSans/WorkSans-Medium.ttf") format('truetype')
+        url("../fonts/WorkSans/WorkSans-MediumItalic.ttf") format('truetype')
+        url("../fonts/WorkSans/WorkSans-Regular.ttf") format('truetype')
+        url("../fonts/WorkSans/WorkSans-Italic.ttf") format('truetype')
+        url("../fonts/WorkSans/WorkSans-SemiBold.ttf") format('truetype')
+        url("../fonts/WorkSans/WorkSans-SemiBoldItalic.ttf") format('truetype');
     }
 `;
