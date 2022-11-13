@@ -12,4 +12,9 @@ export default createGlobalStyle`
         background: ${(props: ThemeProps<DefaultTheme>) =>
           props.theme.colors.primary};
     }
+
+    @font-face {
+        font-family: 'Circular Std';
+        src:local("Circular Std", url("../fonts/Circular"));
+    }
 `;
