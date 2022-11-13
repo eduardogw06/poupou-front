@@ -44,6 +44,7 @@ const DropDown = styled.div`
     flex-direction: row;
     justify-content: flex-end;
     position: absolute;
+    z-index: 1000;
 `
 
 const DropDownContent = styled.ol`
