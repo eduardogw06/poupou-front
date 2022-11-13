@@ -19,7 +19,6 @@ const Notifications = styled.div`
 `
 
 const ProfilePhoto = styled.a`
-    margin-right: 40px;
     background: ${props => props.theme.colors.tertiary};
     border: 2px solid ${props => props.theme.colors.tertiary};
     border-radius: 200px;
@@ -27,12 +26,15 @@ const ProfilePhoto = styled.a`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 60px;
-    height: 60px;
+    width: 48px;
+    height: 48px;
 
     > * {
-        border: 5px solid green;
         border-radius: 30px;
+    }
+
+    @media (${(props: any): string => props.theme.media.md}) {
+        margin-right: ${(props: any): string => props.theme.sizes.medium2};
     }
 `
 
@@ -47,12 +49,16 @@ const DropDown = styled.div`
 const DropDownContent = styled.ol`
     background: ${props => props.theme.colors.secondary};
     width: 200px;
-    height: 50vh;
+    height: 40vh;
     list-style: none;
 
     li:nth-child(3) { 
         padding-left: 0px;
         cursor: default;
+    }
+
+    @media (${(props: any): string => props.theme.media.md}) {
+        height: 50vh;
     }
 `
 
