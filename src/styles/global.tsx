@@ -15,6 +15,15 @@ export default createGlobalStyle`
 
     @font-face {
         font-family: 'Circular Std';
-        src:local("Circular Std", url("../fonts/Circular"));
+        src:local("Circular Std", url("../fonts/Circular/CircularStd-Black.otf")) format("otf");
+        src:local("Circular Std", url("../fonts/Circular/CircularStd-BlackItalic.otf")) format("otf");
+        src:local("Circular Std", url("../fonts/Circular/CircularStd-Bold.otf")) format("otf");
+        src:local("Circular Std", url("../fonts/Circular/CircularStd-BoldItalic.otf")) format("otf");
+        src:local("Circular Std", url("../fonts/Circular/CircularStd-Book.otf")) format("otf");
+        src:local("Circular Std", url("../fonts/Circular/CircularStd-BookItalic.otf")) format("otf");
+        src:local("Circular Std", url("../fonts/Circular/CircularStd-Light.otf")) format("otf");
+        src:local("Circular Std", url("../fonts/Circular/CircularStd-LightItalic.otf")) format("otf");
+        src:local("Circular Std", url("../fonts/Circular/CircularStd-Medium.otf")) format("otf");
+        src:local("Circular Std", url("../fonts/Circular/CircularStd-MediumItalic.otf")) format("otf");
     }
 `;
