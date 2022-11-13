@@ -25,6 +25,7 @@ import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import Router from "next/router";
 import Link from "next/link";
+import { isMobile } from "../../utils/isMobile";
 
 interface IError {
   hasError: boolean;
@@ -48,6 +49,7 @@ const UserProfile = (): JSX.Element => {
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [userData, setUserData] = useState<IUserInfo | null>(null);
   const [feedbackOpened, setFeedbackOpened] = useState<boolean>(false);
+  const mobile = isMobile();
 
   const {
     register,
@@ -115,7 +117,7 @@ const UserProfile = (): JSX.Element => {
     <Button
       type="submit"
       form="editUserForm"
-      size="small"
+      size={mobile ? "medium" : "small"}
       text="Alterar"
       loading={isLoading}
       disabled={buttonDisabled}
@@ -173,16 +175,16 @@ const UserProfile = (): JSX.Element => {
             <ButtonContainer>
               <Button
                 text="Editar"
-                size="small"
-                fullWidth={false}
+                size={mobile ? "medium" : "small"}
+                fullWidth={mobile}
                 onClick={(): void => setEditModOn(!editModeOn)}
               />
 
               <Link href="/alterar-senha">
                 <Button
                   text="Alterar senha"
-                  size="small"
-                  fullWidth={false}
+                  size={mobile ? "medium" : "small"}
+                  fullWidth={mobile}
                   outlined={true}
                 />
               </Link>
