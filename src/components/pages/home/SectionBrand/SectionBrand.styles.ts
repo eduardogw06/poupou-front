@@ -22,24 +22,24 @@ const BrandText = styled.h1`
     font-family: "Circular Std";
     font-weight: bold;
     color: #fa58b6;
-    font-size: 20px;
-    line-height: 24px;
-    margin: 0 12px 12px 0;    
+    font-size: ${props => props.theme.sizes.medium2};
+    line-height: ${props => props.theme.sizes.medium3};
+    margin: ${props => `${props.theme.sizes.none} ${props.theme.sizes.small3} ${props.theme.sizes.small3} ${props.theme.sizes.none}`};   
     background: #1A1A40;
     
 
     @media (${(props) => props.theme.media.md}) {
       font-family: "Circular Std";
-      font-size: 36px;
-      line-height: 48px;
-      margin: 0 20px 20px 0;
+      font-size: ${props => props.theme.sizes.large2};
+      line-height: ${props => props.theme.sizes.large4};
+      margin: ${props => `${props.theme.sizes.none} ${props.theme.sizes.medium2} ${props.theme.sizes.medium2} ${props.theme.sizes.none}`}; 
     }
 `;
 
 const BeginNowButton = styled.div`
     background: #7a0bc0;
-    border-radius: 10px;
-    height: 25px;
+    border-radius: ${props => props.theme.sizes.small3};
+    height: ${props => props.theme.sizes.medium3};
     width: 100px;
     border: 0;
     display: flex;
@@ -50,7 +50,7 @@ const BeginNowButton = styled.div`
     cursor: pointer;
     font-family: "Work Sans";
     font-weight: 700;
-    font-size: 10px;
+    font-size: ${props => props.theme.sizes.small3};
     color: #fff;
     text-transform: uppercase;
     text-decoration: none;
@@ -60,9 +60,9 @@ const BeginNowButton = styled.div`
     }
 
     @media (${(props: any): string => props.theme.media.md}) {
-      height: 50px;
+      height: ${props => props.theme.sizes.large4};
       width: 160px;
-      font-size: 16px;
+      font-size: ${props => props.theme.sizes.medium1};
   }
 `;
 
@@ -72,13 +72,13 @@ const CoinOnPigSafeImage = styled.img`
     height: 200px;
     display: flex;
     align-items: center;
-    margin-top: 20px;
+    margin-top: ${props => props.theme.sizes.medium2};
 
     @media (${(props) => props.theme.media.md}) {
       border-radius: 300px;
       width: 450px;
       height: 300px;
-      margin-top: 0px;
+      margin-top: ${props => props.theme.sizes.none};
     }
 `;
 

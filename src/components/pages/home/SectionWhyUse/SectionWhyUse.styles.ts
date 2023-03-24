@@ -6,10 +6,10 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding-top: 24px;
+  padding-top: ${props => props.theme.sizes.medium3};
 
   @media (${(props: any): string => props.theme.media.sm}) {
-    padding-bottom: 20px;
+    padding-bottom: ${props => props.theme.sizes.medium2};
   }
 `;
 
@@ -22,29 +22,29 @@ const ContentWrapper = styled.div`
 
 const Title = styled.h1`
   font-family: "Circular Std";
-  font-size: 16px;
+  font-size: ${props => props.theme.sizes.medium1};
   font-weight: bold;
-  line-height: 24px;
+  line-height: ${props => props.theme.sizes.medium3};
   color: #fa58b6;
 
   @media (${(props) => props.theme.media.md}) {
-    font-size: 48px;
-    line-height: 80px;
+    font-size: ${props => props.theme.sizes.large4};
+    line-height: ${props => props.theme.sizes.xlarge3};
   }
 `;
 
 const Description = styled.p`
   font-family: "Circular Std";
-  font-size: 12px;
+  font-size: ${props => props.theme.sizes.small3};
   font-weight: light;
-  line-height: 16px;
+  line-height: ${props => props.theme.sizes.medium1};
   color: #ffffff;
-  padding: 16px 0;
+  padding: ${props => `${props.theme.sizes.medium1} ${props.theme.sizes.none}`};
 
   @media (${(props) => props.theme.media.md}) {
-    padding: 24px 0;
-    font-size: 16px;
-    line-height: 24px;
+    padding: ${props => `${props.theme.sizes.medium3} ${props.theme.sizes.none}`};
+    font-size: ${props => props.theme.sizes.medium1};
+    line-height: ${props => props.theme.sizes.medium3};
   }
 `;
 

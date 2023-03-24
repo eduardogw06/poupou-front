@@ -10,14 +10,14 @@ const FirstContainer = styled.div`
   padding: ${(props: any) => {
     const sizes = props.theme.sizes;
 
-    return `${sizes.medium1} ${sizes.medium4} 0px ${sizes.medium4}`;
+    return `${sizes.medium1} ${sizes.medium4} ${sizes.none} ${sizes.medium4}`;
   }};
 
   @media (${(props) => props.theme.media.md}) {
     padding: ${(props: any) => {
     const sizes = props.theme.sizes;
 
-    return `${sizes.medium1} ${sizes.xlarge1} 0px ${sizes.xlarge1}`;
+    return `${sizes.medium1} ${sizes.xlarge1} ${sizes.none} ${sizes.xlarge1}`;
   }};
   }
 `;
@@ -31,7 +31,7 @@ const SecondContainer = styled.div`
   padding: ${(props: any) => {
     const sizes = props.theme.sizes;
 
-    return `${sizes.medium1} ${sizes.xlarge1} 0px ${sizes.xlarge1}`;
+    return `${sizes.medium1} ${sizes.xlarge1} ${sizes.none} ${sizes.xlarge1}`;
   }};
 `;
 

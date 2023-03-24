@@ -30,7 +30,7 @@ const FormContainer = styled.form`
     };
     
     > div {
-    margin-bottom: 20px;
+    margin-bottom: ${props => props.theme.sizes.medium2};
     }
 `;
 

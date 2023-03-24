@@ -8,10 +8,9 @@ const Container = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: 70px;
+    height: ${(props: any): string => props.theme.sizes.xlarge2};
     background-color: ${(props: any) => props.theme.colors.secondary};
-
-    padding: 20px; ;
+    padding: ${(props: any): string => props.theme.sizes.medium2};
 `;
 
 const Notifications = styled.div`
@@ -26,11 +25,11 @@ const ProfilePhoto = styled.a`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 48px;
-    height: 48px;
+    width: ${(props: any): string => props.theme.sizes.large4};
+    height: ${(props: any): string => props.theme.sizes.large4};
 
     > * {
-        border-radius: 30px;
+        border-radius: ${(props: any): string => props.theme.sizes.large1};
     }
 
     @media (${(props: any): string => props.theme.media.md}) {
@@ -54,7 +53,7 @@ const DropDownContent = styled.ol`
     list-style: none;
 
     li:nth-child(3) { 
-        padding-left: 0px;
+        padding-left: ${(props: any): string => props.theme.sizes.none};
         cursor: default;
     }
 
@@ -67,19 +66,19 @@ const DropDownContentItem = styled.li`
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 20px;
+    padding: ${(props: any): string => props.theme.sizes.medium2};
     cursor: pointer;
 
     font-family: 'Circular Std';
     font-style: normal;
     font-weight: 700;
-    font-size: 16px;
+    font-size: ${(props: any): string => props.theme.sizes.medium1};
     line-height: 25px;
     color: ${props => props.theme.colors.text};
 
     > * { 
         > * {
-            margin-right: 16px;
+            margin-right: ${(props: any): string => props.theme.sizes.medium1};
         }
         
     }  

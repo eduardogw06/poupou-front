@@ -5,24 +5,24 @@ const Container = styled.div`
     flex-direction: row;
     justify-content: flex-end;
     width: 100%;
-    padding-top: 24px;
+    padding-top: ${props => props.theme.sizes.medium3};
 `;
 
 const NormalText = styled.p`
     font-family: 'Circular Std';
     font-style: normal;
     font-weight: 400;
-    font-size: 12px;
-    line-height: 24px;
+    font-size: ${props => props.theme.sizes.small3};
+    line-height: ${props => props.theme.sizes.medium3};
     color: #8B8BAB;
-    margin-right: 12px;
+    margin-right: ${props => props.theme.sizes.small3};
 `
 const LinkText = styled.p`
     font-family: 'Circular Std';
     font-style: bold;
     font-weight: 400;
-    font-size: 12px;
-    line-height: 24px;
+    font-size: ${props => props.theme.sizes.small3};
+    line-height: ${props => props.theme.sizes.medium3};
     color: #FFFFFF;
      cursor: pointer;
 `

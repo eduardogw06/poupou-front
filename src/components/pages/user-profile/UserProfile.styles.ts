@@ -31,12 +31,12 @@ const ProfilePhoto = styled.div`
 const UserInfo = styled.div`
     display: flex;
     flex-direction: column;
-    margin-left: 0px;
-    margin-top: 24px;
+    margin-left: ${props => props.theme.sizes.none};
+    margin-top: ${props => props.theme.sizes.medium3};
 
     @media (${(props: any): string => props.theme.media.md}) {      
-        margin-left: 70px;
-        margin-top: 0px;
+        margin-left: ${props => props.theme.sizes.xlarge2};
+        margin-top: ${props => props.theme.sizes.none};
     }
     
 `;
@@ -46,12 +46,12 @@ const UserInfoRow = styled.div`
     flex-direction: row;
     
     &:first-child {
-        padding-top: 0px;
+        padding-top: ${props => props.theme.sizes.none};
     }
 
     @media (${(props: any): string => props.theme.media.md}) {      
-        padding-top: 12px;
-        padding-bottom: 12px;
+        padding-top: ${props => props.theme.sizes.small3};
+        padding-bottom: ${props => props.theme.sizes.small3};
     }
 `;
 
@@ -59,27 +59,27 @@ const UserInfoLabel = styled.label`
     font-family: 'Circular Std';
     font-style: normal;
     font-weight: 700;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: ${props => props.theme.sizes.medium1};
+    line-height: ${props => props.theme.sizes.medium3};
     color: ${props => props.theme.colors.text};
 
     @media (${(props: any): string => props.theme.media.md}) {      
-        font-size: 24px;
-        line-height: 34px;
+        font-size: ${props => props.theme.sizes.medium3};
+        line-height: ${props => props.theme.sizes.large1};
     }
 `;
 const UserInfoText = styled.p`
     font-family: 'Circular Std';
     font-style: normal;
     font-weight: 300;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: ${props => props.theme.sizes.medium1};
+    line-height: ${props => props.theme.sizes.medium3};
     color: ${props => props.theme.colors.text};
-    margin-left: 24px;
+    margin-left: ${props => props.theme.sizes.medium3};
 
     @media (${(props: any): string => props.theme.media.md}) {      
-        font-size: 24px;
-        line-height: 34px;
+        font-size: ${props => props.theme.sizes.medium3};
+        line-height: ${props => props.theme.sizes.large1};
     }
 `;
 
@@ -89,13 +89,13 @@ const AchivementsText = styled.div`
     font-family: 'Circular Std';
     font-style: normal;
     font-weight: 300;
-    font-size: 12px;
-    line-height: 16px;
+    font-size: ${props => props.theme.sizes.small3};
+    line-height: ${props => props.theme.sizes.medium1};
     color: ${props => props.theme.colors.text};
 
     @media (${(props: any): string => props.theme.media.md}) {      
-        font-size: 16px;
-        line-height: 24px;
+        font-size: ${props => props.theme.sizes.medium1};
+        line-height: ${props => props.theme.sizes.medium3};
     }
 `;
 
@@ -103,7 +103,7 @@ const ButtonContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-top: 24px;
+    margin-top: ${props => props.theme.sizes.medium3};
 
     @media (${(props: any): string => props.theme.media.md}) {      
         flex-direction: row;

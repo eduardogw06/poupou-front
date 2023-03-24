@@ -1,16 +1,15 @@
 import styled from "styled-components";
 
 const FooterContainer = styled.footer`
-  height: 100%;
   background: #1a1a40;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 24px 0;
+  padding: ${(props: any): string => `${props.theme.sizes.medium3} ${props.theme.sizes.none}`};
 
   @media (${(props: any): string => props.theme.media.md}) {
-    padding: 40px 0;
+    padding: ${(props: any): string => `${props.theme.sizes.large3} ${props.theme.sizes.none}`};
   }
 `;
 

@@ -42,27 +42,27 @@ const Column = styled.div`
 
 const Title = styled.h1`
   font-family: "Circular Std";
-  font-size: 16px;
+  font-size: ${props => props.theme.sizes.medium1};
   font-weight: bold;
   color: #fa58b6;
 
   @media (${(props) => props.theme.media.md}) {
-    font-size: 20px;
+    font-size: ${props => props.theme.sizes.medium2};
   }
 `;
 
 const Description = styled.p`
   font-family: "Circular Std";
-  font-size: 12px;
+  font-size: ${props => props.theme.sizes.small3};
   font-weight: 300;
-  line-height: 16px;
+  line-height: ${props => props.theme.sizes.medium1};
   color: #270082;
-  padding: 16px 0;
+  padding: ${props => `${props.theme.sizes.medium1} ${props.theme.sizes.none}`};
 
   @media (${(props) => props.theme.media.md}) {
-    font-size: 16px;
-    padding: 20px 0;
-    line-height: 24px;
+    font-size: ${props => props.theme.sizes.medium1};
+    padding: ${props => `${props.theme.sizes.medium2} ${props.theme.sizes.none}`};
+    line-height: ${props => props.theme.sizes.medium3};
   }
 `;
 const Image = styled.img`

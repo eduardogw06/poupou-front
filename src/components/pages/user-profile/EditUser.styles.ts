@@ -8,10 +8,10 @@ const FormContainer = styled.form`
 
     > div {
         &:first-child div{
-            margin-top: 0px;
+            margin-top: ${props => props.theme.sizes.none};
         }
         
-        margin-top: 24px;
+        margin-top: ${props => props.theme.sizes.medium3};
     }
 `
 

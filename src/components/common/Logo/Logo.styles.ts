@@ -4,8 +4,8 @@ const LogoIcon = styled.img<{
   showImage: boolean;
 }>`
   margin-right: ${(props: any): string => props.theme.sizes.medium2};
-  width: 80px;
-  height: 80px;
+  width: ${(props: any): string => props.theme.sizes.xlarge3};
+  height: ${(props: any): string => props.theme.sizes.xlarge3};
   display: ${(props: any): "none" | "flex" =>
     props.showImage ? "flex" : "none"};
 `;
@@ -22,7 +22,7 @@ const LogoContainer = styled.div<{
 
 const LogoName = styled.h1`
     font-family: "Work Sans";
-    font-size: 40px;
+    font-size: ${(props: any): string => props.theme.sizes.large3};
     font-weight: bold;
     display: flex;
     align-items: center;

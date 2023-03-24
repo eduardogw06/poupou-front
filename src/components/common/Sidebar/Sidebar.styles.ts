@@ -11,7 +11,7 @@ const Container = styled.div`
 
     @media (${(props: any): string => props.theme.media.md}) {
         max-width: 25%;
-        height: calc(100vh + 70px);
+        height: calc(100vh + ${props => props.theme.sizes.xlarge2});
     }
 `;
 
@@ -20,8 +20,7 @@ const IconContainer = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-
-    width: 50px;
+    width: ${props => props.theme.sizes.large4};
 `;
 
 const MenuItem = styled.div`
@@ -29,10 +28,10 @@ const MenuItem = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 48px;
+    padding: ${props => `${props.theme.sizes.medium3} ${props.theme.sizes.medium4}`};
 
     @media (${(props: any): string => props.theme.media.md}) {
-        padding: 12px 16px;
+        padding: ${props => `${props.theme.sizes.small3} ${props.theme.sizes.medium1}`};
     }
 
 `;
@@ -45,12 +44,13 @@ const MenuItemName = styled.h1`
     font-family: 'Circular Std';
     font-style: normal;
     font-weight: 700;
-    font-size: 16px;
-    line-height: 20px;
+    font-size: ${props => props.theme.sizes.medium1};
+    line-height: ${props => props.theme.sizes.medium2};
     color: ${(props: any): string => props.theme.colors.text};
 
     @media (${(props: any): string => props.theme.media.md}) {
-        font-size: 12px;
+        font-size: ${props => props.theme.sizes.small3};
+        width: 20vw;
     }
 `;
 

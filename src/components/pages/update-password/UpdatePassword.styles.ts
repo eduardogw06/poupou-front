@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    width: calc(100vw - 48px);
+    width: calc(100vw - ${props => props.theme.sizes.large4});
 
     @media (${(props: any): string => props.theme.media.md}) {
         width: 100%;
@@ -17,10 +17,10 @@ const FormContainer = styled.form`
 
     > div {
         &:first-child {
-            margin-top: 0px;
+            margin-top: ${props => props.theme.sizes.none};
         }
         
-        margin-top: 24px;
+        margin-top: ${props => props.theme.sizes.medium3};
     }
 
     @media (${(props: any): string => props.theme.media.md}) {
