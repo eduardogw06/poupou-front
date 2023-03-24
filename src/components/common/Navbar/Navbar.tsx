@@ -1,4 +1,3 @@
-import { faKey, faSignOut, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Hamburguer from "hamburger-react";
 import Image from "next/image";
@@ -7,6 +6,7 @@ import Router from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { useTheme } from "styled-components";
 import { DefaultTheme } from "../../../types/DefaultTheme";
+import { getFontAwesomeIcon } from "../../../utils/getFontAwesomeIcon";
 import Logo from "../Logo/Logo";
 import {
   Container,
@@ -86,7 +86,7 @@ const Navbar = ({
             <DropDownContentItem>
               <Link href="/perfil">
                 <div>
-                  <FontAwesomeIcon icon={faUser} size="1x" color={menuIcon} />
+                  <FontAwesomeIcon icon="user" size="1x" color={menuIcon} />
                   Perfil
                 </div>
               </Link>
@@ -94,7 +94,11 @@ const Navbar = ({
             <DropDownContentItem>
               <Link href="/alterar-senha">
                 <div>
-                  <FontAwesomeIcon icon={faKey} size="1x" color={menuIcon} />
+                  <FontAwesomeIcon
+                    icon={getFontAwesomeIcon("key")}
+                    size="1x"
+                    color={menuIcon}
+                  />
                   Alterar Senha
                 </div>
               </Link>
@@ -109,7 +113,11 @@ const Navbar = ({
             </DropDownContentItem>
             <DropDownContentItem onClick={logout}>
               <div>
-                <FontAwesomeIcon icon={faSignOut} size="1x" color={menuIcon} />
+                <FontAwesomeIcon
+                  icon={getFontAwesomeIcon("sign-out")}
+                  size="1x"
+                  color={menuIcon}
+                />
                 Sair
               </div>
             </DropDownContentItem>

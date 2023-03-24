@@ -1,30 +1,38 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import { useTheme } from "styled-components";
+import { DefaultTheme } from "../../../types/DefaultTheme";
+import { getFontAwesomeIcon } from "../../../utils/getFontAwesomeIcon";
+import { isMobile } from "../../../utils/isMobile";
 import {
   Container,
   IconContainer,
   MenuItem,
   MenuItemName,
 } from "./Sidebar.styles";
-import {
-  faPiggyBank,
-  faDollar,
-  faRobot,
-  faKey,
-  faUser,
-  faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
-import { isMobile } from "../../../utils/isMobile";
-import { useTheme } from "styled-components";
-import { DefaultTheme } from "../../../types/DefaultTheme";
 
 const Sidebar = (): JSX.Element => {
   const items = [
-    { key: 1, description: "Meus objetivos", url: "/", icon: faPiggyBank },
-    { key: 2, description: "Meus aportes", url: "/", icon: faDollar },
-    { key: 3, description: "Aporte automático", url: "/", icon: faRobot },
-    { key: 4, description: "Perfil", url: "/", icon: faUser },
-    { key: 5, description: "Alterar senha", url: "/", icon: faKey },
+    {
+      key: 1,
+      description: "Meus objetivos",
+      url: "/",
+      icon: "piggy-bank",
+    },
+    {
+      key: 2,
+      description: "Meus aportes",
+      url: "/",
+      icon: "dollar",
+    },
+    {
+      key: 3,
+      description: "Aporte automático",
+      url: "/",
+      icon: "robot",
+    },
+    { key: 4, description: "Perfil", url: "/", icon: "user" },
+    { key: 5, description: "Alterar senha", url: "/", icon: "key" },
   ];
 
   const theme = useTheme() as DefaultTheme;
@@ -37,7 +45,7 @@ const Sidebar = (): JSX.Element => {
           <MenuItem>
             <IconContainer>
               <FontAwesomeIcon
-                icon={item.icon}
+                icon={getFontAwesomeIcon(item.icon)}
                 size={isMobile ? "1x" : "1x"}
                 color={menuIcon}
               />
@@ -46,7 +54,7 @@ const Sidebar = (): JSX.Element => {
             <MenuItemName>{item.description}</MenuItemName>
 
             <FontAwesomeIcon
-              icon={faChevronRight}
+              icon={getFontAwesomeIcon("chevron-right")}
               size={isMobile ? "1x" : "sm"}
               color={menuIcon}
             />
