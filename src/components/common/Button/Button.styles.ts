@@ -25,7 +25,6 @@ const StyledButton = styled.button < {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    margin-bottom: ${(props: any): string => props.theme.sizes.medium2};
 
     font-family: "Work Sans";
     font-weight: 500;

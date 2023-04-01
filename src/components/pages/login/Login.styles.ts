@@ -18,11 +18,6 @@ const Container = styled.div`
 const FormContainer = styled.form`
     display: flex;
     flex-direction: column;
-    padding: ${(props: any) => {
-        const sizes = props.theme.sizes;
-
-        return `${sizes.large3} ${sizes.none}  ${sizes.large3} ${sizes.none}`;
-    }};
 
     @media (${(props) => props.theme.media.md}) {
         width: 300px
@@ -30,7 +25,7 @@ const FormContainer = styled.form`
     };
     
     > div {
-    margin-bottom: ${(props: any): string => props.theme.sizes.medium2};
+        margin-bottom: ${(props: any): string => props.theme.sizes.medium2};
     }
 `;
 
