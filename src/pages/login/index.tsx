@@ -1,3 +1,4 @@
+import { getCsrfToken, getSession, signIn } from "next-auth/react";
 import Link from "next/link";
 import Router from "next/router";
 import { useEffect, useState } from "react";
@@ -11,9 +12,7 @@ import {
   FormContainer,
   PasswordRecovery,
 } from "../../components/pages/login/Login.styles";
-import { login } from "../../services/login";
 import { ILoginPayload } from "../../types/ILoginPayload";
-import { IApiResponse } from "../../types/IApiResponse";
 
 const defaultValues: ILoginPayload = {
   email: "",
@@ -25,7 +24,7 @@ interface IError {
   message: string;
 }
 
-function Login(): JSX.Element {
+function Login({ providers: any }): JSX.Element {
   const {
     register,
     watch,
@@ -54,21 +53,24 @@ function Login(): JSX.Element {
     setIsLoading(true);
     setButtonDisabled(true);
 
-    const result = (await login(data)) as IApiResponse;
+    const result = await signIn("credentials", {
+      ...data,
+      redirect: false,
+    });
 
-    if (result.success) {
-      setIsLoading(false);
-      setButtonDisabled(false);
-
-      Router.push("/dashboard");
-    } else {
+    if (result.error) {
       setError({
         hasError: true,
-        message: result.message,
+        message: result.error,
       });
       setIsLoading(false);
       setButtonDisabled(false);
     }
+
+    setIsLoading(false);
+    setButtonDisabled(false);
+
+    Router.push("/dashboard");
   };
 
   return (
@@ -98,11 +100,9 @@ function Login(): JSX.Element {
           helperText={error.message}
         />
 
-        {!isComingSoon && (
-          <Link href="#">
-            <PasswordRecovery>Recuperar senha</PasswordRecovery>
-          </Link>
-        )}
+        <Link href="#">
+          <PasswordRecovery>Recuperar senha</PasswordRecovery>
+        </Link>
 
         <Button
           type="submit"
@@ -113,14 +113,18 @@ function Login(): JSX.Element {
           disabled={buttonDisabled}
         />
 
-        {!isComingSoon && (
-          <Button
-            text="Fazer login com o Google"
-            size="medium"
-            fullWidth={true}
-            outlined={true}
-          />
-        )}
+        <Button
+          text="Fazer login com o Google"
+          size="medium"
+          fullWidth={true}
+          outlined={true}
+          onClick={() =>
+            signIn("google", {
+              redirect: false,
+              callbackUrl: "http://localhost:8080/dashboard",
+            })
+          }
+        />
 
         <QuestionText
           text="Ainda não tem conta?"
@@ -133,5 +137,22 @@ function Login(): JSX.Element {
 }
 
 Login.displayName = "Login";
+
+export async function getServerSideProps(context) {
+  const { req } = context;
+  const session = await getSession({ req });
+
+  if (session) {
+    return {
+      redirect: { destination: "/" },
+    };
+  }
+
+  return {
+    props: {
+      csrfToken: (await getCsrfToken(context)) ?? null,
+    },
+  };
+}
 
 export default Login;

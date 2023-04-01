@@ -1,11 +1,12 @@
 import { IApiResponse } from "../types/IApiResponse";
 import { IUserInfo } from "../types/IUserInfo";
 import api from "../utils/api";
-import { getSessionTokenHeader } from "../utils/getSessionToken";
 
-export const getUser = async (): Promise<IApiResponse> => {
+export const getUser = async (sessionToken: string): Promise<IApiResponse> => {
     try {
-        const config = getSessionTokenHeader();
+        const config = {
+            headers: { Authorization: `Bearer ${sessionToken}` }
+        };
         const response = await api.get('/users', config);
 
         if (Object.keys(response.data).length) {

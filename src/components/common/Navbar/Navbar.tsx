@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Hamburguer from "hamburger-react";
+import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import Router from "next/router";
@@ -55,11 +56,6 @@ const Navbar = ({
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
 
-  const logout = () => {
-    localStorage.removeItem("sessionToken");
-    Router.push("/login");
-  };
-
   return (
     <>
       <Container>
@@ -111,7 +107,7 @@ const Navbar = ({
               />
               Tema
             </DropDownContentItem>
-            <DropDownContentItem onClick={logout}>
+            <DropDownContentItem onClick={() => signOut()}>
               <div>
                 <FontAwesomeIcon
                   icon={getFontAwesomeIcon("sign-out")}

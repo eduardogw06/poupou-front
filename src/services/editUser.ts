@@ -1,11 +1,12 @@
 import { IApiResponse } from "../types/IApiResponse";
 import { IEditUserPayload } from "../types/IEditUserPayload";
 import api from "../utils/api";
-import { getSessionTokenHeader } from "../utils/getSessionToken";
 
-export const editUser = async (payload: IEditUserPayload): Promise<IApiResponse> => {
+export const editUser = async (payload: IEditUserPayload, sessionToken: string): Promise<IApiResponse> => {
     try {
-        const config = getSessionTokenHeader();
+        const config = {
+            headers: { Authorization: `Bearer ${sessionToken}` }
+        };
         const response = await api.patch('/users', payload, config);
         if (response.status === 200) {
             return new Promise((resolve: (value: IApiResponse) => void): any =>
