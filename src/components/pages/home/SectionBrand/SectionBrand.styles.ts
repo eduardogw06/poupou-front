@@ -19,9 +19,8 @@ const FirstColumn = styled.div`
 `;
 
 const BrandText = styled.h1`
-    font-family: "Circular Std";
-    font-weight: bold;
-    color: #fa58b6;
+    font-family: "Circular Medium";
+    color: ${props => props.theme.colors.tertiary};
     font-size: ${props => props.theme.sizes.medium2};
     line-height: ${props => props.theme.sizes.medium3};
     margin: ${props => `${props.theme.sizes.none} ${props.theme.sizes.small3} ${props.theme.sizes.small3} ${props.theme.sizes.none}`};   
@@ -29,7 +28,6 @@ const BrandText = styled.h1`
     
 
     @media (${(props) => props.theme.media.md}) {
-      font-family: "Circular Std";
       font-size: ${props => props.theme.sizes.large2};
       line-height: ${props => props.theme.sizes.large4};
       margin: ${props => `${props.theme.sizes.none} ${props.theme.sizes.medium2} ${props.theme.sizes.medium2} ${props.theme.sizes.none}`}; 
@@ -37,7 +35,7 @@ const BrandText = styled.h1`
 `;
 
 const BeginNowButton = styled.div`
-    background: #7a0bc0;
+    background: ${props => props.theme.colors.quaternary};
     border-radius: ${props => props.theme.sizes.small3};
     height: ${props => props.theme.sizes.medium3};
     width: 100px;
@@ -48,15 +46,14 @@ const BeginNowButton = styled.div`
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    font-family: "Work Sans";
-    font-weight: 700;
+    font-family: "WorkSans Bold";
     font-size: ${props => props.theme.sizes.small3};
     color: #fff;
     text-transform: uppercase;
     text-decoration: none;
 
     &:hover {
-      background: #fa58b6;
+      background: ${props => props.theme.colors.tertiary};
     }
 
     @media (${(props: any): string => props.theme.media.md}) {

@@ -26,9 +26,7 @@ const StyledButton = styled.button < {
     align-items: center;
     cursor: pointer;
     margin-bottom: ${(props: any): string => props.theme.sizes.medium2};
-
-    font-family: "Work Sans";
-    font-weight: 500;
+    font-family: "Circular Medium";
     font-size: 10px;
     color: ${(props: any): string => (props.disabled ? darken('0.65', '#FFF') : (props.outlined ? props.theme.colors.text : props.theme.colors.buttonText))};
     text-decoration: none;

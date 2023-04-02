@@ -39,7 +39,7 @@ const PasswordRecovery = styled.div`
     flex-direction: row;
     justify-content: flex-end;
 
-    font-family: 'Circular Std';
+    font-family: 'Circular Medium';
     font-style: normal;
     font-weight: 400;
     font-size: ${(props: any): string => props.theme.sizes.small3};
@@ -58,7 +58,7 @@ const NewAccountContainer = styled.div`
 `;
 
 const DontHaveAccountYet = styled.p`
-    font-family: 'Circular Std';
+    font-family: 'Circular Medium';
     font-style: normal;
     font-weight: 400;
     font-size: ${(props: any): string => props.theme.sizes.small3};
@@ -67,7 +67,7 @@ const DontHaveAccountYet = styled.p`
     margin-right: ${(props: any): string => props.theme.sizes.small3};
 `
 const RegisterNow = styled.p`
-    font-family: 'Circular Std';
+    font-family: 'Circular Medium';
     font-style: bold;
     font-weight: 400;
     font-size: ${(props: any): string => props.theme.sizes.small3};

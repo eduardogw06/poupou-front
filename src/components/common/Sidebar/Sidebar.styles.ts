@@ -41,7 +41,7 @@ const MenuItemName = styled.h1`
     flex-direction: row;
     align-items: center;
     
-    font-family: 'Circular Std';
+    font-family: 'Circular Bold';
     font-style: normal;
     font-weight: 700;
     font-size: ${props => props.theme.sizes.medium1};
