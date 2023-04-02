@@ -22,6 +22,7 @@ const Transition = forwardRef(function Transition(
 
 interface CustomDialogProps {
   isOpen: boolean;
+  title: string;
   handleClose: () => void;
   children: JSX.Element;
   buttons?: JSX.Element;
@@ -30,6 +31,7 @@ interface CustomDialogProps {
 
 const Dialog = ({
   isOpen,
+  title,
   handleClose,
   children,
   fullWidth = true,
@@ -49,9 +51,7 @@ const Dialog = ({
       theme={themeTitle}
       fullWidth={fullWidth}
     >
-      <DialogTitle sx={{ color: `${textColor}` }}>
-        {"Editar usuário"}
-      </DialogTitle>
+      <DialogTitle sx={{ color: `${textColor}` }}>{title}</DialogTitle>
       <DialogContent>{children}</DialogContent>
       <DialogActions>{buttons}</DialogActions>
     </CustomDialog>

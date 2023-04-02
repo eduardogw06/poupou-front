@@ -195,6 +195,7 @@ const UserProfile = (): JSX.Element => {
 
       <Dialog
         isOpen={editModeOn}
+        title="Editar usuário"
         handleClose={handleClose}
         buttons={DialogButtons}
       >
