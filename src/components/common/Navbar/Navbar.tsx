@@ -86,7 +86,11 @@ const Navbar = ({
             <DropDownContentItem>
               <Link href="/perfil">
                 <div>
-                  <FontAwesomeIcon icon="user" size="1x" color={menuIcon} />
+                  <FontAwesomeIcon
+                    icon={getFontAwesomeIcon("user")}
+                    size="1x"
+                    color={menuIcon}
+                  />
                   Perfil
                 </div>
               </Link>

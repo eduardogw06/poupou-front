@@ -29,6 +29,7 @@ const MenuItem = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: ${props => `${props.theme.sizes.medium3} ${props.theme.sizes.medium4}`};
+    cursor: pointer;
 
     @media (${(props: any): string => props.theme.media.md}) {
         padding: ${props => `${props.theme.sizes.small3} ${props.theme.sizes.medium1}`};
