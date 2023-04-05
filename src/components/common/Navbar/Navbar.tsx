@@ -3,7 +3,6 @@ import Hamburguer from "hamburger-react";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import Router from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { useTheme } from "styled-components";
 import { DefaultTheme } from "../../../types/DefaultTheme";
