@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
-import usePersistedState from "../../../utils/usePersistedState";
 
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
@@ -13,6 +12,7 @@ import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 import { ContentContainer } from "./Layout.styles";
+import Router from "next/router";
 
 interface LayoutProps {
   children: any;
@@ -37,6 +37,20 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
       JSON.stringify(theme.title === "light" ? dark : light)
     );
   };
+
+  const isLoggedIn = () => {
+    const sessionToken = localStorage.getItem("sessionToken");
+
+    if (!sessionToken) {
+      Router.push("login");
+    }
+  };
+
+  useEffect(() => {
+    isLoggedIn();
+  }, [isLoggedIn]);
+
+  if (!mountedComponent) return <div />;
 
   return (
     <>
