@@ -1,3 +1,4 @@
+import { getSession } from "next-auth/react";
 import Link from "next/link";
 import { LogoContainer, LogoIcon, LogoName } from "./Logo.styles";
 
@@ -6,10 +7,10 @@ interface LogoProps {
   imageSide?: "right" | "bottom";
 }
 
-const isLoggedIn = (): string => {
-  return typeof window !== "undefined"
-    ? localStorage.getItem("sessionToken")
-    : null;
+const isLoggedIn = async (): Promise<boolean> => {
+  const session = await getSession();
+
+  return session ? true : null;
 };
 
 const Logo = ({ showImage, imageSide }: LogoProps): JSX.Element => {

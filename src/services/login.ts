@@ -8,12 +8,8 @@ export const login = async (payload: ILoginPayload): Promise<IApiResponse> => {
         const response = await api.post('/login', payload);
 
         if (Object.keys(response).length) {
-
-            const { token } = response.data;
-            localStorage.setItem('sessionToken', JSON.stringify(token));
-
             return new Promise((resolve: (value: IApiResponse) => void): any =>
-                resolve({ success: true }));
+                resolve({ data: { ...response.data }, success: true }));
         }
 
     } catch (error) {

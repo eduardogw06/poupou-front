@@ -26,6 +26,7 @@ import { ptBR } from "date-fns/locale";
 import Router from "next/router";
 import Link from "next/link";
 import { isMobile } from "../../utils/isMobile";
+import { getSession } from "next-auth/react";
 
 interface IError {
   hasError: boolean;
@@ -77,7 +78,8 @@ const UserProfile = (): JSX.Element => {
     register("email");
 
     const getUserInfo = async () => {
-      const response = await getUser();
+      const session = await getSession();
+      const response = await getUser(session.user.jwt);
       if (response.success) {
         refreshDefaultValues(response.data as IUserInfo, setValue);
         setUserData(response.data as IUserInfo);
@@ -92,7 +94,8 @@ const UserProfile = (): JSX.Element => {
     setIsLoading(true);
     setButtonDisabled(true);
 
-    const result = (await editUser(data)) as IApiResponse;
+    const session = await getSession();
+    const result = (await editUser(data, session.user.jwt)) as IApiResponse;
 
     if (result.success) {
       setIsLoading(false);

@@ -1,17 +1,18 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ThemeProvider } from "styled-components";
 import usePersistedState from "../../../utils/usePersistedState";
 
+import { GetServerSideProps } from "next";
+import { getSession } from "next-auth/react";
 import GlobalStyle from "../../../styles/global";
 import dark from "../../../styles/themes/dark";
 import light from "../../../styles/themes/light";
+import { DefaultTheme } from "../../../types/DefaultTheme";
 import Content from "../Content/Content";
+import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 import { ContentContainer } from "./Layout.styles";
-import { DefaultTheme } from "../../../types/DefaultTheme";
-import Footer from "../Footer/Footer";
-import Router from "next/router";
 
 interface LayoutProps {
   children: any;
@@ -25,18 +26,6 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
   const toggleTheme = () => {
     setTheme(theme.title === "light" ? dark : light);
   };
-
-  const isLoggedIn = () => {
-    const sessionToken = localStorage.getItem("sessionToken");
-
-    if (!sessionToken) {
-      Router.push("login");
-    }
-  };
-
-  useEffect(() => {
-    isLoggedIn();
-  }, [isLoggedIn]);
 
   return (
     <>
@@ -57,6 +46,25 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
       </ThemeProvider>
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      session,
+    },
+  };
 };
 
 export default Layout;

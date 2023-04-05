@@ -1,11 +1,12 @@
 import { IApiResponse } from "../types/IApiResponse";
 import { IUpdatePasswordPayload } from "../types/IUpdatePasswordPayload";
 import api from "../utils/api";
-import { getSessionTokenHeader } from "../utils/getSessionToken";
 
-export const updatePassword = async (payload: IUpdatePasswordPayload): Promise<IApiResponse> => {
+export const updatePassword = async (payload: IUpdatePasswordPayload, sessionToken): Promise<IApiResponse> => {
     try {
-        const config = getSessionTokenHeader();
+        const config = {
+            headers: { Authorization: `Bearer ${sessionToken}` }
+        };
         const response = await api.patch('/users/update-password', payload, config);
         if (response.status === 200) {
             return new Promise((resolve: (value: IApiResponse) => void): any =>

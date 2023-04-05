@@ -1,4 +1,5 @@
 import { Alert, Snackbar } from "@mui/material";
+import { getSession } from "next-auth/react";
 import Router from "next/router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -60,7 +61,11 @@ const UpdatePassword = () => {
     setIsLoading(true);
     setButtonDisabled(true);
 
-    const result = (await updatePassword(data)) as IApiResponse;
+    const session = await getSession();
+    const result = (await updatePassword(
+      data,
+      session.user.jwt
+    )) as IApiResponse;
 
     if (result.success) {
       setIsLoading(false);
