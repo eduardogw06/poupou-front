@@ -1,5 +1,6 @@
 import { createGlobalStyle, ThemeProps } from "styled-components";
 import { DefaultTheme } from "../types/DefaultTheme";
+import { lighten } from "polished";
 
 export default createGlobalStyle`
     * {
@@ -11,6 +12,21 @@ export default createGlobalStyle`
     html {
         background: ${(props: ThemeProps<DefaultTheme>) =>
           props.theme.colors.primary};
+    }
+
+    // Select dropdown
+    .css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
+        background-color: ${(props) => props.theme.colors.primary} !important;
+        color: ${(props) => props.theme.colors.text} !important;
+        max-height: 200px;
+
+        ul > li {
+            &:hover {
+                background-color: ${(props) =>
+                  lighten(0.15, props.theme.colors.secondary)};
+            }
+        }
+        
     }
 
     @font-face {

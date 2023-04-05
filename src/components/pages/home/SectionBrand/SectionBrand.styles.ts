@@ -60,7 +60,7 @@ const BeginNowButton = styled.div`
       height: ${props => props.theme.sizes.large4};
       width: 160px;
       font-size: ${props => props.theme.sizes.medium1};
-  }
+    }
 `;
 
 const CoinOnPigSafeImage = styled.img`

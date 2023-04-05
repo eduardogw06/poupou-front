@@ -22,7 +22,7 @@ const Sidebar = (): JSX.Element => {
     {
       key: 2,
       description: "Meus aportes",
-      url: "/",
+      url: "/meus-aportes",
       icon: "dollar",
     },
     {

@@ -13,4 +13,9 @@ module.exports = [
     source: "/alterar-senha",
     destination: "/update-password",
   },
+
+  {
+    source: "/meus-aportes",
+    destination: "/my-transactions",
+  },
 ];
