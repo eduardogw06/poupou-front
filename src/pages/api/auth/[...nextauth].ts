@@ -1,9 +1,9 @@
-import NextAuth, { User } from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
+import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 import { login } from "../../../services/login";
-import { ILoginPayload } from "../../../types/ILoginPayload";
 import { IApiResponse } from "../../../types/IApiResponse";
+import { ILoginPayload } from "../../../types/ILoginPayload";
 
 interface ILoginCredentials {
     email: string;
