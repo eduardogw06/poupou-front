@@ -20,11 +20,22 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {
-  const [theme, setTheme] = usePersistedState<DefaultTheme>("theme", dark);
+  const [theme, setTheme] = useState<DefaultTheme>(dark);
   const [menuOpened, setMenuOpened] = useState(false);
+  const [mountedComponent, setMountedComponent] = useState(false);
+
+  useEffect(() => {
+    const localTheme = JSON.parse(window.localStorage.getItem("theme"));
+    localTheme.title === "dark" ? setTheme(localTheme) : setTheme(light);
+    setMountedComponent(true);
+  }, []);
 
   const toggleTheme = () => {
     setTheme(theme.title === "light" ? dark : light);
+    window.localStorage.setItem(
+      "theme",
+      JSON.stringify(theme.title === "light" ? dark : light)
+    );
   };
 
   return (

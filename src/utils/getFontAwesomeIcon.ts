@@ -1,5 +1,6 @@
 import {
-    faChevronRight, faDollar, faHeart, faKey, faMobileScreen, faPiggyBank, faRobot, faSignOut,
+    faChevronRight, faDollar, faGear, faHeart, faKey, faMobileScreen, faPiggyBank, faRobot, faSignOut,
+    faTrash,
     faUmbrellaBeach,
     faUser,
     IconDefinition
@@ -15,6 +16,8 @@ const icons = {
     'umbrella-beach': faUmbrellaBeach,
     'mobile-screen': faMobileScreen,
     'user': faUser,
+    'trash': faTrash,
+    'gear': faGear,
 };
 
 export const getFontAwesomeIcon = (icon: string): IconDefinition => {

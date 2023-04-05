@@ -30,7 +30,7 @@ const Content = styled.div<{
 const Title = styled.div`
     display: flex;
     flex-direction: row;
-    font-family: 'Circular Std';
+    font-family: 'Circular Bold';
     font-weight: bold;
     font-size: ${props => props.theme.sizes.medium3};
     line-height: ${props => props.theme.sizes.medium3};

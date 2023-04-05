@@ -18,6 +18,15 @@ const StyledTextField = styled(TextField)`
             }
 
         }
+
+        > .css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+            color: ${props => props.theme.colors.text};
+            background-color: ${rgba(255, 255, 255, 0.05)};
+        }
+
+        > svg {
+            color: #8B8BAB;
+        }
      }
 
     > label {

@@ -56,7 +56,7 @@ const UserInfoRow = styled.div`
 `;
 
 const UserInfoLabel = styled.label`
-    font-family: 'Circular Std';
+    font-family: 'Circular Bold';
     font-style: normal;
     font-weight: 700;
     font-size: ${props => props.theme.sizes.medium1};
@@ -69,7 +69,7 @@ const UserInfoLabel = styled.label`
     }
 `;
 const UserInfoText = styled.p`
-    font-family: 'Circular Std';
+    font-family: 'Circular Light';
     font-style: normal;
     font-weight: 300;
     font-size: ${props => props.theme.sizes.medium1};
@@ -86,7 +86,7 @@ const UserInfoText = styled.p`
 const Achivements = styled.div``;
 
 const AchivementsText = styled.div`
-    font-family: 'Circular Std';
+    font-family: 'Circular Light';
     font-style: normal;
     font-weight: 300;
     font-size: ${props => props.theme.sizes.small3};

@@ -69,9 +69,7 @@ const DropDownContentItem = styled.li`
     padding: ${(props: any): string => props.theme.sizes.medium2};
     cursor: pointer;
 
-    font-family: 'Circular Std';
-    font-style: normal;
-    font-weight: 700;
+    font-family: 'Circular Bold';
     font-size: ${(props: any): string => props.theme.sizes.medium1};
     line-height: 25px;
     color: ${props => props.theme.colors.text};

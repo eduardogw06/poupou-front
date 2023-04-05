@@ -21,9 +21,8 @@ const LogoContainer = styled.div<{
 `;
 
 const LogoName = styled.h1`
-    font-family: "Work Sans";
+    font-family: "WorkSans Bold";
     font-size: ${(props: any): string => props.theme.sizes.large3};
-    font-weight: bold;
     display: flex;
     align-items: center;
     color: ${props => props.theme.colors.text};   

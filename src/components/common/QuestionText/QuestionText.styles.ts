@@ -9,7 +9,7 @@ const Container = styled.div`
 `;
 
 const NormalText = styled.p`
-    font-family: 'Circular Std';
+    font-family: 'Circular Medium';
     font-style: normal;
     font-weight: 400;
     font-size: ${props => props.theme.sizes.small3};
@@ -18,7 +18,7 @@ const NormalText = styled.p`
     margin-right: ${props => props.theme.sizes.small3};
 `
 const LinkText = styled.p`
-    font-family: 'Circular Std';
+    font-family: 'Circular Medium';
     font-style: bold;
     font-weight: 400;
     font-size: ${props => props.theme.sizes.small3};

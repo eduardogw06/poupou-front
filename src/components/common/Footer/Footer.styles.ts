@@ -14,8 +14,7 @@ const FooterContainer = styled.footer`
 `;
 
 const FooterText = styled.h1`
-  font-family: "Circular Std";
-  font-style: normal;
+  font-family: "Circular Bold";
   font-size: 12px;
   line-height: 25px;
   color: #ffffff;
