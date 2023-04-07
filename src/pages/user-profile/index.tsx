@@ -1,37 +1,22 @@
-import { Alert, Backdrop, CircularProgress, Snackbar } from "@mui/material";
-import Image from "next/image";
+import { Backdrop, CircularProgress } from "@mui/material";
+import { getSession } from "next-auth/react";
+import Router from "next/router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "../../components/common/Button/Button";
 import Dialog from "../../components/common/Dialog/Dialog";
-import EditUser from "../../components/pages/user-profile/EditUser";
-import {
-  Achivements,
-  AchivementsText,
-  ButtonContainer,
-  ProfilePhoto,
-  UserInfo,
-  UserInfoLabel,
-  UserInfoRow,
-  UserInfoText,
-  UserProfileContainer,
-} from "../../components/pages/user-profile/UserProfile.styles";
+import Feedback from "../../components/common/Feedback/Feedback";
+import EditUser from "../../components/pages/user-profile/EditUser/EditUser";
+import { UserProfileContainer } from "../../components/pages/user-profile/UserProfile.styles";
+import UserProfileInfo from "../../components/pages/user-profile/UserProfileInfo";
 import { editUser } from "../../services/editUser";
 import { getUser } from "../../services/getUser";
+import { IAlertProps } from "../../types/IAlertProps";
 import { IApiResponse } from "../../types/IApiResponse";
 import { IEditUserPayload } from "../../types/IEditUserPayload";
+import { IError } from "../../types/IError";
 import { IUserInfo } from "../../types/IUserInfo";
-import { format } from "date-fns";
-import { ptBR } from "date-fns/locale";
-import Router from "next/router";
-import Link from "next/link";
 import { isMobile } from "../../utils/isMobile";
-import { getSession } from "next-auth/react";
-
-interface IError {
-  hasError: boolean;
-  message: string;
-}
 
 const defaultValues: IEditUserPayload = {
   name: "",
@@ -43,13 +28,19 @@ const defaultError = {
   message: "",
 };
 
+const defaultAlert: IAlertProps = {
+  severity: "success",
+  message: "Cadastro atualizado com sucesso!",
+};
+
 const UserProfile = (): JSX.Element => {
-  const [editModeOn, setEditModOn] = useState<boolean>(false);
+  const [editModeOn, setEditModeOn] = useState<boolean>(false);
   const [error, setError] = useState<IError>(defaultError);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [userData, setUserData] = useState<IUserInfo | null>(null);
   const [feedbackOpened, setFeedbackOpened] = useState<boolean>(false);
+  const [alertProps, setAlertProps] = useState<IAlertProps>(defaultAlert);
   const mobile = isMobile();
 
   const {
@@ -73,16 +64,26 @@ const UserProfile = (): JSX.Element => {
     });
   };
 
-  useEffect(() => {
+  useEffect((): void => {
     register("name");
     register("email");
 
-    const getUserInfo = async () => {
+    const getUserInfo = async (): Promise<void> => {
       const session = await getSession();
-      const response = await getUser(session.user.jwt);
+      const response = await getUser(session?.user.jwt);
       if (response.success) {
         refreshDefaultValues(response.data as IUserInfo, setValue);
         setUserData(response.data as IUserInfo);
+      } else {
+        const redirectUrl =
+          response.message === "Invalid token" ? "/login" : null;
+
+        setFeedbackOpened(true);
+        setAlertProps({
+          severity: "error",
+          message: response.message,
+          redirectUrl: redirectUrl,
+        });
       }
     };
 
@@ -95,9 +96,10 @@ const UserProfile = (): JSX.Element => {
     setButtonDisabled(true);
 
     const session = await getSession();
-    const result = (await editUser(data, session.user.jwt)) as IApiResponse;
+    const result = (await editUser(data, session?.user.jwt)) as IApiResponse;
 
     if (result.success) {
+      setAlertProps(defaultAlert);
       setIsLoading(false);
       setButtonDisabled(false);
       setFeedbackOpened(true);
@@ -111,9 +113,13 @@ const UserProfile = (): JSX.Element => {
     }
   };
 
-  const handleClose = () => {
-    setEditModOn(false);
-    Router.reload();
+  const handleClose = (redirectUrl?: string): void => {
+    setEditModeOn(false);
+    if (redirectUrl) {
+      Router.push(redirectUrl);
+    } else {
+      Router.reload();
+    }
   };
 
   const DialogButtons = (
@@ -138,63 +144,19 @@ const UserProfile = (): JSX.Element => {
 
       {userData && (
         <UserProfileContainer>
-          <ProfilePhoto>
-            <Image
-              src="/assets/user-profile-default.png"
-              height="100"
-              width="100"
-            ></Image>
-          </ProfilePhoto>
-          <UserInfo>
-            <UserInfoRow>
-              <UserInfoLabel>Nome:</UserInfoLabel>
-              <UserInfoText>{userData.name}</UserInfoText>
-            </UserInfoRow>
-
-            <UserInfoRow>
-              <UserInfoLabel>E-mail:</UserInfoLabel>
-              <UserInfoText>{userData.email}</UserInfoText>
-            </UserInfoRow>
-
-            <UserInfoRow>
-              <UserInfoLabel>Usuário desde:</UserInfoLabel>
-              <UserInfoText>
-                {format(new Date(userData.created_at), "dd/MM/yyyy", {
-                  locale: ptBR,
-                })}
-              </UserInfoText>
-            </UserInfoRow>
-
-            <UserInfoRow>
-              <UserInfoLabel>Selos consquistados:</UserInfoLabel>
-            </UserInfoRow>
-
-            <Achivements>
-              <AchivementsText>
-                Nenhum selo consquistado. Crie um objetivo e comece a poupar.
-              </AchivementsText>
-            </Achivements>
-
-            <ButtonContainer>
-              <Button
-                text="Editar"
-                size={mobile ? "medium" : "small"}
-                fullWidth={mobile}
-                onClick={(): void => setEditModOn(!editModeOn)}
-              />
-
-              <Link href="/alterar-senha">
-                <Button
-                  text="Alterar senha"
-                  size={mobile ? "medium" : "small"}
-                  fullWidth={mobile}
-                  outlined={true}
-                />
-              </Link>
-            </ButtonContainer>
-          </UserInfo>
+          <UserProfileInfo
+            userData={userData}
+            editModeOn={editModeOn}
+            setEditModeOn={setEditModeOn}
+          />
         </UserProfileContainer>
       )}
+
+      <Feedback
+        feedbackOpened={feedbackOpened}
+        alertProps={alertProps}
+        handleClose={handleClose}
+      />
 
       <Dialog
         isOpen={editModeOn}
@@ -212,16 +174,6 @@ const UserProfile = (): JSX.Element => {
           userData={userData}
         ></EditUser>
       </Dialog>
-
-      <Snackbar
-        open={feedbackOpened}
-        autoHideDuration={3000}
-        onClose={handleClose}
-      >
-        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-          Cadastro atualizado com sucesso!
-        </Alert>
-      </Snackbar>
     </>
   );
 };
