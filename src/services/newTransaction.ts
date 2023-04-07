@@ -8,7 +8,7 @@ export const newTransaction = async (payload: INewTransactionPayload, sessionTok
             headers: { Authorization: `Bearer ${sessionToken}` }
         };
         const response = await api.post('/transaction', payload, config);
-        if (response.status === 200) {
+        if (response.status === 201) {
             return new Promise((resolve: (value: IApiResponse) => void): any =>
                 resolve({ success: true }));
         }
