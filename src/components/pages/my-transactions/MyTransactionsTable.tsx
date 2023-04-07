@@ -22,57 +22,65 @@ const MyTransationsTable = ({ data }: MyTransationsTableProps): JSX.Element => {
   const { columns, rows } = data;
 
   return (
-    <TableContainer
-      component={Paper}
-      sx={{
-        backgroundColor: theme.colors.secondary,
-      }}
-    >
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-        <TableHead>
-          <TableRow>
-            {columns.map((column: string): JSX.Element => {
-              return <StyledTableCell key={column}>{column}</StyledTableCell>;
-            })}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.uuid}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <StyledTableCell component="th" scope="row">
-                {row.uuid}
-              </StyledTableCell>
-              <StyledTableCell component="th" scope="row">
-                {row.amount}
-              </StyledTableCell>
-              <StyledTableCell>{row.target.description}</StyledTableCell>
-              <StyledTableCell>
-                {format(new Date(row.date), "dd/MM/yyyy", {
-                  locale: ptBR,
+    <>
+      {Object.keys(rows).length ? (
+        <TableContainer
+          component={Paper}
+          sx={{
+            backgroundColor: theme.colors.secondary,
+          }}
+        >
+          <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+            <TableHead>
+              <TableRow>
+                {columns.map((column: string): JSX.Element => {
+                  return (
+                    <StyledTableCell key={column}>{column}</StyledTableCell>
+                  );
                 })}
-              </StyledTableCell>
-              <StyledTableCell>
-                <IconContainer>
-                  <FontAwesomeIcon
-                    icon={getFontAwesomeIcon("gear")}
-                    size="1x"
-                    color={theme.colors.text}
-                  />
-                  <FontAwesomeIcon
-                    icon={getFontAwesomeIcon("trash")}
-                    size="1x"
-                    color={theme.colors.text}
-                  />
-                </IconContainer>
-              </StyledTableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map((row) => (
+                <TableRow
+                  key={row.uuid}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <StyledTableCell component="th" scope="row">
+                    {row.uuid}
+                  </StyledTableCell>
+                  <StyledTableCell component="th" scope="row">
+                    {row.amount}
+                  </StyledTableCell>
+                  <StyledTableCell>{row.target.description}</StyledTableCell>
+                  <StyledTableCell>
+                    {format(new Date(row.date), "dd/MM/yyyy", {
+                      locale: ptBR,
+                    })}
+                  </StyledTableCell>
+                  <StyledTableCell>
+                    <IconContainer>
+                      <FontAwesomeIcon
+                        icon={getFontAwesomeIcon("gear")}
+                        size="1x"
+                        color={theme.colors.text}
+                      />
+                      <FontAwesomeIcon
+                        icon={getFontAwesomeIcon("trash")}
+                        size="1x"
+                        color={theme.colors.text}
+                      />
+                    </IconContainer>
+                  </StyledTableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      ) : (
+        "TESTEE"
+      )}
+    </>
   );
 };
 

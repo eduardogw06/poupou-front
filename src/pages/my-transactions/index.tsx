@@ -1,6 +1,7 @@
 import { Alert, Snackbar } from "@mui/material";
+import { getSession } from "next-auth/react";
 import Router from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "../../components/common/Button/Button";
 import Dialog from "../../components/common/Dialog/Dialog";
@@ -14,21 +15,23 @@ import NewTransactionModal from "../../components/pages/my-transactions/NewTrans
 import { newTransaction } from "../../services/newTransaction";
 import { IApiResponse } from "../../types/IApiResponse";
 import { MyTransactionsData } from "../../types/IMyTransactions";
+import { INewTransactionPayload } from "../../types/INewTransactionPayload";
 import { isMobile } from "../../utils/isMobile";
 
-interface INewTransaction {
-  amount: string;
-  target_id: string;
-}
+import EmptyPageAdvice from "../../components/common/EmptyPageAdvice/EmptyPageAdvice";
+import { getTargets as getTargetsService } from "../../services/getTargets";
+import { IGetTarget } from "../../types/IGetTarget";
 
 interface IError {
   hasError: boolean;
   message: string;
 }
 
-const defaultValues: INewTransaction = {
+const defaultValues: INewTransactionPayload = {
   amount: "",
   target_id: "",
+  type_id: "3425bac3-2025-4284-83d7-72e85dbcabc9",
+  date: new Date(),
 };
 
 const defaultError = {
@@ -42,6 +45,7 @@ const MyTransactions = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [feedbackOpened, setFeedbackOpened] = useState<boolean>(false);
+  const [targets, setTargets] = useState<IGetTarget[] | null>(null);
   const mobile = isMobile();
 
   const {
@@ -53,30 +57,28 @@ const MyTransactions = (): JSX.Element => {
   } = useForm({ defaultValues });
 
   const refreshDefaultValues = (
-    newDefaultData: INewTransaction,
+    newDefaultData: INewTransactionPayload,
     setValue: (fieldName: string, value: any) => void
   ) => {
     Object.keys(defaultValues).forEach((fieldName) => {
       defaultValues[fieldName] = newDefaultData[fieldName];
       setValue(
-        fieldName as keyof INewTransaction,
+        fieldName as keyof INewTransactionPayload,
         newDefaultData[fieldName] ?? ""
       );
     });
   };
 
-  const onSubmit = async (data: INewTransaction) => {
+  const onSubmit = async (data: INewTransactionPayload) => {
     setError(defaultError);
     setIsLoading(true);
     setButtonDisabled(true);
 
-    const payload = {
-      type_id: "3425bac3-2025-4284-83d7-72e85dbcabc9",
-      date: new Date(),
-      ...data,
-    };
-
-    const result = (await newTransaction(payload, "")) as IApiResponse;
+    const session = await getSession();
+    const result = (await newTransaction(
+      data,
+      session.user.jwt
+    )) as IApiResponse;
 
     if (result.success) {
       setIsLoading(false);
@@ -96,6 +98,19 @@ const MyTransactions = (): JSX.Element => {
     setModalOpened(false);
     Router.reload();
   };
+
+  useEffect(() => {
+    const getTargets = async (): Promise<void> => {
+      const session = await getSession();
+      const response = await getTargetsService(session.user.jwt);
+
+      if (response && response.success) {
+        setTargets(response.data);
+      }
+    };
+
+    getTargets();
+  }, [register]);
 
   const DialogButtons = (
     <Button
@@ -152,43 +167,56 @@ const MyTransactions = (): JSX.Element => {
     <>
       <Container>
         <PageTitle>Meus aportes</PageTitle>
+        {targets ? (
+          <>
+            <NewTransaction>
+              <Button
+                text="Novo aporte"
+                size="small"
+                onClick={(): void => setModalOpened(!modalOpened)}
+              ></Button>
+            </NewTransaction>
 
-        <NewTransaction>
-          <Button
-            text="Novo aporte"
-            size="small"
-            onClick={(): void => setModalOpened(!modalOpened)}
-          ></Button>
-        </NewTransaction>
+            <MyTransationsTable data={data} />
 
-        <MyTransationsTable data={data} />
+            <Snackbar
+              open={feedbackOpened}
+              autoHideDuration={3000}
+              onClose={handleClose}
+            >
+              <Alert
+                onClose={handleClose}
+                severity="success"
+                sx={{ width: "100%" }}
+              >
+                Cadastro atualizado com sucesso!
+              </Alert>
+            </Snackbar>
+
+            <Dialog
+              isOpen={modalOpened}
+              title="Novo aporte"
+              handleClose={handleClose}
+              buttons={DialogButtons}
+            >
+              <NewTransactionModal
+                setValue={setValue}
+                watch={watch}
+                error={error}
+                handleSubmit={handleSubmit}
+                onSubmit={onSubmit}
+                register={register}
+              ></NewTransactionModal>
+            </Dialog>
+          </>
+        ) : (
+          <EmptyPageAdvice
+            text="Não encontramos nenhum objetivo cadastrado. Para cadastrar um objetivo e poder começar a investir no seu sonho clique "
+            href="/meus-objetivos"
+            hrefText="AQUI."
+          />
+        )}
       </Container>
-
-      <Snackbar
-        open={feedbackOpened}
-        autoHideDuration={3000}
-        onClose={handleClose}
-      >
-        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-          Cadastro atualizado com sucesso!
-        </Alert>
-      </Snackbar>
-
-      <Dialog
-        isOpen={modalOpened}
-        title="Novo aporte"
-        handleClose={handleClose}
-        buttons={DialogButtons}
-      >
-        <NewTransactionModal
-          setValue={setValue}
-          watch={watch}
-          error={error}
-          handleSubmit={handleSubmit}
-          onSubmit={onSubmit}
-          register={register}
-        ></NewTransactionModal>
-      </Dialog>
     </>
   );
 };

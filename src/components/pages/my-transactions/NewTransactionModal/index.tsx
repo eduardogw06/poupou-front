@@ -1,10 +1,11 @@
+import { MenuItem } from "@mui/material";
 import { useEffect } from "react";
 import { UseFormHandleSubmit } from "react-hook-form";
+import { IGetTarget } from "../../../../types/IGetTarget";
 import { INewTransactionPayload } from "../../../../types/INewTransactionPayload";
 import Input from "../../../common/Input/Input";
-import { FormContainer } from "./NewTransactionModal.styles";
 import InputMoney from "../../../common/InputMoney/InputMoney";
-import { MenuItem } from "@mui/material";
+import { FormContainer } from "./NewTransactionModal.styles";
 
 interface NewTransactionModalProps {
   setValue: (field: string, value: any) => void;
@@ -16,6 +17,7 @@ interface NewTransactionModalProps {
   handleSubmit: UseFormHandleSubmit<INewTransactionPayload>;
   onSubmit: (data: INewTransactionPayload) => Promise<void>;
   register: (field: string) => void;
+  targets: IGetTarget[];
 }
 
 const NewTransactionModal = ({
@@ -25,18 +27,19 @@ const NewTransactionModal = ({
   handleSubmit,
   onSubmit,
   register,
-}: NewTransactionModalProps) => {
+  targets,
+}: NewTransactionModalProps): JSX.Element => {
   useEffect(() => {
     register("target_id");
     register("amount");
   }, [register]);
 
-  const targets = [
-    { uuid: "1", description: "Férias" },
-    { uuid: "2", description: "Presente do filho" },
-    { uuid: "3", description: "Celular novo" },
-    { uuid: "4", description: "Casamento" },
-  ];
+  // const targets = [
+  //   { uuid: "1", description: "Férias" },
+  //   { uuid: "2", description: "Presente do filho" },
+  //   { uuid: "3", description: "Celular novo" },
+  //   { uuid: "4", description: "Casamento" },
+  // ];
 
   return (
     <FormContainer
@@ -56,13 +59,14 @@ const NewTransactionModal = ({
         onChange={(e: any): void => setValue("target_id", e.target.value)}
         error={error.hasError}
       >
-        {targets.map(
-          (target): JSX.Element => (
-            <MenuItem key={target.uuid} value={target.uuid}>
-              {target.description}
-            </MenuItem>
-          )
-        )}
+        {targets &&
+          targets.map(
+            (target: IGetTarget): JSX.Element => (
+              <MenuItem key={target.uuid} value={target.uuid}>
+                {target.description}
+              </MenuItem>
+            )
+          )}
       </Input>
 
       <InputMoney
