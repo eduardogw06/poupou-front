@@ -89,7 +89,7 @@ const UserProfile = (): JSX.Element => {
     getUserInfo();
   }, [register]);
 
-  const onSubmit = async (data: IEditUserPayload) => {
+  const onSubmit = async (data: IEditUserPayload): Promise<void> => {
     setError(defaultError);
     setIsLoading(true);
     setButtonDisabled(true);
