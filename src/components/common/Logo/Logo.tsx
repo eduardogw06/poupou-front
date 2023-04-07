@@ -1,4 +1,4 @@
-import { getSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import Link from "next/link";
 import { LogoContainer, LogoIcon, LogoName } from "./Logo.styles";
 
@@ -7,15 +7,11 @@ interface LogoProps {
   imageSide?: "right" | "bottom";
 }
 
-const isLoggedIn = async (): Promise<boolean> => {
-  const session = await getSession();
-
-  return session ? true : null;
-};
-
 const Logo = ({ showImage, imageSide }: LogoProps): JSX.Element => {
+  const { data: session } = useSession();
+
   return (
-    <Link href={isLoggedIn() != null ? "/dashboard" : "/"}>
+    <Link href={session ? "/dashboard" : "/"}>
       <LogoContainer imageSide={imageSide ?? "right"}>
         <LogoIcon src="/assets/logo.png" showImage={showImage} />
         <LogoName>POUPOU</LogoName>
