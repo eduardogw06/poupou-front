@@ -4,15 +4,10 @@ import GoogleProvider from "next-auth/providers/google";
 import { login } from "../../../services/login";
 import { IApiResponse } from "../../../types/IApiResponse";
 import { ILoginPayload } from "../../../types/ILoginPayload";
+import { IJwtProps, ILoginCredentials, IRedirectProps, ISessionProps } from "../../../types/INextAuthApi";
+import { Session } from "next-auth/core/types";
+import { JWT } from "next-auth/jwt";
 
-interface ILoginCredentials {
-    email: string;
-    password: string;
-    redirect: boolean;
-    csrfToken: string;
-    callbackUrl: string;
-    json: boolean;
-}
 
 export default NextAuth({
     providers: [
@@ -49,29 +44,35 @@ export default NextAuth({
         strategy: 'jwt',
     },
     callbacks: {
-        async redirect({ url, baseUrl }) {
+        async redirect({ url, baseUrl }: IRedirectProps): Promise<string> {
             if (url.startsWith("/")) return `${baseUrl}${url}`
-            // Allows callback URLs on the same origin
             else if (new URL(url).origin === baseUrl) return url
         },
 
-        async signIn({ user, account, profile, email, credentials }) {
+        async signIn(): Promise<boolean> {
             return true;
         },
 
-        async session({ session, token }) {
+        async session({ session, token }: ISessionProps): Promise<Session> {
             session.user.jwt = token.jwt;
 
             return Promise.resolve(session)
         },
-        async jwt({ token, user, account }) {
+        async jwt({ token, user }: IJwtProps): Promise<JWT> {
+            if (user) {
+                token.id = user.id
+                token.email = user.email
+                token.name = user.name
+                token.jwt = user.jwt
+            }
+
             return Promise.resolve(token);
         }
 
     },
     secret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
     pages: {
-        error: '/entrar', // Changing the error redirect page to our custom login page
+        error: '/entrar',
         signIn: '/login',
         newUser: '/dashboard'
     }
