@@ -16,6 +16,7 @@ import {
   MaterialUISwitch,
   ProfilePhoto,
 } from "./Navbar.styles";
+import { SignOutResponse } from "next-auth/react";
 
 interface NavbarProps {
   menuOpened: boolean;
@@ -110,7 +111,11 @@ const Navbar = ({
               />
               Tema
             </DropDownContentItem>
-            <DropDownContentItem onClick={() => signOut()}>
+            <DropDownContentItem
+              onClick={(): Promise<undefined | SignOutResponse> =>
+                signOut({ callbackUrl: "/login" })
+              }
+            >
               <div>
                 <FontAwesomeIcon
                   icon={getFontAwesomeIcon("sign-out")}
