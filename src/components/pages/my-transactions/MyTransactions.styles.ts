@@ -30,4 +30,10 @@ const IconContainer = styled.div`
   }
 `;
 
-export { Container, NewTransaction, StyledTableCell, IconContainer };
+
+export {
+  Container,
+  NewTransaction,
+  StyledTableCell,
+  IconContainer
+};
