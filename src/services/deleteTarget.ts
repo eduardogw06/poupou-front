@@ -1,28 +1,26 @@
 import { IApiResponse } from "../types/IApiResponse";
-import { IGetTarget } from "../types/IGetTarget";
 import api from "../utils/api";
 
-interface GetTargetsProps {
-    userId: string;
-    sessionToken: string;
-    targetId?: string;
+interface IDeleteTargetPayload {
+    target_id: string;
 }
 
-export const getTargets = async ({ userId, sessionToken, targetId }: GetTargetsProps): Promise<IApiResponse> => {
+export const deleteTarget = async (payload: IDeleteTargetPayload, sessionToken: string): Promise<IApiResponse> => {
     try {
         const config = {
             headers: { Authorization: `Bearer ${sessionToken}` },
-            params: targetId ? { user_id: userId, target_id: targetId } : { user_id: userId }
+            params: payload
         };
-        const response = await api.get('/target', config);
 
-        if (Object.keys(response.data).length) {
+        const response = await api.delete('/target', config);
+        if (response.status === 204) {
             return new Promise((resolve: (value: IApiResponse) => void): any =>
-                resolve({ success: true, data: response.data as IGetTarget[] }));
+                resolve({ success: true }));
         }
 
     } catch (error) {
-        const { message } = error.response.data
+        console.log(error);
+        const { message } = error.response?.data
         if (message) {
             return new Promise((resolve: (value: IApiResponse) => void): void =>
                 resolve({ success: false, message: message }))
@@ -34,3 +32,4 @@ export const getTargets = async ({ userId, sessionToken, targetId }: GetTargetsP
         );
     }
 }
+

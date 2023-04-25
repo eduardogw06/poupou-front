@@ -1,24 +1,16 @@
 import { IApiResponse } from "../types/IApiResponse";
-import { IGetTarget } from "../types/IGetTarget";
+import { INewTargetPayload } from "../types/INewTargetPayload";
 import api from "../utils/api";
 
-interface GetTargetsProps {
-    userId: string;
-    sessionToken: string;
-    targetId?: string;
-}
-
-export const getTargets = async ({ userId, sessionToken, targetId }: GetTargetsProps): Promise<IApiResponse> => {
+export const newTarget = async (payload: INewTargetPayload, sessionToken: string): Promise<IApiResponse> => {
     try {
         const config = {
-            headers: { Authorization: `Bearer ${sessionToken}` },
-            params: targetId ? { user_id: userId, target_id: targetId } : { user_id: userId }
+            headers: { Authorization: `Bearer ${sessionToken}` }
         };
-        const response = await api.get('/target', config);
-
-        if (Object.keys(response.data).length) {
+        const response = await api.post('/target', payload, config);
+        if (response.status === 201) {
             return new Promise((resolve: (value: IApiResponse) => void): any =>
-                resolve({ success: true, data: response.data as IGetTarget[] }));
+                resolve({ success: true }));
         }
 
     } catch (error) {
