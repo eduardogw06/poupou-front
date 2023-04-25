@@ -1,14 +1,4 @@
-interface MyTransactionsDataRow {
-    uuid: string;
-    amount: string;
-    target: {
-        uuid: string;
-        description: string;
-    };
-    date: string;
-}
-
-export interface MyTransactionsData {
+export interface MyTransactions {
     columns: string[];
-    rows: MyTransactionsDataRow[];
+    rows: IGetTransaction[] | [];
 }
