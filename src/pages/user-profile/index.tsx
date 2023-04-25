@@ -75,14 +75,10 @@ const UserProfile = (): JSX.Element => {
         refreshDefaultValues(response.data as IUserInfo, setValue);
         setUserData(response.data as IUserInfo);
       } else {
-        const redirectUrl =
-          response.message === "Invalid token" ? "/login" : null;
-
         setFeedbackOpened(true);
         setAlertProps({
           severity: "error",
           message: response.message,
-          redirectUrl: redirectUrl,
         });
       }
     };
@@ -113,13 +109,9 @@ const UserProfile = (): JSX.Element => {
     }
   };
 
-  const handleClose = (redirectUrl?: string): void => {
+  const handleClose = (): void => {
     setEditModeOn(false);
-    if (redirectUrl) {
-      Router.push(redirectUrl);
-    } else {
-      Router.reload();
-    }
+    Router.reload();
   };
 
   const DialogButtons = (
@@ -176,6 +168,25 @@ const UserProfile = (): JSX.Element => {
       </Dialog>
     </>
   );
+};
+
+export const getServerSideProps = async (context) => {
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      session,
+    },
+  };
 };
 
 export default UserProfile;

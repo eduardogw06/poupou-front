@@ -18,4 +18,19 @@ module.exports = [
     source: "/meus-aportes",
     destination: "/my-transactions",
   },
+
+  {
+    source: "/meus-objetivos",
+    destination: "/my-targets",
+  },
+
+  {
+    source: "/meus-objetivos/:uuid",
+    destination: "/my-targets/:uuid",
+  },
+
+  {
+    source: "/aporte-automatico",
+    destination: "/automatic-transactions",
+  },
 ];

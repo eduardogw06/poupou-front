@@ -31,6 +31,7 @@ const NumericFormatCustom = forwardRef<NumericFormatProps, CustomProps>(
         decimalSeparator=","
         valueIsNumericString
         decimalScale={2}
+        fixedDecimalScale
         prefix="R$ "
       />
     );

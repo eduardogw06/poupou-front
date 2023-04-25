@@ -1,4 +1,4 @@
-import { getSession, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { LogoContainer, LogoIcon, LogoName } from "./Logo.styles";
 

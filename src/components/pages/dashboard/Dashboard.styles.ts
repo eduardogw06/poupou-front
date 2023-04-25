@@ -6,6 +6,7 @@ const Container = styled.div`
 
     @media (${(props) => props.theme.media.md}) {
         width: calc(100vw - 216px);
+        padding: ${(props: any): string => props.menuOpened ? `${props.theme.sizes.none}  ${props.theme.sizes.large3} ${props.theme.sizes.none} ${props.theme.sizes.large3}` : `${props.theme.sizes.large3} ${props.theme.sizes.large4}`} ;
     }
 `;
 
@@ -24,26 +25,50 @@ const SafeProgressContainer = styled.div`
     margin-top: ${(props: any): string => props.theme.sizes.medium2};
     width: calc(100vw - 96px);
 
+    
+
     & > div {
         margin-bottom: ${(props: any): string => props.theme.sizes.medium2};
     }
 
     @media (${(props: any): string => props.theme.media.md}) {
         flex-direction: row;
-        width: calc(100vw - 216px);
+        width: calc(100vw - 96px);
         margin-top: ${(props: any): string => props.theme.sizes.medium2};
+        flex-wrap: wrap;
 
         & > :nth-child(odd) {
-            margin-right: ${(props: any): string => props.theme.sizes.large2};
+            margin-right: 6%;
+            flex-basis: 42%;
+        }
+
+        & > :nth-child(even) {
+            flex-basis: 42%;
+        }
+
+        .seeMore {
+            flex-basis: 90%;
         }
 
     }
 `;
 
+const SeeMoreTargetsContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+`;
+
+
+
 const MySafesProgressContainer = styled.div`
     display: flex;
     width: calc(100vw - 96px);
     height: 100%;
+
+    & > div {
+        max-height: 100%;
+    }
 
     @media (${(props) => props.theme.media.md}) {
         width: calc(100vw - 216px);
@@ -52,6 +77,7 @@ const MySafesProgressContainer = styled.div`
 
 export {
     Container,
+    SeeMoreTargetsContainer,
     TotalSavedContainer,
     SafeProgressContainer,
     MySafesProgressContainer

@@ -9,7 +9,7 @@ const Container = styled.div<{ menuOpened: boolean }>`
         width: ${props => props.menuOpened ? '77vw' : '100vw'};
         height: fit-content;
         display: flex;
-        padding: ${(props: any): string => props.menuOpened ? `${props.theme.sizes.none}  ${props.theme.sizes.large3} ${props.theme.sizes.none} ${props.theme.sizes.large3}` : `${props.theme.sizes.large3} ${props.theme.sizes.large4}`} ;
+        padding: ${(props: any): string => props.menuOpened ? `${props.theme.sizes.none}  ${props.theme.sizes.large3} ${props.theme.sizes.none} ${props.theme.sizes.large3}` : `${props.theme.sizes.large3} ${props.theme.sizes.none}`} ;
         margin: ${(props: any): string => props.menuOpened ?
         `${props.theme.sizes.large4} ${props.theme.sizes.none} ${props.theme.sizes.large4} ${props.theme.sizes.none}` : `${props.theme.sizes.none} ${props.theme.sizes.xlarge1} ${props.theme.sizes.large4} ${props.theme.sizes.xlarge1}`
     };

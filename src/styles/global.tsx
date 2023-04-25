@@ -29,6 +29,12 @@ export default createGlobalStyle`
         
     }
 
+    // Selected Tab
+    .css-zx9imm-MuiButtonBase-root-MuiTab-root.Mui-selected, .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+        border-radius: 8px;
+        background-color: ${(props) => props.theme.colors.tertiary};
+    }
+
     @font-face {
         font-family: 'WorkSans Black';
         src: local("WorkSans"),

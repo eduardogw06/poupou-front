@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-const Title = styled.h1`
+const Title = styled.div`
     display: flex;
     flex-direction: row;
-    width: calc(100vw - ${(props: any): string => props.theme.sizes.large4});
+    width: calc(100vw - 144px);
     height: fit-content;
     margin-bottom: ${(props: any): string => props.theme.sizes.medium4};
     font-family: 'Circular Bold';

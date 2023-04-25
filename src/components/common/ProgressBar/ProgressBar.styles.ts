@@ -5,7 +5,7 @@ const Container = styled.div`
     flex-direction: column;
     
     width: 200px;
-    margin: ${props => `${props.theme.sizes.large2} ${props.theme.sizes.medium4} ${props.theme.sizes.large2} ${props.theme.sizes.medium4}`};
+    margin: ${props => `${props.theme.sizes.none} ${props.theme.sizes.medium4} ${props.theme.sizes.large2} ${props.theme.sizes.medium4}`};
 
 
     @media (${(props: any): string => props.theme.media.md}) {

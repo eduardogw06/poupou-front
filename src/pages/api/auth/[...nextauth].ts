@@ -1,12 +1,12 @@
 import NextAuth from "next-auth";
+import { Session } from "next-auth/core/types";
+import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import { login } from "../../../services/login";
 import { IApiResponse } from "../../../types/IApiResponse";
 import { ILoginPayload } from "../../../types/ILoginPayload";
 import { IJwtProps, ILoginCredentials, IRedirectProps, ISessionProps } from "../../../types/INextAuthApi";
-import { Session } from "next-auth/core/types";
-import { JWT } from "next-auth/jwt";
 
 
 export default NextAuth({
@@ -28,7 +28,7 @@ export default NextAuth({
                     if (!loginData.success) return Promise.reject(new Error(loginData.message));
 
                     return {
-                        id: '1',
+                        id: loginData.data.user.id,
                         name: loginData.data.user.name,
                         email: loginData.data.user.email,
                         jwt: loginData.data.token
@@ -42,6 +42,7 @@ export default NextAuth({
     ],
     session: {
         strategy: 'jwt',
+        maxAge: 1 * 24 * 60 * 60,
     },
     callbacks: {
         async redirect({ url, baseUrl }: IRedirectProps): Promise<string> {
@@ -55,6 +56,7 @@ export default NextAuth({
 
         async session({ session, token }: ISessionProps): Promise<Session> {
             session.user.jwt = token.jwt;
+            session.user.id = token.id as string;
 
             return Promise.resolve(session)
         },

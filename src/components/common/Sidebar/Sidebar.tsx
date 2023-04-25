@@ -16,7 +16,7 @@ const Sidebar = (): JSX.Element => {
     {
       key: 1,
       description: "Meus objetivos",
-      url: "/",
+      url: "/meus-objetivos",
       icon: "piggy-bank",
     },
     {
@@ -28,11 +28,16 @@ const Sidebar = (): JSX.Element => {
     {
       key: 3,
       description: "Aporte automático",
-      url: "/",
+      url: "/aporte-automatico",
       icon: "robot",
     },
-    { key: 4, description: "Perfil", url: "/", icon: "user" },
-    { key: 5, description: "Alterar senha", url: "/", icon: "key" },
+    { key: 4, description: "Perfil", url: "/perfil", icon: "user" },
+    {
+      key: 5,
+      description: "Alterar senha",
+      url: "/alterar-senha",
+      icon: "key",
+    },
   ];
 
   const theme = useTheme() as DefaultTheme;
@@ -40,27 +45,29 @@ const Sidebar = (): JSX.Element => {
 
   return (
     <Container>
-      {items.map((item) => (
-        <Link key={item.key} href={item.url}>
-          <MenuItem>
-            <IconContainer>
+      {items.map(
+        (item): JSX.Element => (
+          <Link key={item.key} href={item.url}>
+            <MenuItem>
+              <IconContainer>
+                <FontAwesomeIcon
+                  icon={getFontAwesomeIcon(item.icon)}
+                  size={isMobile ? "1x" : "1x"}
+                  color={menuIcon}
+                />
+              </IconContainer>
+
+              <MenuItemName>{item.description}</MenuItemName>
+
               <FontAwesomeIcon
-                icon={getFontAwesomeIcon(item.icon)}
-                size={isMobile ? "1x" : "1x"}
+                icon={getFontAwesomeIcon("chevron-right")}
+                size={isMobile ? "1x" : "sm"}
                 color={menuIcon}
               />
-            </IconContainer>
-
-            <MenuItemName>{item.description}</MenuItemName>
-
-            <FontAwesomeIcon
-              icon={getFontAwesomeIcon("chevron-right")}
-              size={isMobile ? "1x" : "sm"}
-              color={menuIcon}
-            />
-          </MenuItem>
-        </Link>
-      ))}
+            </MenuItem>
+          </Link>
+        )
+      )}
     </Container>
   );
 };

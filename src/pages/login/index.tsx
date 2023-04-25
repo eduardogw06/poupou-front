@@ -13,6 +13,7 @@ import {
   PasswordRecovery,
 } from "../../components/pages/login/Login.styles";
 import { ILoginPayload } from "../../types/ILoginPayload";
+import { isValidToken } from "../../utils/isValidToken";
 
 const defaultValues: ILoginPayload = {
   email: "",
@@ -141,8 +142,7 @@ Login.displayName = "Login";
 export async function getServerSideProps(context) {
   const { req } = context;
   const session = await getSession({ req });
-
-  if (session) {
+  if (session && isValidToken(session?.user.jwt)) {
     return {
       redirect: { destination: "/dashboard" },
     };

@@ -1,5 +1,19 @@
 import {
-    faChevronRight, faDollar, faGear, faHeart, faKey, faMobileScreen, faPiggyBank, faRobot, faSignOut,
+    faChevronRight,
+    faCirclePlus,
+    faDollar,
+    faGear,
+    faGift,
+    faGraduationCap,
+    faHeart,
+    faHouse,
+    faKey,
+    faMobileScreen,
+    faPiggyBank,
+    faPlane,
+    faRobot,
+    faSignOut,
+    faSuitcase,
     faTrash,
     faUmbrellaBeach,
     faUser,
@@ -18,6 +32,12 @@ const icons = {
     'user': faUser,
     'trash': faTrash,
     'gear': faGear,
+    'circle-plus': faCirclePlus,
+    'gift': faGift,
+    'house': faHouse,
+    'suitcase-medical': faSuitcase,
+    'graduation-cap': faGraduationCap,
+    'plane': faPlane,
 };
 
 export const getFontAwesomeIcon = (icon: string): IconDefinition => {
