@@ -21,6 +21,7 @@ interface NewTransactionModalProps {
   setIsLoading: (boolean) => void;
   setFeedbackOpened: (boolean) => void;
   setAlertProps: (boolean) => void;
+  setModalOpened: (boolean) => void;
   targets: IGetTarget[];
 }
 
@@ -50,6 +51,7 @@ const NewTransactionModal = ({
   setIsLoading,
   setFeedbackOpened,
   setAlertProps,
+  setModalOpened,
 }: NewTransactionModalProps): JSX.Element => {
   const [error, setError] = useState<IError>(defaultError);
 
@@ -78,6 +80,7 @@ const NewTransactionModal = ({
     if (result.success) {
       setAlertProps(defaultAlert);
       setFeedbackOpened(true);
+      setModalOpened(false);
     } else {
       setError({
         hasError: true,

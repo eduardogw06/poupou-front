@@ -10,7 +10,7 @@ import {
 } from "../../components/pages/my-transactions/MyTransactions.styles";
 import MyTransationsTable from "../../components/pages/my-transactions/MyTransactionsTable";
 import NewTransactionModal from "../../components/pages/my-transactions/NewTransactionModal/NewTransactionModal";
-import { MyTransactionsData } from "../../types/IMyTransactions";
+import { MyTransactions as MyTransactionsData } from "../../types/IMyTransactions";
 import { isMobile } from "../../utils/isMobile";
 
 import EmptyPageAdvice from "../../components/common/EmptyPageAdvice/EmptyPageAdvice";
@@ -151,6 +151,7 @@ const MyTransactions = (): JSX.Element => {
                   setButtonDisabled={setButtonDisabled}
                   setIsLoading={setIsLoading}
                   setFeedbackOpened={setFeedbackOpened}
+                  setModalOpened={setModalOpened}
                   targets={targets}
                 ></NewTransactionModal>
               </Dialog>

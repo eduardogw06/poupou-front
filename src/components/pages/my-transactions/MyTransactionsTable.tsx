@@ -10,7 +10,7 @@ import { ptBR } from "date-fns/locale";
 import { useState } from "react";
 import { useTheme } from "styled-components";
 import { DefaultTheme } from "../../../types/DefaultTheme";
-import { MyTransactionsData } from "../../../types/IMyTransactions";
+import { MyTransactions as MyTransactionsData } from "../../../types/IMyTransactions";
 import { ModalType } from "../../../types/ModalType";
 import { getFontAwesomeIcon } from "../../../utils/getFontAwesomeIcon";
 import { isMobile } from "../../../utils/isMobile";
@@ -24,6 +24,7 @@ import Router from "next/router";
 import Feedback from "../../common/Feedback/Feedback";
 import { IAlertProps } from "../../../types/IAlertProps";
 import { IError } from "../../../types/IError";
+import EmptyPageAdvice from "../../common/EmptyPageAdvice/EmptyPageAdvice";
 
 interface MyTransationsTableProps {
   data: MyTransactionsData;
@@ -65,7 +66,7 @@ const MyTransationsTable = ({
 
   const deleteTransaction = async ({
     transaction_id,
-  }: IDeleteTransactionPayload) => {
+  }: IDeleteTransactionPayload): Promise<void> => {
     setIsLoading(true);
     setButtonDisabled(true);
 
@@ -142,7 +143,10 @@ const MyTransationsTable = ({
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <StyledTableCell component="th" scope="row">
-                    {row.amount}
+                    {Number(row.amount).toLocaleString("pt-BR", {
+                      style: "currency",
+                      currency: "BRL",
+                    })}
                   </StyledTableCell>
                   <StyledTableCell>{row.target.description}</StyledTableCell>
                   <StyledTableCell>
@@ -199,7 +203,11 @@ const MyTransationsTable = ({
           )}
         </TableContainer>
       ) : (
-        "TESTEE"
+        <EmptyPageAdvice
+          text="Não encontramos nenhum aporte cadastrado. Para cadastrar um aporte e poder começar a investir no seu sonho clique "
+          href="/meus-aportes"
+          hrefText="AQUI."
+        />
       )}
     </>
   );

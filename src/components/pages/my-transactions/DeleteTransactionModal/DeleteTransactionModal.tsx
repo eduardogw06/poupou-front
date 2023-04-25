@@ -62,7 +62,12 @@ const DeleteTransactionModal = ({
 
       <DeleteModalRow>
         <DeleteModalLabel>Valor do aporte:</DeleteModalLabel>
-        <DeleteModalText>{data.amount}</DeleteModalText>
+        <DeleteModalText>
+          {Number(data.amount).toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          })}
+        </DeleteModalText>
       </DeleteModalRow>
 
       <DeleteModalRow>
