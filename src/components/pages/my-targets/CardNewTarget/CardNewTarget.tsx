@@ -16,6 +16,7 @@ import { Container } from "./CardNewTarget.styles";
 import { IGetTarget } from "../../../../types/IGetTarget";
 import { IError } from "../../../../types/IError";
 import Router from "next/router";
+import { targetsValidate } from "../../../../utils/validations/targets";
 
 interface CardNewTarget {
   targets: IGetTarget[];
@@ -25,9 +26,9 @@ const defaultValues: INewTargetPayload = {
   description: "",
   category_id: "",
   user_id: "",
-  target_amount: "",
-  date_begin: null,
-  date_end: null,
+  target_amount: undefined,
+  date_begin: undefined,
+  date_end: undefined,
 };
 
 const defaultError = {
@@ -49,13 +50,9 @@ const CardNewTarget = ({ targets }: CardNewTarget): JSX.Element => {
   const [error, setError] = useState<IError>(defaultError);
   const mobile = isMobile();
 
-  const {
-    register,
-    watch,
-    handleSubmit,
-    setValue,
-    // formState: { errors },
-  } = useForm({ defaultValues });
+  const { register, watch, handleSubmit, setValue } = useForm({
+    defaultValues,
+  });
 
   const handleClose = () => {
     setModalOpened(false);
@@ -66,6 +63,18 @@ const CardNewTarget = ({ targets }: CardNewTarget): JSX.Element => {
     setError(defaultError);
     setIsLoading(true);
     setButtonDisabled(true);
+
+    const errors = targetsValidate(data);
+
+    if (Object.keys(errors).length) {
+      setError({
+        hasError: true,
+        message: Object.values(errors)[0],
+      });
+      setIsLoading(false);
+      setButtonDisabled(false);
+      return;
+    }
 
     const session = await getSession();
     data.user_id = session.user.id;

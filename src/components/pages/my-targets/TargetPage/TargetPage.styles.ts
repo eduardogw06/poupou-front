@@ -1,5 +1,4 @@
 import { Tab, Tabs } from "@mui/material";
-import { darken } from "polished";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -13,12 +12,6 @@ const Container = styled.div`
         padding-bottom: 36px;
     }
 
-    /* '& .MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected': {
-        background-color: ${props => props.theme.colors.tertiary};
-        font-family: 'Poppins Medium';
-        color: ${props => props.theme.colors.text} !important;
-        text-transform: none;
-    } */
 `;
 
 const HeaderButtons = styled.div`
@@ -66,11 +59,8 @@ const StyledTabs = styled(Tabs)`
         }
     
         & > button {
-            /* border: 1px solid red !important; */
             padding: 0px 60px !important;
-            /* border-radius: 8px !important; */
             background-color: ${(props) => props.theme.colors.primary};
-            /* margin-right: 2px; */
         }
     }
 `;
@@ -92,4 +82,4 @@ export {
     StyledTabs,
     StyledTab,
     HeaderButtons
-}
+};

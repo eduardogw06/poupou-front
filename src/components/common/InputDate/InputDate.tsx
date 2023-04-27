@@ -1,6 +1,7 @@
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { StyledDatePicker } from "./InputDate.styles";
+import ptBR from "date-fns/locale/pt-BR";
 
 interface InputDateProps {
   label: string;
@@ -16,7 +17,7 @@ const InputDate = ({
   slotProps,
 }: InputDateProps): JSX.Element => {
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
+    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ptBR}>
       <StyledDatePicker
         label={label}
         value={value}

@@ -118,6 +118,7 @@ const MyTargets = (): JSX.Element => {
           targets.map(
             (target: IGetTarget): JSX.Element => (
               <Card
+                key={target.uuid}
                 icon={target.category_icon}
                 color={"#1A1A40"}
                 title={target.description}

@@ -1,20 +1,19 @@
-import { useEffect, useState } from "react";
-import { IAlertProps } from "../../../../../types/IAlertProps";
-import { INewTargetPayload } from "../../../../../types/INewTargetPayload";
-import NewTargetModal from "../../NewTargetModal/NewTargetModal";
-import { isMobile } from "../../../../../utils/isMobile";
-import { IError } from "../../../../../types/IError";
-import { useForm } from "react-hook-form";
-import Router from "next/router";
 import { getSession } from "next-auth/react";
-import { IApiResponse } from "../../../../../types/IApiResponse";
-import { newTarget } from "../../../../../services/newTarget";
+import Router from "next/router";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { editTarget } from "../../../../../services/editTarget";
-import Button from "../../../../common/Button/Button";
-import { ButtonContainer, Container } from "./TargetConfigs.styles";
-import Feedback from "../../../../common/Feedback/Feedback";
-import { getTargets as getTargetsService } from "../../../../../services/getTargets";
+import { IAlertProps } from "../../../../../types/IAlertProps";
+import { IApiResponse } from "../../../../../types/IApiResponse";
+import { IError } from "../../../../../types/IError";
 import { IGetTarget } from "../../../../../types/IGetTarget";
+import { INewTargetPayload } from "../../../../../types/INewTargetPayload";
+import { isMobile } from "../../../../../utils/isMobile";
+import { targetsValidate } from "../../../../../utils/validations/targets";
+import Button from "../../../../common/Button/Button";
+import Feedback from "../../../../common/Feedback/Feedback";
+import NewTargetModal from "../../NewTargetModal/NewTargetModal";
+import { ButtonContainer, Container } from "./TargetConfigs.styles";
 
 const defaultValues: INewTargetPayload = {
   description: "",
@@ -32,7 +31,7 @@ const defaultError = {
 
 const defaultAlert: IAlertProps = {
   severity: "success",
-  message: "Objetivo cadastrado com sucesso!",
+  message: "Objetivo editado com sucesso!",
 };
 
 interface TargetConfigsProps {
@@ -46,7 +45,6 @@ const TargetConfigs = ({ targetData }: TargetConfigsProps): JSX.Element => {
   const [alertProps, setAlertProps] = useState<IAlertProps>(defaultAlert);
   const [error, setError] = useState<IError>(defaultError);
   const mobile = isMobile();
-  const type = "edit";
 
   const {
     register,
@@ -64,6 +62,18 @@ const TargetConfigs = ({ targetData }: TargetConfigsProps): JSX.Element => {
     setError(defaultError);
     setIsLoading(true);
     setButtonDisabled(true);
+
+    const errors = targetsValidate(data);
+
+    if (Object.keys(errors).length) {
+      setError({
+        hasError: true,
+        message: Object.values(errors)[0],
+      });
+      setIsLoading(false);
+      setButtonDisabled(false);
+      return;
+    }
 
     const session = await getSession();
     data.user_id = session.user.id;
