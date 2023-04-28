@@ -1,13 +1,16 @@
 import {
+    faBell,
     faChevronRight,
     faCirclePlus,
     faDollar,
+    faEnvelope,
     faGear,
     faGift,
     faGraduationCap,
     faHeart,
     faHouse,
     faKey,
+    faList,
     faMobileScreen,
     faPiggyBank,
     faPlane,
@@ -38,6 +41,9 @@ const icons = {
     'suitcase-medical': faSuitcase,
     'graduation-cap': faGraduationCap,
     'plane': faPlane,
+    'envelope': faEnvelope,
+    'bell': faBell,
+    'list': faList
 };
 
 export const getFontAwesomeIcon = (icon: string): IconDefinition => {
