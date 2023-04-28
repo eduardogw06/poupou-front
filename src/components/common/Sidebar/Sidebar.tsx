@@ -1,7 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getSession } from "next-auth/react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 import { DefaultTheme } from "../../../types/DefaultTheme";
+import { IGetMenus } from "../../../types/IGetMenus";
 import { getFontAwesomeIcon } from "../../../utils/getFontAwesomeIcon";
 import { isMobile } from "../../../utils/isMobile";
 import {
@@ -10,10 +13,6 @@ import {
   MenuItem,
   MenuItemName,
 } from "./Sidebar.styles";
-import { useEffect, useState } from "react";
-import { getSession } from "next-auth/react";
-import { getMenus as getMenusService } from "../../../services/getMenus";
-import { IGetMenus } from "../../../types/IGetMenus";
 
 const Sidebar = (): JSX.Element => {
   const [menus, setMenus] = useState<IGetMenus[] | null>(null);
@@ -21,17 +20,11 @@ const Sidebar = (): JSX.Element => {
   useEffect((): void => {
     const getMenus = async (): Promise<void> => {
       const session = await getSession();
-      const response = await getMenusService(session?.user.jwt);
-
-      if (response && response.success) {
-        setMenus(response.data);
-      }
+      setMenus(session?.menu);
     };
 
     getMenus();
   }, []);
-
-  console.log(menus);
 
   const theme = useTheme() as DefaultTheme;
   const { menuIcon } = theme.colors;

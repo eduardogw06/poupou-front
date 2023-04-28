@@ -7,6 +7,8 @@ import { login } from "../../../services/login";
 import { IApiResponse } from "../../../types/IApiResponse";
 import { ILoginPayload } from "../../../types/ILoginPayload";
 import { IJwtProps, ILoginCredentials, IRedirectProps, ISessionProps } from "../../../types/INextAuthApi";
+import { getMenus } from "../../../services/getMenus";
+import { IGetMenus } from "../../../types/IGetMenus";
 
 
 export default NextAuth({
@@ -57,6 +59,12 @@ export default NextAuth({
         async session({ session, token }: ISessionProps): Promise<Session> {
             session.user.jwt = token.jwt;
             session.user.id = token.id as string;
+
+            const response = await getMenus(token.jwt as string);
+
+            if (response && response.success) {
+                session.menu = response.data as IGetMenus[];
+            }
 
             return Promise.resolve(session)
         },

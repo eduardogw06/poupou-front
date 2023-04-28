@@ -1,7 +1,9 @@
 import NextAuth, { DefaultSession, DefaultUser } from "next-auth";
+import { IGetMenus } from "./IGetMenus";
 
 declare module "next-auth" {
     interface Session {
+        menu: IGetMenus[],
         user: {
             /** Oauth access token */
             jwt?: accessToken;
