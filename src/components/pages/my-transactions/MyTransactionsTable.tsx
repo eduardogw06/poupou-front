@@ -25,6 +25,7 @@ import Feedback from "../../common/Feedback/Feedback";
 import { IAlertProps } from "../../../types/IAlertProps";
 import { IError } from "../../../types/IError";
 import EmptyPageAdvice from "../../common/EmptyPageAdvice/EmptyPageAdvice";
+import { numberToReal } from "../../../utils/numberToReal";
 
 interface MyTransationsTableProps {
   data: MyTransactionsData;
@@ -143,10 +144,7 @@ const MyTransationsTable = ({
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <StyledTableCell component="th" scope="row">
-                    {Number(row.amount).toLocaleString("pt-BR", {
-                      style: "currency",
-                      currency: "BRL",
-                    })}
+                    {numberToReal(Number(row.amount))}
                   </StyledTableCell>
                   <StyledTableCell>{row.target.description}</StyledTableCell>
                   <StyledTableCell>

@@ -8,6 +8,7 @@ import {
   DeleteTargetForm,
 } from "./DeleteTargetModal.styles";
 import { IGetTarget } from "../../../../types/IGetTarget";
+import { numberToReal } from "../../../../utils/numberToReal";
 
 interface IDeleteTargetModalProps {
   data: IGetTarget;
@@ -61,10 +62,7 @@ const DeleteTargetModal = ({
         <DeleteModalLabel>Valor do objetivo:</DeleteModalLabel>
         <DeleteModalText>
           {" "}
-          {Number(data.target_amount).toLocaleString("pt-BR", {
-            style: "currency",
-            currency: "BRL",
-          })}
+          {numberToReal(Number(data.target_amount))}
         </DeleteModalText>
       </DeleteModalRow>
     </DeleteTargetForm>

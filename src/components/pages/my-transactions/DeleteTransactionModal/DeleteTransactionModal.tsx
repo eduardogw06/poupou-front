@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { IError } from "../../../../types/IError";
 import { Alert } from "@mui/material";
+import { numberToReal } from "../../../../utils/numberToReal";
 
 interface IDeleteTransactionModalProps {
   data: IGetTransaction;
@@ -62,12 +63,7 @@ const DeleteTransactionModal = ({
 
       <DeleteModalRow>
         <DeleteModalLabel>Valor do aporte:</DeleteModalLabel>
-        <DeleteModalText>
-          {Number(data.amount).toLocaleString("pt-BR", {
-            style: "currency",
-            currency: "BRL",
-          })}
-        </DeleteModalText>
+        <DeleteModalText>{numberToReal(Number(data.amount))}</DeleteModalText>
       </DeleteModalRow>
 
       <DeleteModalRow>
