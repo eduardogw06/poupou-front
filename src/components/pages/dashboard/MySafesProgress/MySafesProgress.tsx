@@ -8,67 +8,96 @@ import {
   YAxis,
 } from "recharts";
 import { isMobile } from "../../../../utils/isMobile";
-import { Container } from "./MySafesProgress.styles";
+import { Container, CustomTooltipContainer } from "./MySafesProgress.styles";
+import { IGetTarget } from "../../../../types/IGetTarget";
+import { useEffect, useState } from "react";
+import {
+  CustomTooltip,
+  IMySafeProgressChartData,
+} from "../../../../types/IMySafeProgressChartData";
+import { numberToReal } from "../../../../utils/numberToReal";
 
-const MySafesProgress = (): JSX.Element => {
+interface MySafesProgressProps {
+  targets: IGetTarget[] | [];
+}
+
+const MySafesProgress = ({ targets }: MySafesProgressProps): JSX.Element => {
   const mobile = isMobile();
-  const data = [
-    {
-      name: "Celular novo",
-      savedAmount: 800,
-      leftValue: 1400,
-      total: 2400,
-    },
-    {
-      name: "Férias",
-      savedAmount: 500,
-      leftValue: 1500,
-      total: 2000,
-    },
-    {
-      name: "Presente filho",
-      savedAmount: 3000,
-      leftValue: 4400,
-      total: 7400,
-    },
-    {
-      name: "Computador novo",
-      savedAmount: 300,
-      leftValue: 5000,
-      total: 5300,
-    },
-  ];
+  const [chartData, setChartData] = useState<any>([]);
+
+  useEffect((): void => {
+    const getChartData = targets.map(
+      (target: IGetTarget): IMySafeProgressChartData => {
+        return {
+          description: target.description,
+          totalSaved: Number(target.total_saved),
+          leftAmount: Number(target.target_amount) - Number(target.total_saved),
+          total: Number(target.target_amount),
+        };
+      }
+    );
+    console.log(getChartData);
+    setChartData(getChartData);
+  }, [targets]);
+
+  const CustomTooltip = ({
+    active,
+    payload,
+    label,
+  }: CustomTooltip): JSX.Element => {
+    if (active && payload && payload.length) {
+      const data = payload[0].payload;
+
+      return (
+        <CustomTooltipContainer>
+          <p>{data.description}</p>
+          <p>Total aportado: {numberToReal(data.totalSaved)}</p>
+          <p>Restante: {numberToReal(data.leftAmount)}</p>
+          <p>Total: {numberToReal(data.total)}</p>
+        </CustomTooltipContainer>
+      );
+    }
+
+    return null;
+  };
 
   return (
     <Container>
-      <BarChart
-        width={mobile ? 300 : 600}
-        height={mobile ? 200 : 300}
-        data={data}
-        margin={{
-          top: 20,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis
-          tickCount={mobile ? 5 : 10}
-          domain={[0, "auto"]}
-          dataKey="total"
-        />
-        <Tooltip />
-        <Legend />
-        <Bar
-          dataKey="savedAmount"
-          stackId="a"
-          name="Total aportado"
-          fill="#FA58B6"
-        />
-        <Bar dataKey="leftValue" stackId="a" name="Restante" fill="#270082" />
-      </BarChart>
+      {chartData.length && (
+        <BarChart
+          width={mobile ? 300 : 600}
+          height={mobile ? 200 : 300}
+          data={chartData}
+          margin={{
+            top: 20,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="description" />
+          <YAxis
+            tickCount={mobile ? 5 : 10}
+            domain={[0, "auto"]}
+            dataKey="total"
+          />
+          <Tooltip content={<CustomTooltip />} />
+          <Legend />
+          <Bar
+            dataKey="totalSaved"
+            stackId="a"
+            name="Total aportado"
+            fill="#FA58B6"
+          />
+          <Bar
+            dataKey="leftAmount"
+            stackId="a"
+            name="Restante"
+            fill="#270082"
+          />
+        </BarChart>
+      )}
     </Container>
   );
 };

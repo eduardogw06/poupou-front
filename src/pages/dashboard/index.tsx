@@ -38,16 +38,26 @@ const defaultError = {
 
 const Dashboard = (): JSX.Element => {
   const mobile = isMobile();
-  const [targets, setTargets] = useState<IGetTarget[] | null>(null);
-  const [targetsGrid, setTargetsGrid] = useState<IGetTarget[] | null>(null);
+  const [targets, setTargets] = useState<IGetTarget[] | []>([]);
+  const [notDisplayedGrid, setnotDisplayedTargetsGrid] = useState<
+    IGetTarget[] | []
+  >([]);
+  const [targetsGrid, setTargetsGrid] = useState<IGetTarget[] | []>([]);
   const [deleteModalOpened, setDeleteModalOpened] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [feedbackOpened, setFeedbackOpened] = useState<boolean>(false);
   const [error, setError] = useState<IError>(defaultError);
-  const [deleteTargetData, setDeleteTargetData] = useState<IGetTarget | null>(
-    null
-  );
+  const [deleteTargetData, setDeleteTargetData] = useState<IGetTarget>();
+
+  const getTotalSaved = (): number => {
+    let amountSaved = 0;
+    targets.map((target: IGetTarget): void => {
+      amountSaved += Number(target.total_saved);
+    });
+
+    return amountSaved;
+  };
 
   useEffect((): void => {
     const getTargets = async (): Promise<void> => {
@@ -58,18 +68,20 @@ const Dashboard = (): JSX.Element => {
       });
 
       if (response && response.success) {
+        setTargets(response.data);
         setTargetsGrid(response.data.slice(0, 2));
-        setTargets(response.data.slice(2));
+        setnotDisplayedTargetsGrid(response.data.slice(2));
       }
     };
 
     getTargets();
+    getTotalSaved();
   }, []);
 
   const selectTargetGrid = (): void => {
-    if (targets) {
-      setTargetsGrid([...targetsGrid, ...targets.slice(0, 2)]);
-      setTargets(targets.slice(2));
+    if (notDisplayedGrid) {
+      setTargetsGrid([...targetsGrid, ...notDisplayedGrid.slice(0, 2)]);
+      setnotDisplayedTargetsGrid(targets.slice(2));
     }
   };
 
@@ -126,7 +138,7 @@ const Dashboard = (): JSX.Element => {
 
       <TotalSavedContainer>
         <Card title="Total guardado" justifyContent="flex-start">
-          <TotalSaved />
+          <TotalSaved totalSaved={getTotalSaved()} />
         </Card>
       </TotalSavedContainer>
 
@@ -142,11 +154,11 @@ const Dashboard = (): JSX.Element => {
                   deleteCardButton
                   handleDeleteCard={(): void => handleDeleteCard(target)}
                 >
-                  <SafeProgress target={target.uuid}></SafeProgress>
+                  <SafeProgress target={target}></SafeProgress>
                 </Card>
               );
             })}
-          {targets?.length > 0 && (
+          {notDisplayedGrid?.length > 0 && (
             <SeeMoreTargetsContainer className="seeMore">
               <Button
                 type="button"
@@ -161,7 +173,7 @@ const Dashboard = (): JSX.Element => {
 
       <MySafesProgressContainer>
         <Card title="Meus cofres">
-          <MySafesProgress></MySafesProgress>
+          <MySafesProgress targets={targets}></MySafesProgress>
         </Card>
       </MySafesProgressContainer>
 

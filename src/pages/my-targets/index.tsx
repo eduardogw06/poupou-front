@@ -125,7 +125,7 @@ const MyTargets = (): JSX.Element => {
                 deleteCardButton
                 handleDeleteCard={(): void => handleDeleteCard(target)}
               >
-                <SafeProgress target={target.uuid}></SafeProgress>
+                <SafeProgress target={target}></SafeProgress>
               </Card>
             )
           )}

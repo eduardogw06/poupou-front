@@ -1,20 +1,21 @@
 import Link from "next/link";
 import ProgressBar from "../../../common/ProgressBar/ProgressBar";
 import { Container, SeeMore } from "./SafeProgress.styles";
+import { IGetTarget } from "../../../../types/IGetTarget";
 
 interface SafeProgressProps {
-  target: string;
+  target: IGetTarget;
 }
 
 const SafeProgress = ({ target }: SafeProgressProps): JSX.Element => {
   return (
     <Container>
       <ProgressBar
-        currentAmount={2500}
-        targetAmount={5000}
-        percent={20}
+        currentAmount={Number(target.total_saved)}
+        targetAmount={Number(target.target_amount)}
+        percent={Number(target.target_percent)}
       ></ProgressBar>
-      <Link href={`/meus-objetivos/${target}`}>
+      <Link href={`/meus-objetivos/${target.uuid}`}>
         <SeeMore>Ver detalhes</SeeMore>
       </Link>
     </Container>

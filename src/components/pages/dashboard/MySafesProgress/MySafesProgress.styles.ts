@@ -5,4 +5,17 @@ const Container = styled.div`
     height: fit-content;
 `;
 
-export { Container };
+const CustomTooltipContainer = styled.div`
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+
+    & > {
+        color: black;
+    }
+`;
+
+export {
+    Container,
+    CustomTooltipContainer
+};
