@@ -1,12 +1,11 @@
+import { getSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { getTransactions as getTransactionsService } from "../../../../../services/getTransactions";
+import { MyTransactions } from "../../../../../types/IMyTransactions";
 import { ModalType } from "../../../../../types/ModalType";
 import MyTransationsTable from "../../../my-transactions/MyTransactionsTable";
 import { Container } from "./TargetTransactionsTab.styles";
-import { getSession } from "next-auth/react";
-import { getTransactions as getTransactionsService } from "../../../../../services/getTransactions";
-import { MyTransactionsData } from "../../../../../types/IMyTransactions";
-import { useRouter } from "next/router";
-import EmptyPageAdvice from "../../../../common/EmptyPageAdvice/EmptyPageAdvice";
 
 interface TargetTransactionsTabProps {
   handleOpenModal: (
@@ -45,7 +44,7 @@ const TargetTransactionsTab = ({
 
   const columns = ["Valor Aporte", "Objetivo", "Data aporte", "Ações"];
 
-  let data: MyTransactionsData = {
+  let data: MyTransactions = {
     columns,
     rows: [],
   };
