@@ -63,7 +63,7 @@ const TargetConfigs = ({ targetData }: TargetConfigsProps): JSX.Element => {
     setIsLoading(true);
     setButtonDisabled(true);
 
-    const errors = targetsValidate(data);
+    const errors = targetsValidate(data, true);
 
     if (Object.keys(errors).length) {
       setError({

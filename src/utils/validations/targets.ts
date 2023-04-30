@@ -26,12 +26,12 @@ const fieldsValidations = {
         }),
     date_begin:
         Joi.alternatives().try(
-            Joi.date()
-                .min(Joi.ref('$todayDate'))
-                .messages({
+            Joi.date().when(Joi.ref('$isEdit'), {
+                is: false,
+                then: Joi.date().min(Joi.ref('$todayDate')).messages({
                     "date.min": "A data de início do objetivo deverá ser hoje ou uma data futura",
-                }
-                ),
+                })
+            }),
             Joi.string()
                 .messages({
                     "string.empty": "Informe a data de início do objetivo"
@@ -73,14 +73,15 @@ function getFieldErrors(objError: Joi.ValidationResult) {
     return errors
 }
 
-export function targetsValidate(values: INewTargetPayload): FieldErrors {
+export function targetsValidate(values: INewTargetPayload, isEdit: boolean = false): FieldErrors {
     const schema = Joi.object(fieldsValidations)
 
     return getFieldErrors(schema.validate(values, {
         abortEarly: false,
         allowUnknown: true,
         context: {
-            todayDate: startOfDay(new Date())
+            todayDate: startOfDay(new Date()),
+            isEdit
         }
     }))
 }
