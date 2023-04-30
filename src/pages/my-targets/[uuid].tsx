@@ -155,7 +155,7 @@ const MyTargetPage = (): JSX.Element => {
             </StyledTabs>
           </Box>
           <TabPanel value={tabValue} index={0}>
-            <TargetProgressTab />
+            <TargetProgressTab target={targets[0]} />
           </TabPanel>
           <TabPanel value={tabValue} index={1}>
             <TargetTransactionsTab handleOpenModal={handleOpenModal} />

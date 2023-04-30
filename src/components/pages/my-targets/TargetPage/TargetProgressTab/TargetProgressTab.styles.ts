@@ -8,7 +8,7 @@ const Container = styled.div`
 const Progress = styled.div`
     background-color: #EAEBF1;
     height: 60px;
-    width: calc(100vw - 244px);
+    width: calc(100vw - 284px);
     border-radius: 10px;
 `;
 
@@ -23,8 +23,8 @@ const CompletedStatus = styled.div<{ percent: number }>`
 const TargetAmount = styled.p`
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
-    margin-top: 10px;
+    justify-content: space-between;
+    margin-bottom: 10px;
     font-family: 'Circular Bold';
     font-style: normal;
     font-weight: 700;
@@ -35,13 +35,11 @@ const TargetAmount = styled.p`
 `;
 
 const CurrentPercentage = styled.p`
-    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    margin-right: 25px;
-    margin-left: 36px;
+    margin-top: 10px;
 
     font-family: 'Circular Bold';
     font-style: normal;

@@ -1,19 +1,28 @@
+import { IGetTarget } from "../../../../../types/IGetTarget";
+import { numberToReal } from "../../../../../utils/numberToReal";
 import {
   CompletedStatus,
   Container,
+  CurrentPercentage,
   Progress,
   TargetAmount,
 } from "./TargetProgressTab.styles";
 
-const TargetProgressTab = (): JSX.Element => {
+interface TargetProgressTabProps {
+  target: IGetTarget;
+}
+
+const TargetProgressTab = ({ target }: TargetProgressTabProps): JSX.Element => {
   return (
     <Container>
-      {/* <CurrentAmount>R$ 2.500,00</CurrentAmount> */}
+      <TargetAmount>
+        <div>{numberToReal(Number(target.total_saved))}</div>
+        <div>{numberToReal(Number(target.target_amount))}</div>
+      </TargetAmount>
       <Progress>
-        <CompletedStatus percent={50}></CompletedStatus>
-        {/* <CurrentPercentage>20</CurrentPercentage> */}
-        <TargetAmount>R$ 5.000,00</TargetAmount>
+        <CompletedStatus percent={target.target_percent}></CompletedStatus>
       </Progress>
+      <CurrentPercentage>{`${target.target_percent}%`}</CurrentPercentage>
     </Container>
   );
 };
