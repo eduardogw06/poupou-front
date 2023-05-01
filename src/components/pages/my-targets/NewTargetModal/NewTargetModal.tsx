@@ -12,7 +12,7 @@ import { FormContainer, Row } from "../CardNewTarget/CardNewTarget.styles";
 import { IGetTarget } from "../../../../types/IGetTarget";
 import { ModalType } from "../../../../types/ModalType";
 
-interface NewTransactionModalProps {
+interface NewTargetModalProps {
   setValue: (field: string, value: any) => void;
   watch: (field: string) => void;
   error: {
@@ -37,7 +37,7 @@ const NewTargetModal = ({
   type,
   data,
   button,
-}: NewTransactionModalProps): JSX.Element => {
+}: NewTargetModalProps): JSX.Element => {
   const [categories, setCategories] = useState<IGetCategory[]>(null);
 
   useEffect(() => {
