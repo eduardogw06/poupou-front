@@ -1,6 +1,7 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import Button from "../../components/common/Button/Button";
 import PageTitle from "../../components/common/PageTitle/PageTitle";
 import Card from "../../components/pages/dashboard/Card/Card";
 import {
@@ -16,38 +17,15 @@ import TotalSaved from "../../components/pages/dashboard/TotalSaved/TotalSaved";
 import { getTargets as getTargetsService } from "../../services/getTargets";
 import { IGetTarget } from "../../types/IGetTarget";
 import { isValidToken } from "../../utils/isValidToken";
-import Button from "../../components/common/Button/Button";
-import { deleteTarget as deleteTargetService } from "../../services/deleteTarget";
-import { IError } from "../../types/IError";
-import Dialog from "../../components/common/Dialog/Dialog";
-import { isMobile } from "../../utils/isMobile";
-import DeleteTargetModal from "../../components/pages/my-targets/DeleteTargetModal/DeleteTargetModal";
-import Feedback from "../../components/common/Feedback/Feedback";
-import { IAlertProps } from "../../types/IAlertProps";
-import Router from "next/router";
-
-const defaultAlert: IAlertProps = {
-  severity: "success",
-  message: "Aporte excluído com sucesso!",
-};
-
-const defaultError = {
-  hasError: false,
-  message: "",
-};
+import DeleteTarget from "../../components/pages/my-targets/DeleteTarget/DeleteTarget";
 
 const Dashboard = (): JSX.Element => {
-  const mobile = isMobile();
   const [targets, setTargets] = useState<IGetTarget[] | []>([]);
   const [notDisplayedGrid, setnotDisplayedTargetsGrid] = useState<
     IGetTarget[] | []
   >([]);
   const [targetsGrid, setTargetsGrid] = useState<IGetTarget[] | []>([]);
   const [deleteModalOpened, setDeleteModalOpened] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
-  const [feedbackOpened, setFeedbackOpened] = useState<boolean>(false);
-  const [error, setError] = useState<IError>(defaultError);
   const [deleteTargetData, setDeleteTargetData] = useState<IGetTarget>();
 
   const getTotalSaved = (): number => {
@@ -85,52 +63,10 @@ const Dashboard = (): JSX.Element => {
     }
   };
 
-  const handleFeedbackClose = () => {
-    setDeleteModalOpened(false);
-    Router.reload();
-  };
-
   const handleDeleteCard = (target: IGetTarget): void => {
     setDeleteModalOpened(true);
     setDeleteTargetData(target);
   };
-
-  const deleteTarget = async (data: { target_id: string }): Promise<void> => {
-    setIsLoading(true);
-    setButtonDisabled(true);
-
-    const session = await getSession();
-    const response = await deleteTargetService(data, session?.user.jwt);
-
-    if (response && response.success) {
-      setFeedbackOpened(true);
-    } else {
-      setError({
-        hasError: true,
-        message: response.message,
-      });
-    }
-  };
-
-  const DialogButtons = (
-    <>
-      <Button
-        type="button"
-        size={mobile ? "medium" : "small"}
-        text="Não"
-        outlined
-        onClick={(): void => setDeleteModalOpened(false)}
-      />
-      <Button
-        type="submit"
-        form="deleteTargetForm"
-        size={mobile ? "medium" : "small"}
-        text="Confirmar"
-        loading={isLoading}
-        disabled={buttonDisabled}
-      />
-    </>
-  );
 
   return (
     <Container>
@@ -177,28 +113,11 @@ const Dashboard = (): JSX.Element => {
         </Card>
       </MySafesProgressContainer>
 
-      {deleteTargetData && (
-        <>
-          <Dialog
-            isOpen={deleteModalOpened}
-            title="Deseja realmente remover este objetivo?"
-            handleClose={(): void => setDeleteModalOpened(false)}
-            buttons={DialogButtons}
-          >
-            <DeleteTargetModal
-              data={deleteTargetData}
-              onSubmit={deleteTarget}
-              error={error}
-            />
-          </Dialog>
-
-          <Feedback
-            feedbackOpened={feedbackOpened}
-            alertProps={defaultAlert}
-            handleClose={handleFeedbackClose}
-          />
-        </>
-      )}
+      <DeleteTarget
+        deleteTargetData={deleteTargetData}
+        deleteModalOpened={deleteModalOpened}
+        setDeleteModalOpened={setDeleteModalOpened}
+      />
     </Container>
   );
 };
