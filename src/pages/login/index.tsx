@@ -47,7 +47,6 @@ function Login({ providers: any }): JSX.Element {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [error, setError] = useState<IError>(defaultError);
-  const isComingSoon = true;
 
   const onSubmit = async (data: ILoginPayload): Promise<void> => {
     setError(defaultError);
