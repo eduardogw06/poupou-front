@@ -16,22 +16,36 @@ const StyledTextField = styled(TextField)`
             > fieldset {
                 border: 1px solid #8B8BAB !important;
             }
-
         }
-     }
+
+        > .css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+            color: ${props => props.theme.colors.text};
+            background-color: ${rgba(255, 255, 255, 0.05)};
+        }
+
+        > svg {
+            color: #8B8BAB;
+        }
+    }
 
     > label {
         color: #8B8BAB;
     }
 
     .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
-        color: #8B8BAB
+        color: #8B8BAB;
+    }
+
+    .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused{
+        color: #8B8BAB;
     }
 
     .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
         border-color: #8B8BAB;
         border-width: 2px;
     }
+
+
 `
 export { StyledTextField }
 

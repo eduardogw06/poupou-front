@@ -8,17 +8,17 @@ export default function App({
 }) {
   const pagesWithoutLayout = ["Home", "Login", "Register"];
 
-  return pagesWithoutLayout.includes(Component.displayName) ? (
+  return (
     <SessionProvider session={session}>
-      <LayoutNoAuth>
-        <Component {...pageProps} />
-      </LayoutNoAuth>
-    </SessionProvider>
-  ) : (
-    <SessionProvider session={session}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      {pagesWithoutLayout.includes(Component.displayName) ? (
+        <LayoutNoAuth>
+          <Component {...pageProps} />
+        </LayoutNoAuth>
+      ) : (
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      )}
     </SessionProvider>
   );
 }

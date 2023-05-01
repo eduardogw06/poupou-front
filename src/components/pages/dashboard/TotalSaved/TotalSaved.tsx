@@ -1,9 +1,14 @@
+import { numberToReal } from "../../../../utils/numberToReal";
 import { Container, ContentText } from "./TotalSaved.styles";
 
-const TotalSaved = (): JSX.Element => {
+interface TotalSavedProps {
+  totalSaved: number;
+}
+
+const TotalSaved = ({ totalSaved }: TotalSavedProps): JSX.Element => {
   return (
     <Container>
-      <ContentText>R$ 5.000,00</ContentText>
+      <ContentText>{numberToReal(totalSaved)}</ContentText>
     </Container>
   );
 };

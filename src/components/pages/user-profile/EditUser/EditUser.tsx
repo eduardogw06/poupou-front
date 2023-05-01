@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { UseFormHandleSubmit } from "react-hook-form";
-import { IEditUserPayload } from "../../../types/IEditUserPayload";
-import { IUserInfo } from "../../../types/IUserInfo";
-import Input from "../../common/Input/Input";
+import { IEditUserPayload } from "../../../../types/IEditUserPayload";
+import { IUserInfo } from "../../../../types/IUserInfo";
+import Input from "../../../common/Input/Input";
 import { FormContainer } from "./EditUser.styles";
 
 interface EditUserProps {

@@ -41,9 +41,8 @@ const Column = styled.div`
 `;
 
 const Title = styled.h1`
-  font-family: "Circular Std";
+  font-family: "Circular Bold";
   font-size: ${props => props.theme.sizes.medium1};
-  font-weight: bold;
   color: #fa58b6;
 
   @media (${(props) => props.theme.media.md}) {
@@ -52,9 +51,8 @@ const Title = styled.h1`
 `;
 
 const Description = styled.p`
-  font-family: "Circular Std";
+  font-family: "Circular Light";
   font-size: ${props => props.theme.sizes.small3};
-  font-weight: 300;
   line-height: ${props => props.theme.sizes.medium1};
   color: #270082;
   padding: ${props => `${props.theme.sizes.medium1} ${props.theme.sizes.none}`};

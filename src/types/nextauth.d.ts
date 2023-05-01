@@ -1,13 +1,18 @@
-import NextAuth, { DefaultSession } from "next-auth";
+import NextAuth, { DefaultSession, DefaultUser } from "next-auth";
+import { IGetMenus } from "./IGetMenus";
 
 declare module "next-auth" {
-    /**
-     * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
-     */
     interface Session {
+        menu: IGetMenus[],
         user: {
             /** Oauth access token */
             jwt?: accessToken;
+            id?: string;
         } & DefaultSession["user"];
     }
+
+    interface User {
+        jwt?: accessToken;
+        id?: string;
+    } DefaultUser
 }

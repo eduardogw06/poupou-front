@@ -51,7 +51,6 @@ const Register = (): JSX.Element => {
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [error, setError] = useState<IError>(defaultError);
   const [feedbackOpened, setFeedbackOpened] = useState<boolean>(false);
-  const isComingSoon = true;
 
   const feedbackClosed = () => {
     Router.push("/login");
@@ -135,14 +134,12 @@ const Register = (): JSX.Element => {
           disabled={buttonDisabled}
         />
 
-        {!isComingSoon && (
-          <Button
-            text="Registre-se com o Google"
-            size="medium"
-            fullWidth={true}
-            outlined={true}
-          />
-        )}
+        <Button
+          text="Registre-se com o Google"
+          size="medium"
+          fullWidth={true}
+          outlined={true}
+        />
 
         <QuestionText
           text="Já tem uma conta?"

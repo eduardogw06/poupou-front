@@ -21,22 +21,20 @@ const ContentWrapper = styled.div`
 `;
 
 const Title = styled.h1`
-  font-family: "Circular Std";
+  font-family: "Circular Medium";
   font-size: ${props => props.theme.sizes.medium1};
-  font-weight: bold;
   line-height: ${props => props.theme.sizes.medium3};
   color: #fa58b6;
 
   @media (${(props) => props.theme.media.md}) {
-    font-size: ${props => props.theme.sizes.large4};
+    font-size: ${props => props.theme.sizes.large1};
     line-height: ${props => props.theme.sizes.xlarge3};
   }
 `;
 
 const Description = styled.p`
-  font-family: "Circular Std";
+  font-family: "Circular Light";
   font-size: ${props => props.theme.sizes.small3};
-  font-weight: light;
   line-height: ${props => props.theme.sizes.medium1};
   color: #ffffff;
   padding: ${props => `${props.theme.sizes.medium1} ${props.theme.sizes.none}`};

@@ -13,6 +13,7 @@ import {
   PasswordRecovery,
 } from "../../components/pages/login/Login.styles";
 import { ILoginPayload } from "../../types/ILoginPayload";
+import { isValidToken } from "../../utils/isValidToken";
 
 const defaultValues: ILoginPayload = {
   email: "",
@@ -46,7 +47,6 @@ function Login({ providers: any }): JSX.Element {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [error, setError] = useState<IError>(defaultError);
-  const isComingSoon = true;
 
   const onSubmit = async (data: ILoginPayload): Promise<void> => {
     setError(defaultError);
@@ -141,10 +141,9 @@ Login.displayName = "Login";
 export async function getServerSideProps(context) {
   const { req } = context;
   const session = await getSession({ req });
-
-  if (session) {
+  if (session && isValidToken(session?.user.jwt)) {
     return {
-      redirect: { destination: "/" },
+      redirect: { destination: "/dashboard" },
     };
   }
 

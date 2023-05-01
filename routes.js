@@ -13,4 +13,24 @@ module.exports = [
     source: "/alterar-senha",
     destination: "/update-password",
   },
+
+  {
+    source: "/meus-aportes",
+    destination: "/my-transactions",
+  },
+
+  {
+    source: "/meus-objetivos",
+    destination: "/my-targets",
+  },
+
+  {
+    source: "/meus-objetivos/:uuid",
+    destination: "/my-targets/:uuid",
+  },
+
+  {
+    source: "/aportes-automaticos",
+    destination: "/automatic-transactions",
+  },
 ];

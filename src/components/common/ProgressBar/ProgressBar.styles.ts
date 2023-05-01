@@ -5,7 +5,7 @@ const Container = styled.div`
     flex-direction: column;
     
     width: 200px;
-    margin: ${props => `${props.theme.sizes.large2} ${props.theme.sizes.medium4} ${props.theme.sizes.large2} ${props.theme.sizes.medium4}`};
+    margin: ${props => `${props.theme.sizes.none} ${props.theme.sizes.medium4} ${props.theme.sizes.large2} ${props.theme.sizes.medium4}`};
 
 
     @media (${(props: any): string => props.theme.media.md}) {
@@ -31,7 +31,7 @@ const ValuesContainer = styled.div`
     justify-content: space-between;
 
     & > span {
-        font-family: 'Circular Std';
+        font-family: 'Circular Bold';
         font-style: normal;
         font-weight: 700;
         font-size: ${props => props.theme.sizes.small3};
@@ -56,7 +56,7 @@ const ProgressPercent = styled.div`
     margin-top: ${props => props.theme.sizes.small2};
 
     & > span {
-        font-family: 'Circular Std';
+        font-family: 'Circular Bold';
         font-style: normal;
         font-weight: 700;
         font-size: ${props => props.theme.sizes.small3};

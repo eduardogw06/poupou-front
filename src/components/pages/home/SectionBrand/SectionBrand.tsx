@@ -8,7 +8,7 @@ import {
 } from "./SectionBrand.styles";
 import Link from "next/link";
 
-const SectionBrand = () => {
+const SectionBrand = (): JSX.Element => {
   return (
     <Container>
       <FirstColumn>

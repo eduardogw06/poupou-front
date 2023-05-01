@@ -1,3 +1,4 @@
+import { numberToReal } from "../../../utils/numberToReal";
 import {
   CompletedStatus,
   Container,
@@ -20,8 +21,8 @@ const ProgressBar = ({
   return (
     <Container>
       <ValuesContainer>
-        <span>{`R$ ${currentAmount}`}</span>
-        <span>{`R$ ${targetAmount}`}</span>
+        <span>{numberToReal(currentAmount)}</span>
+        <span>{numberToReal(targetAmount)}</span>
       </ValuesContainer>
 
       <ProgressBarContainer>
