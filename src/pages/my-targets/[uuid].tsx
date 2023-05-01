@@ -25,6 +25,7 @@ import Dialog from "../../components/common/Dialog/Dialog";
 import { isMobile } from "../../utils/isMobile";
 import TransactionModal from "../../components/pages/my-transactions/TransactionModal/TransactionModal";
 import Feedback from "../../components/common/Feedback/Feedback";
+import { IGetTransaction } from "../../types/IGetTransaction";
 
 interface TabPanelProps {
   children?: React.ReactNode;

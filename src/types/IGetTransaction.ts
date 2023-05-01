@@ -1,4 +1,4 @@
-interface IGetTransaction {
+export interface IGetTransaction {
     uuid: string;
     target: {
         uuid: string;

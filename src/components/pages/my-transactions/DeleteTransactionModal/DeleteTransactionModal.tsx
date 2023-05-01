@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { IError } from "../../../../types/IError";
 import { Alert } from "@mui/material";
 import { numberToReal } from "../../../../utils/numberToReal";
+import { IGetTransaction } from "../../../../types/IGetTransaction";
 
 interface IDeleteTransactionModalProps {
   data: IGetTransaction;

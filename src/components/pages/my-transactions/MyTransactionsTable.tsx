@@ -26,6 +26,7 @@ import { IAlertProps } from "../../../types/IAlertProps";
 import { IError } from "../../../types/IError";
 import EmptyPageAdvice from "../../common/EmptyPageAdvice/EmptyPageAdvice";
 import { numberToReal } from "../../../utils/numberToReal";
+import { IGetTransaction } from "../../../types/IGetTransaction";
 
 interface MyTransationsTableProps {
   data: MyTransactionsData;

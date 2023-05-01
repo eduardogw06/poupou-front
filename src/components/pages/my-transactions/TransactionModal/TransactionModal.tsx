@@ -14,6 +14,7 @@ import { transactionsValidate } from "../../../../utils/validations/transactions
 import Input from "../../../common/Input/Input";
 import InputMoney from "../../../common/InputMoney/InputMoney";
 import { FormContainer } from "./TransactionModal.styles";
+import { IGetTransaction } from "../../../../types/IGetTransaction";
 
 interface TransactionModalProps {
   type: ModalType;

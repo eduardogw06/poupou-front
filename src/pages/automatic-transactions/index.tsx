@@ -21,6 +21,7 @@ import { IAlertProps } from "../../types/IAlertProps";
 import { IGetTarget } from "../../types/IGetTarget";
 import { ModalType } from "../../types/ModalType";
 import { isValidToken } from "../../utils/isValidToken";
+import { IGetTransaction } from "../../types/IGetTransaction";
 
 const defaultAlert: IAlertProps = {
   severity: "success",
