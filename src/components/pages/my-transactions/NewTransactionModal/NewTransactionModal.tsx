@@ -1,18 +1,19 @@
 import { MenuItem } from "@mui/material";
+import { getSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { UseFormHandleSubmit, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import { editTransaction } from "../../../../services/editTransaction";
+import { newTransaction } from "../../../../services/newTransaction";
+import { IAlertProps } from "../../../../types/IAlertProps";
+import { IApiResponse } from "../../../../types/IApiResponse";
+import { IError } from "../../../../types/IError";
 import { IGetTarget } from "../../../../types/IGetTarget";
 import { INewTransactionPayload } from "../../../../types/INewTransactionPayload";
+import { ModalType } from "../../../../types/ModalType";
+import { transactionsValidate } from "../../../../utils/validations/transactions";
 import Input from "../../../common/Input/Input";
 import InputMoney from "../../../common/InputMoney/InputMoney";
 import { FormContainer } from "./NewTransactionModal.styles";
-import { newTransaction } from "../../../../services/newTransaction";
-import { getSession } from "next-auth/react";
-import { IApiResponse } from "../../../../types/IApiResponse";
-import { IAlertProps } from "../../../../types/IAlertProps";
-import { IError } from "../../../../types/IError";
-import { ModalType } from "../../../../types/ModalType";
-import { editTransaction } from "../../../../services/editTransaction";
 
 interface NewTransactionModalProps {
   type: ModalType;
@@ -37,9 +38,9 @@ const defaultError = {
 
 const defaultValues: INewTransactionPayload = {
   transaction_id: "",
-  amount: "",
+  amount: 0,
   target_id: "",
-  type_id: "3425bac3-2025-4284-83d7-72e85dbcabc9",
+  type: "Aporte",
   date: new Date(),
 };
 
@@ -68,6 +69,18 @@ const NewTransactionModal = ({
     setError(defaultError);
     setIsLoading(true);
     setButtonDisabled(true);
+
+    const errors = transactionsValidate(data);
+
+    if (Object.keys(errors).length) {
+      setError({
+        hasError: true,
+        message: Object.values(errors)[0],
+      });
+      setIsLoading(false);
+      setButtonDisabled(false);
+      return;
+    }
 
     const session = await getSession();
     const onSubmitFunction =
@@ -98,7 +111,7 @@ const NewTransactionModal = ({
 
     if (modalData) {
       setValue("target_id", modalData.target.uuid);
-      setValue("amount", modalData.amount);
+      setValue("amount", Number(modalData.amount));
       setValue("transaction_id", modalData.uuid);
     } else {
       reset();
@@ -141,7 +154,7 @@ const NewTransactionModal = ({
         variant="outlined"
         size="small"
         value={watch("amount")}
-        onChange={(e: any): void => setValue("amount", e.target.value)}
+        onChange={(e: any): void => setValue("amount", Number(e.target.value))}
         error={error.hasError}
         helperText={error.message}
       />
