@@ -6,6 +6,7 @@ import { MyTransactions } from "../../../../../types/IMyTransactions";
 import { ModalType } from "../../../../../types/ModalType";
 import MyTransationsTable from "../../../my-transactions/MyTransactionsTable";
 import { Container } from "./TargetTransactionsTab.styles";
+import { IGetTransaction } from "../../../../../types/IGetTransaction";
 
 interface TargetTransactionsTabProps {
   handleOpenModal: (
