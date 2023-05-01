@@ -30,7 +30,7 @@ module.exports = [
   },
 
   {
-    source: "/aporte-automatico",
+    source: "/aportes-automaticos",
     destination: "/automatic-transactions",
   },
 ];
