@@ -9,7 +9,6 @@ import {
 import { useTheme } from "styled-components";
 import { DefaultTheme } from "../../../types/DefaultTheme";
 import { IEmails } from "../../../types/IEmails";
-import { isMobile } from "../../../utils/isMobile";
 import { StyledTableCell } from "./Emails.styles";
 
 interface EmailsTableProps {
@@ -19,7 +18,6 @@ interface EmailsTableProps {
 const EmailsTable = ({ data }: EmailsTableProps): JSX.Element => {
   const { columns, rows } = data;
   const theme = useTheme() as DefaultTheme;
-  const mobile = isMobile();
 
   console.log(rows);
 
