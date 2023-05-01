@@ -42,7 +42,6 @@ const TargetConfigs = ({ targetData }: TargetConfigsProps): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [feedbackOpened, setFeedbackOpened] = useState<boolean>(false);
-  const [alertProps, setAlertProps] = useState<IAlertProps>(defaultAlert);
   const [error, setError] = useState<IError>(defaultError);
   const mobile = isMobile();
 
@@ -120,7 +119,7 @@ const TargetConfigs = ({ targetData }: TargetConfigsProps): JSX.Element => {
 
       <Feedback
         feedbackOpened={feedbackOpened}
-        alertProps={alertProps}
+        alertProps={defaultAlert}
         handleClose={handleClose}
       />
     </Container>
