@@ -23,7 +23,7 @@ import { ModalType } from "../../types/ModalType";
 import { IAlertProps } from "../../types/IAlertProps";
 import Dialog from "../../components/common/Dialog/Dialog";
 import { isMobile } from "../../utils/isMobile";
-import NewTransactionModal from "../../components/pages/my-transactions/NewTransactionModal/NewTransactionModal";
+import TransactionModal from "../../components/pages/my-transactions/TransactionModal/TransactionModal";
 import Feedback from "../../components/common/Feedback/Feedback";
 
 interface TabPanelProps {
@@ -173,7 +173,7 @@ const MyTargetPage = (): JSX.Element => {
               handleClose={handleClose}
               buttons={DialogButtons}
             >
-              <NewTransactionModal
+              <TransactionModal
                 type={currentModalType}
                 modalData={modalData}
                 setAlertProps={setAlertProps}
@@ -182,7 +182,7 @@ const MyTargetPage = (): JSX.Element => {
                 setFeedbackOpened={setFeedbackOpened}
                 setModalOpened={setModalOpened}
                 targets={targets}
-              ></NewTransactionModal>
+              ></TransactionModal>
             </Dialog>
           )}
 

@@ -13,9 +13,9 @@ import { ModalType } from "../../../../types/ModalType";
 import { transactionsValidate } from "../../../../utils/validations/transactions";
 import Input from "../../../common/Input/Input";
 import InputMoney from "../../../common/InputMoney/InputMoney";
-import { FormContainer } from "./NewTransactionModal.styles";
+import { FormContainer } from "./TransactionModal.styles";
 
-interface NewTransactionModalProps {
+interface TransactionModalProps {
   type: ModalType;
   modalData: IGetTransaction | null;
   setButtonDisabled: (boolean) => void;
@@ -44,7 +44,7 @@ const defaultValues: INewTransactionPayload = {
   date: new Date(),
 };
 
-const NewTransactionModal = ({
+const TransactionModal = ({
   type,
   modalData,
   targets,
@@ -53,7 +53,7 @@ const NewTransactionModal = ({
   setFeedbackOpened,
   setAlertProps,
   setModalOpened,
-}: NewTransactionModalProps): JSX.Element => {
+}: TransactionModalProps): JSX.Element => {
   const [error, setError] = useState<IError>(defaultError);
 
   const {
@@ -162,4 +162,4 @@ const NewTransactionModal = ({
   );
 };
 
-export default NewTransactionModal;
+export default TransactionModal;

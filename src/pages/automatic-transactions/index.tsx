@@ -9,8 +9,8 @@ import {
   NewTransaction,
 } from "../../components/pages/my-transactions/MyTransactions.styles";
 import MyTransationsTable from "../../components/pages/my-transactions/MyTransactionsTable";
-import NewTransactionModal from "../../components/pages/my-transactions/NewTransactionModal/NewTransactionModal";
-import { MyTransactionsData } from "../../types/IMyTransactions";
+import TransactionModal from "../../components/pages/my-transactions/TransactionModal/TransactionModal";
+import { MyTransactions } from "../../types/IMyTransactions";
 import { isMobile } from "../../utils/isMobile";
 
 import EmptyPageAdvice from "../../components/common/EmptyPageAdvice/EmptyPageAdvice";
@@ -102,7 +102,7 @@ const AutomaticTransactions = (): JSX.Element => {
 
   const columns = ["Valor Aporte", "Objetivo", "Data aporte", "Ações"];
 
-  let data: MyTransactionsData = {
+  let data: MyTransactions = {
     columns,
     rows: [],
   };
@@ -144,7 +144,7 @@ const AutomaticTransactions = (): JSX.Element => {
                 handleClose={handleClose}
                 buttons={DialogButtons}
               >
-                <NewTransactionModal
+                <TransactionModal
                   type={currentModalType}
                   modalData={modalData}
                   setAlertProps={setAlertProps}
@@ -153,7 +153,7 @@ const AutomaticTransactions = (): JSX.Element => {
                   setFeedbackOpened={setFeedbackOpened}
                   setModalOpened={setModalOpened}
                   targets={targets}
-                ></NewTransactionModal>
+                ></TransactionModal>
               </Dialog>
             )}
           </>

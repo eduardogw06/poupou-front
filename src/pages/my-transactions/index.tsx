@@ -9,7 +9,7 @@ import {
   NewTransaction,
 } from "../../components/pages/my-transactions/MyTransactions.styles";
 import MyTransationsTable from "../../components/pages/my-transactions/MyTransactionsTable";
-import NewTransactionModal from "../../components/pages/my-transactions/NewTransactionModal/NewTransactionModal";
+import TransactionModal from "../../components/pages/my-transactions/TransactionModal/TransactionModal";
 import { MyTransactions as MyTransactionsData } from "../../types/IMyTransactions";
 import { isMobile } from "../../utils/isMobile";
 
@@ -144,7 +144,7 @@ const MyTransactions = (): JSX.Element => {
                 handleClose={handleClose}
                 buttons={DialogButtons}
               >
-                <NewTransactionModal
+                <TransactionModal
                   type={currentModalType}
                   modalData={modalData}
                   setAlertProps={setAlertProps}
@@ -153,7 +153,7 @@ const MyTransactions = (): JSX.Element => {
                   setFeedbackOpened={setFeedbackOpened}
                   setModalOpened={setModalOpened}
                   targets={targets}
-                ></NewTransactionModal>
+                ></TransactionModal>
               </Dialog>
             )}
           </>
