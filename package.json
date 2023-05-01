@@ -23,6 +23,7 @@
     "date-fns": "^2.29.3",
     "dotenv": "^16.0.3",
     "hamburger-react": "^2.5.0",
+    "joi": "^17.9.2",
     "jsonwebtoken": "^9.0.0",
     "next": "latest",
     "next-auth": "^4.20.1",
