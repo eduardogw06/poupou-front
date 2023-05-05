@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTheme } from "styled-components";
 import { DefaultTheme } from "../../../../types/DefaultTheme";
-import { getFontAwesomeIcon } from "../../../../utils/getFontAwesomeIcon";
 import {
   Container,
   Content,
@@ -10,6 +9,7 @@ import {
   DeleteButton,
   Title,
 } from "./Card.styles";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 interface CardProps {
   title?: string;
@@ -46,7 +46,7 @@ const Card = ({
           {icon && (
             <Icon>
               <FontAwesomeIcon
-                icon={getFontAwesomeIcon(icon)}
+                icon={icon as IconProp}
                 size="1x"
                 color={menuIcon}
               />

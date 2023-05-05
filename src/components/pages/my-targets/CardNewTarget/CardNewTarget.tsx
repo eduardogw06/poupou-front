@@ -6,7 +6,6 @@ import { newTarget } from "../../../../services/newTarget";
 import { IAlertProps } from "../../../../types/IAlertProps";
 import { IApiResponse } from "../../../../types/IApiResponse";
 import { INewTargetPayload } from "../../../../types/INewTargetPayload";
-import { getFontAwesomeIcon } from "../../../../utils/getFontAwesomeIcon";
 import { isMobile } from "../../../../utils/isMobile";
 import Button from "../../../common/Button/Button";
 import Dialog from "../../../common/Dialog/Dialog";
@@ -17,6 +16,7 @@ import { IGetTarget } from "../../../../types/IGetTarget";
 import { IError } from "../../../../types/IError";
 import Router from "next/router";
 import { targetsValidate } from "../../../../utils/validations/targets";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 interface CardNewTarget {
   targets: IGetTarget[];
@@ -107,7 +107,7 @@ const CardNewTarget = ({ targets }: CardNewTarget): JSX.Element => {
   return (
     <Container>
       <FontAwesomeIcon
-        icon={getFontAwesomeIcon("circle-plus")}
+        icon={"circle-plus" as IconProp}
         size={mobile ? "3x" : "4x"}
         color={"#FA58B6"}
         onClick={(): void => setModalOpened(!modalOpened)}
