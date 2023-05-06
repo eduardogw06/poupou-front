@@ -12,7 +12,6 @@ import { useTheme } from "styled-components";
 import { DefaultTheme } from "../../../types/DefaultTheme";
 import { MyTransactions as MyTransactionsData } from "../../../types/IMyTransactions";
 import { ModalType } from "../../../types/ModalType";
-import { getFontAwesomeIcon } from "../../../utils/getFontAwesomeIcon";
 import { isMobile } from "../../../utils/isMobile";
 import Button from "../../common/Button/Button";
 import Dialog from "../../common/Dialog/Dialog";
@@ -27,11 +26,11 @@ import { IError } from "../../../types/IError";
 import EmptyPageAdvice from "../../common/EmptyPageAdvice/EmptyPageAdvice";
 import { numberToReal } from "../../../utils/numberToReal";
 import { IGetTransaction } from "../../../types/IGetTransaction";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 interface MyTransationsTableProps {
   data: MyTransactionsData;
   handleOpenModal: (
-    isOpen: boolean,
     modalType: ModalType,
     transactionData: IGetTransaction
   ) => void;
@@ -94,7 +93,6 @@ const MyTransationsTable = ({
   };
 
   const handleDeleteTransactionModalOpen = (data: IGetTransaction): void => {
-    console.log(data);
     setDeleteModalOpened(true);
     setDeleteTransactionData(data);
   };
@@ -156,14 +154,14 @@ const MyTransationsTable = ({
                   <StyledTableCell>
                     <IconContainer>
                       <FontAwesomeIcon
-                        icon={getFontAwesomeIcon("gear")}
+                        icon={"gear" as IconProp}
                         size="1x"
                         color={theme.colors.text}
-                        onClick={(): void => handleOpenModal(true, "edit", row)}
+                        onClick={(): void => handleOpenModal("edit", row)}
                         style={{ cursor: "pointer" }}
                       />
                       <FontAwesomeIcon
-                        icon={getFontAwesomeIcon("trash")}
+                        icon={"trash" as IconProp}
                         size="1x"
                         color={theme.colors.text}
                         onClick={(): void =>

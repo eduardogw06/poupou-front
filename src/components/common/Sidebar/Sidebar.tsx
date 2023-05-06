@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 import { DefaultTheme } from "../../../types/DefaultTheme";
 import { IGetMenus } from "../../../types/IGetMenus";
-import { getFontAwesomeIcon } from "../../../utils/getFontAwesomeIcon";
 import { isMobile } from "../../../utils/isMobile";
 import {
   Container,
@@ -13,6 +12,7 @@ import {
   MenuItem,
   MenuItemName,
 } from "./Sidebar.styles";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 const Sidebar = (): JSX.Element => {
   const [menus, setMenus] = useState<IGetMenus[] | null>(null);
@@ -38,7 +38,7 @@ const Sidebar = (): JSX.Element => {
               <MenuItem>
                 <IconContainer>
                   <FontAwesomeIcon
-                    icon={getFontAwesomeIcon(menu.icon)}
+                    icon={menu.icon as IconProp}
                     size={isMobile ? "1x" : "1x"}
                     color={menuIcon}
                   />
@@ -47,7 +47,7 @@ const Sidebar = (): JSX.Element => {
                 <MenuItemName>{menu.name}</MenuItemName>
 
                 <FontAwesomeIcon
-                  icon={getFontAwesomeIcon("chevron-right")}
+                  icon={"chevron-right"}
                   size={isMobile ? "1x" : "sm"}
                   color={menuIcon}
                 />

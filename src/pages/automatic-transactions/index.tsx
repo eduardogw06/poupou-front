@@ -4,10 +4,7 @@ import { useEffect, useState } from "react";
 import Button from "../../components/common/Button/Button";
 import Dialog from "../../components/common/Dialog/Dialog";
 import PageTitle from "../../components/common/PageTitle/PageTitle";
-import {
-  Container,
-  NewTransaction,
-} from "../../components/pages/my-transactions/MyTransactions.styles";
+import { Container } from "../../components/pages/my-transactions/MyTransactions.styles";
 import MyTransationsTable from "../../components/pages/my-transactions/MyTransactionsTable";
 import TransactionModal from "../../components/pages/my-transactions/TransactionModal/TransactionModal";
 import { MyTransactions } from "../../types/IMyTransactions";
@@ -92,11 +89,10 @@ const AutomaticTransactions = (): JSX.Element => {
   };
 
   const handleOpenModal = (
-    isOpen: boolean,
     modalType: ModalType,
     transactionData: IGetTransaction
   ): void => {
-    setModalOpened(isOpen);
+    setModalOpened(true);
     setCurrentModalType(modalType);
     setModalData(transactionData);
   };
@@ -118,13 +114,11 @@ const AutomaticTransactions = (): JSX.Element => {
         <PageTitle>Aporte automático</PageTitle>
         {targets ? (
           <>
-            <NewTransaction>
-              <Button
-                text="Novo aporte"
-                size="small"
-                onClick={(): void => handleOpenModal(true, "create", undefined)}
-              ></Button>
-            </NewTransaction>
+            <Button
+              text="Novo aporte"
+              size="small"
+              onClick={(): void => handleOpenModal("create", undefined)}
+            ></Button>
 
             <MyTransationsTable data={data} handleOpenModal={handleOpenModal} />
 

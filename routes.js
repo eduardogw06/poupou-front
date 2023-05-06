@@ -33,4 +33,8 @@ module.exports = [
     source: "/aportes-automaticos",
     destination: "/automatic-transactions",
   },
+  {
+    source: "/categorias",
+    destination: "/categories",
+  },
 ];

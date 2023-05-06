@@ -4,10 +4,7 @@ import { useEffect, useState } from "react";
 import Button from "../../components/common/Button/Button";
 import Dialog from "../../components/common/Dialog/Dialog";
 import PageTitle from "../../components/common/PageTitle/PageTitle";
-import {
-  Container,
-  NewTransaction,
-} from "../../components/pages/my-transactions/MyTransactions.styles";
+import { Container } from "../../components/pages/my-transactions/MyTransactions.styles";
 import MyTransationsTable from "../../components/pages/my-transactions/MyTransactionsTable";
 import TransactionModal from "../../components/pages/my-transactions/TransactionModal/TransactionModal";
 import { MyTransactions as MyTransactionsData } from "../../types/IMyTransactions";
@@ -19,9 +16,9 @@ import { getTargets as getTargetsService } from "../../services/getTargets";
 import { getTransactions as getTransactionsService } from "../../services/getTransactions";
 import { IAlertProps } from "../../types/IAlertProps";
 import { IGetTarget } from "../../types/IGetTarget";
+import { IGetTransaction } from "../../types/IGetTransaction";
 import { ModalType } from "../../types/ModalType";
 import { isValidToken } from "../../utils/isValidToken";
-import { IGetTransaction } from "../../types/IGetTransaction";
 
 const defaultAlert: IAlertProps = {
   severity: "success",
@@ -92,11 +89,10 @@ const MyTransactions = (): JSX.Element => {
   };
 
   const handleOpenModal = (
-    isOpen: boolean,
     modalType: ModalType,
     transactionData: IGetTransaction
   ): void => {
-    setModalOpened(isOpen);
+    setModalOpened(true);
     setCurrentModalType(modalType);
     setModalData(transactionData);
   };
@@ -115,17 +111,16 @@ const MyTransactions = (): JSX.Element => {
   return (
     <>
       <Container>
-        <PageTitle>Meus aportes</PageTitle>
+        <PageTitle>
+          Meus aportes
+          <Button
+            text="Novo aporte"
+            size="small"
+            onClick={(): void => handleOpenModal("create", undefined)}
+          ></Button>
+        </PageTitle>
         {targets ? (
           <>
-            <NewTransaction>
-              <Button
-                text="Novo aporte"
-                size="small"
-                onClick={(): void => handleOpenModal(true, "create", undefined)}
-              ></Button>
-            </NewTransaction>
-
             <MyTransationsTable data={data} handleOpenModal={handleOpenModal} />
 
             <Feedback

@@ -14,12 +14,6 @@ const Container = styled.div`
   }
 `;
 
-const NewTransaction = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: right;
-`;
-
 const StyledTableCell = styled(TableCell)`
   color: ${(props) => props.theme.colors.text} !important;
 `;
@@ -33,7 +27,6 @@ const IconContainer = styled.div`
 
 export {
   Container,
-  NewTransaction,
   StyledTableCell,
   IconContainer
 };

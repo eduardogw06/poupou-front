@@ -1,6 +1,7 @@
 import Layout from "../components/common/Layout/Layout";
 import LayoutNoAuth from "../components/common/Layout/LayoutNoAuth";
 import { SessionProvider } from "next-auth/react";
+import "../utils/fontawesome";
 
 export default function App({
   Component,

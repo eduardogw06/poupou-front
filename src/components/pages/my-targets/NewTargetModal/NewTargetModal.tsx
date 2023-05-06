@@ -59,7 +59,7 @@ const NewTargetModal = ({
 
     const getCategories = async (): Promise<void> => {
       const session = await getSession();
-      const response = await getCategoriesService(session?.user.jwt);
+      const response = await getCategoriesService(true, session?.user.jwt);
 
       if (response && response.success) {
         setCategories(response.data);

@@ -14,6 +14,11 @@ const Container = styled.div`
 
 `;
 
+const HeaderTitle = styled.div`
+    display: flex;
+    flex-direction: row;
+`;
+
 const HeaderButtons = styled.div`
     display: flex;
     flex-direction: row;
@@ -81,5 +86,6 @@ export {
     PageTitleLink,
     StyledTabs,
     StyledTab,
-    HeaderButtons
+    HeaderButtons,
+    HeaderTitle
 };

@@ -1,12 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Hamburguer from "hamburger-react";
-import { signOut } from "next-auth/react";
+import { SignOutResponse, signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useTheme } from "styled-components";
 import { DefaultTheme } from "../../../types/DefaultTheme";
-import { getFontAwesomeIcon } from "../../../utils/getFontAwesomeIcon";
 import Logo from "../Logo/Logo";
 import {
   Container,
@@ -16,7 +15,7 @@ import {
   MaterialUISwitch,
   ProfilePhoto,
 } from "./Navbar.styles";
-import { SignOutResponse } from "next-auth/react";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 interface NavbarProps {
   menuOpened: boolean;
@@ -83,7 +82,7 @@ const Navbar = ({
               <Link href="/perfil">
                 <div>
                   <FontAwesomeIcon
-                    icon={getFontAwesomeIcon("user")}
+                    icon={"user" as IconProp}
                     size="1x"
                     color={menuIcon}
                   />
@@ -95,7 +94,7 @@ const Navbar = ({
               <Link href="/alterar-senha">
                 <div>
                   <FontAwesomeIcon
-                    icon={getFontAwesomeIcon("key")}
+                    icon={"key" as IconProp}
                     size="1x"
                     color={menuIcon}
                   />
@@ -118,7 +117,7 @@ const Navbar = ({
             >
               <div>
                 <FontAwesomeIcon
-                  icon={getFontAwesomeIcon("sign-out")}
+                  icon={"sign-out" as IconProp}
                   size="1x"
                   color={menuIcon}
                 />
