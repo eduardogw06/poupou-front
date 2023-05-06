@@ -6,6 +6,7 @@ import PageTitle from "../../components/common/PageTitle/PageTitle";
 import {
   Container,
   HeaderButtons,
+  HeaderTitle,
   PageTitleLink,
   StyledTab,
   StyledTabs,
@@ -128,10 +129,13 @@ const MyTargetPage = (): JSX.Element => {
       {targets && (
         <Container>
           <PageTitle>
-            <Link href="/meus-objetivos">
-              <PageTitleLink>Meus objetivos</PageTitleLink>
-            </Link>
-            / {targets[0].description}
+            <HeaderTitle>
+              <Link href="/meus-objetivos">
+                <PageTitleLink>Meus objetivos</PageTitleLink>
+              </Link>
+              / {targets[0].description}
+            </HeaderTitle>
+
             <HeaderButtons>
               <Button type="button" text="Exportar" size="medium"></Button>
               <Button
