@@ -80,11 +80,10 @@ const MyTargetPage = (): JSX.Element => {
   };
 
   const handleOpenModal = (
-    isOpen: boolean,
     modalType: ModalType,
     transactionData: IGetTransaction
   ): void => {
-    setModalOpened(isOpen);
+    setModalOpened(true);
     setCurrentModalType(modalType);
     setModalData(transactionData);
   };
@@ -142,7 +141,7 @@ const MyTargetPage = (): JSX.Element => {
                 type="button"
                 text="Novo aporte"
                 size="medium"
-                onClick={(): void => handleOpenModal(true, "create", undefined)}
+                onClick={(): void => handleOpenModal("create", undefined)}
                 outlined
               ></Button>
             </HeaderButtons>
