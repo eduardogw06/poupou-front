@@ -31,7 +31,6 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 interface MyTransationsTableProps {
   data: MyTransactionsData;
   handleOpenModal: (
-    isOpen: boolean,
     modalType: ModalType,
     transactionData: IGetTransaction
   ) => void;
@@ -94,7 +93,6 @@ const MyTransationsTable = ({
   };
 
   const handleDeleteTransactionModalOpen = (data: IGetTransaction): void => {
-    console.log(data);
     setDeleteModalOpened(true);
     setDeleteTransactionData(data);
   };
@@ -159,7 +157,7 @@ const MyTransationsTable = ({
                         icon={"gear" as IconProp}
                         size="1x"
                         color={theme.colors.text}
-                        onClick={(): void => handleOpenModal(true, "edit", row)}
+                        onClick={(): void => handleOpenModal("edit", row)}
                         style={{ cursor: "pointer" }}
                       />
                       <FontAwesomeIcon
