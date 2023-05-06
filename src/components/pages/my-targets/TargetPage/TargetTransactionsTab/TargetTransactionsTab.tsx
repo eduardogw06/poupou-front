@@ -10,7 +10,6 @@ import { IGetTransaction } from "../../../../../types/IGetTransaction";
 
 interface TargetTransactionsTabProps {
   handleOpenModal: (
-    isOpen: boolean,
     modalType: ModalType,
     transactionData: IGetTransaction
   ) => void;
