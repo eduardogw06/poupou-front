@@ -9,7 +9,9 @@ import {
 import { useTheme } from "styled-components";
 import { DefaultTheme } from "../../../types/DefaultTheme";
 import { IEmails } from "../../../types/IEmails";
-import { StyledTableCell } from "./Emails.styles";
+import { SeeContent, StyledTableCell } from "./Emails.styles";
+import Link from "next/link";
+import { IGetEmail } from "../../../types/IGetEmail";
 
 interface EmailsTableProps {
   data: IEmails;
@@ -18,8 +20,6 @@ interface EmailsTableProps {
 const EmailsTable = ({ data }: EmailsTableProps): JSX.Element => {
   const { columns, rows } = data;
   const theme = useTheme() as DefaultTheme;
-
-  console.log(rows);
 
   return (
     <>
@@ -38,18 +38,26 @@ const EmailsTable = ({ data }: EmailsTableProps): JSX.Element => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow
-                key={row.uuid}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <StyledTableCell component="th" scope="row">
-                  {row.description}
-                </StyledTableCell>
-                <StyledTableCell>{row.active ? "Sim" : "Não"}</StyledTableCell>
-                <StyledTableCell>Ver conteúdo</StyledTableCell>
-              </TableRow>
-            ))}
+            {rows.map(
+              (row: IGetEmail): JSX.Element => (
+                <TableRow
+                  key={row.uuid}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <StyledTableCell component="th" scope="row">
+                    {row.description}
+                  </StyledTableCell>
+                  <StyledTableCell>
+                    {row.active ? "Sim" : "Não"}
+                  </StyledTableCell>
+                  <StyledTableCell>
+                    <SeeContent>
+                      <Link href={`/emails/${row.uuid}`}>Ver conteúdo</Link>
+                    </SeeContent>
+                  </StyledTableCell>
+                </TableRow>
+              )
+            )}
           </TableBody>
         </Table>
       </TableContainer>

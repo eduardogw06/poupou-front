@@ -37,4 +37,9 @@ module.exports = [
     source: "/categorias",
     destination: "/categories",
   },
+
+  {
+    source: "/emails/:uuid",
+    destination: "/emails/:uuid",
+  },
 ];
