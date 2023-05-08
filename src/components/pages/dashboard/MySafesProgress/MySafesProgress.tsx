@@ -36,7 +36,7 @@ const MySafesProgress = ({ targets }: MySafesProgressProps): JSX.Element => {
         };
       }
     );
-    console.log(getChartData);
+
     setChartData(getChartData);
   }, [targets]);
 

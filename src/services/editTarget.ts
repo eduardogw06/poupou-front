@@ -7,7 +7,7 @@ export const editTarget = async (payload: INewTargetPayload, sessionToken: strin
         const config = {
             headers: { Authorization: `Bearer ${sessionToken}` }
         };
-        console.log(payload);
+
         const response = await api.put('/target', payload, config);
         if (response.status === 201) {
             return new Promise((resolve: (value: IApiResponse) => void): any =>

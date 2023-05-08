@@ -7,7 +7,7 @@ export const editCategory = async (payload: ICategoryPayload, sessionToken: stri
         const config = {
             headers: { Authorization: `Bearer ${sessionToken}` }
         };
-        console.log(payload);
+
         const response = await api.put('/category', payload, config);
         if (response.status === 201) {
             return new Promise((resolve: (value: IApiResponse) => void): any =>
