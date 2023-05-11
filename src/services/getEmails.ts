@@ -1,21 +1,22 @@
 import { IApiResponse } from "../types/IApiResponse";
-import { INewTransactionPayload } from "../types/INewTransactionPayload";
+import { IGetMenus } from "../types/IGetMenus";
 import api from "../utils/api";
 
-export const editTransaction = async (payload: INewTransactionPayload, sessionToken: string): Promise<IApiResponse> => {
+export const getEmails = async (sessionToken: string, emailId?: string): Promise<IApiResponse> => {
     try {
         const config = {
-            headers: { Authorization: `Bearer ${sessionToken}` }
+            headers: { Authorization: `Bearer ${sessionToken}` },
+            params: emailId ? { email_id: emailId } : {}
         };
+        const response = await api.get('/system/email', config);
 
-        const response = await api.put('/transaction', payload, config);
-        if (response.status === 201) {
+        if (Object.keys(response.data).length) {
             return new Promise((resolve: (value: IApiResponse) => void): any =>
-                resolve({ success: true }));
+                resolve({ success: true, data: response.data as IGetMenus[] }));
         }
 
     } catch (error) {
-        const { message } = error.response?.data
+        const { message } = error.response.data
         if (message) {
             return new Promise((resolve: (value: IApiResponse) => void): void =>
                 resolve({ success: false, message: message }))
@@ -27,4 +28,3 @@ export const editTransaction = async (payload: INewTransactionPayload, sessionTo
         );
     }
 }
-

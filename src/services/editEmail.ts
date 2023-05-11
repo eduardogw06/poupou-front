@@ -1,14 +1,14 @@
 import { IApiResponse } from "../types/IApiResponse";
-import { INewTransactionPayload } from "../types/INewTransactionPayload";
+import { IUpdateMailPayload } from "../types/IUpdateEmailPayload";
 import api from "../utils/api";
 
-export const editTransaction = async (payload: INewTransactionPayload, sessionToken: string): Promise<IApiResponse> => {
+export const editEmail = async (payload: IUpdateMailPayload, sessionToken: string): Promise<IApiResponse> => {
     try {
         const config = {
             headers: { Authorization: `Bearer ${sessionToken}` }
         };
 
-        const response = await api.put('/transaction', payload, config);
+        const response = await api.put('/system/email', payload, config);
         if (response.status === 201) {
             return new Promise((resolve: (value: IApiResponse) => void): any =>
                 resolve({ success: true }));

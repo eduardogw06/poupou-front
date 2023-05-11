@@ -125,7 +125,7 @@ const MyTargetPage = (): JSX.Element => {
 
   return (
     <>
-      {targets && (
+      {targets.length > 0 && (
         <Container>
           <PageTitle>
             <HeaderTitle>

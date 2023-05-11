@@ -52,7 +52,6 @@ const CategoryModal = ({
   setModalOpened,
 }: CategoryModalProps): JSX.Element => {
   const [error, setError] = useState<IError>(defaultError);
-  console.log(modalData);
 
   const {
     register,
@@ -118,7 +117,6 @@ const CategoryModal = ({
     }
   }, [register]);
 
-  console.log(watch("active"));
   return (
     <FormContainer
       id={type === "create" ? "newCategoryForm" : "editCategoryForm"}

@@ -35,6 +35,10 @@ export default createGlobalStyle`
         background-color: ${(props) => props.theme.colors.tertiary};
     }
 
+    .DraftEditor-editorContainer{
+        background-color: #FFF;
+    }
+
     @font-face {
         font-family: 'WorkSans Black';
         src: local("WorkSans"),
