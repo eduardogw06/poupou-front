@@ -23,16 +23,14 @@ const FormContainer = styled.form`
         width: 300px
     
     };
-    
-    > div {
-        margin-bottom: ${(props: any): string => props.theme.sizes.medium2};
-    }
 `;
 
 const PasswordRecovery = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    margin-bottom: ${(props: any): string => props.theme.sizes.small3};
+    margin-top: ${(props: any): string => props.theme.sizes.small3};
 
     font-family: 'Circular Medium';
     font-style: normal;

@@ -1,4 +1,9 @@
-import { getCsrfToken, getSession, signIn } from "next-auth/react";
+import {
+  SignInResponse,
+  getCsrfToken,
+  getSession,
+  signIn,
+} from "next-auth/react";
 import Link from "next/link";
 import Router from "next/router";
 import { useEffect, useState } from "react";
@@ -14,6 +19,7 @@ import {
 } from "../../components/pages/login/Login.styles";
 import { ILoginPayload } from "../../types/ILoginPayload";
 import { isValidToken } from "../../utils/isValidToken";
+import { isPropertyAccessChain } from "typescript";
 
 const defaultValues: ILoginPayload = {
   email: "",
@@ -118,10 +124,10 @@ function Login({ providers: any }): JSX.Element {
           size="medium"
           fullWidth={true}
           outlined={true}
-          onClick={() =>
+          onClick={(): Promise<SignInResponse> =>
             signIn("google", {
               redirect: false,
-              callbackUrl: "http://localhost:8080/dashboard",
+              callbackUrl: process.env.NEXT_PUBLIC_LOGIN_CALLBACK_URL,
             })
           }
         />

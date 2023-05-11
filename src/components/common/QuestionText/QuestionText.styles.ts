@@ -5,7 +5,6 @@ const Container = styled.div`
     flex-direction: row;
     justify-content: flex-end;
     width: 100%;
-    padding-top: ${props => props.theme.sizes.medium3};
 `;
 
 const NormalText = styled.p`

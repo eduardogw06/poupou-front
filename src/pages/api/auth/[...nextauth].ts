@@ -1,14 +1,17 @@
+import { sign } from "jsonwebtoken";
 import NextAuth from "next-auth";
 import { Session } from "next-auth/core/types";
 import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import { checkUserExists } from "../../../services/checkUserExists";
+import { getMenus } from "../../../services/getMenus";
 import { login } from "../../../services/login";
+import { userRegister } from "../../../services/userRegister";
 import { IApiResponse } from "../../../types/IApiResponse";
+import { IGetMenus } from "../../../types/IGetMenus";
 import { ILoginPayload } from "../../../types/ILoginPayload";
 import { IJwtProps, ILoginCredentials, IRedirectProps, ISessionProps } from "../../../types/INextAuthApi";
-import { getMenus } from "../../../services/getMenus";
-import { IGetMenus } from "../../../types/IGetMenus";
 
 
 export default NextAuth({
@@ -36,7 +39,7 @@ export default NextAuth({
                         jwt: loginData.data.token
                     }
                 } catch (error) {
-                    return Promise.reject(new Error(process.env.NEXT_PUBLIC_API_DEFAULT_ERROR));;
+                    return Promise.reject(new Error(process.env.NEXT_PUBLIC_API_DEFAULT_ERROR));
                 }
             }
         })
@@ -52,7 +55,33 @@ export default NextAuth({
             else if (new URL(url).origin === baseUrl) return url
         },
 
-        async signIn(): Promise<boolean> {
+        async signIn({ user, account, profile, credentials }): Promise<boolean> {
+            if (account.provider === 'google') {
+                const result = await checkUserExists(user.email);
+
+                if (result.success) {
+                    const { user_id, user_exists } = result.data;
+                    if (!user_exists) {
+                        const registerPayload = {
+                            name: profile.name,
+                            email: profile.email,
+                            password: '',
+                            confirmPassword: '',
+                            googleId: profile.sub
+                        };
+                        const result = await userRegister(registerPayload);
+
+                        if (result.success) {
+                            user.id = result.data.uuid;
+                            return true;
+                        }
+                    }
+
+                    user.id = user_id;
+                    return true;
+                }
+                return false;
+            }
             return true;
         },
 
@@ -70,19 +99,24 @@ export default NextAuth({
         },
         async jwt({ token, user }: IJwtProps): Promise<JWT> {
             if (user) {
-                token.id = user.id
-                token.email = user.email
-                token.name = user.name
-                token.jwt = user.jwt
+                if (!user.jwt) {
+                    user.jwt = sign(token, process.env.NEXTAUTH_SECRET, {
+                        expiresIn: "1d",
+                    });
+                }
+
+                token.id = user.id;
+                token.email = user.email;
+                token.name = user.name;
+                token.jwt = user.jwt;
             }
 
             return Promise.resolve(token);
         }
 
     },
-    secret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
     pages: {
-        error: '/entrar',
+        error: '/error',
         signIn: '/login',
         newUser: '/dashboard'
     }

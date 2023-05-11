@@ -1,15 +1,17 @@
 import { IApiResponse } from "../types/IApiResponse";
-import { IRegisterPayload } from "../types/IRegisterPayload";
+import { IUserInfo } from "../types/IUserInfo";
 import api from "../utils/api";
 
-
-export const userRegister = async (payload: IRegisterPayload): Promise<IApiResponse> => {
+export const checkUserExists = async (email: string) => {
     try {
-        const response = await api.post('/users', payload);
+        const config = {
+            params: { email }
+        };
+        const response = await api.get('/users/check-email', config);
 
-        if (Object.keys(response).length) {
+        if (Object.keys(response.data).length) {
             return new Promise((resolve: (value: IApiResponse) => void): any =>
-                resolve({ success: true, data: response.data }));
+                resolve({ success: true, data: response.data as IUserInfo }));
         }
 
     } catch (error) {
@@ -25,4 +27,3 @@ export const userRegister = async (payload: IRegisterPayload): Promise<IApiRespo
         );
     }
 }
-
