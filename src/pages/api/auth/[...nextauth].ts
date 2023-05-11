@@ -36,7 +36,8 @@ export default NextAuth({
                         id: loginData.data.user.id,
                         name: loginData.data.user.name,
                         email: loginData.data.user.email,
-                        jwt: loginData.data.token
+                        jwt: loginData.data.token,
+                        is_admin: loginData.data.user.is_admin
                     }
                 } catch (error) {
                     return Promise.reject(new Error(process.env.NEXT_PUBLIC_API_DEFAULT_ERROR));
@@ -88,6 +89,7 @@ export default NextAuth({
         async session({ session, token }: ISessionProps): Promise<Session> {
             session.user.jwt = token.jwt;
             session.user.id = token.id as string;
+            session.user.is_admin = token.is_admin as boolean;
 
             const response = await getMenus(token.jwt as string);
 
@@ -105,10 +107,13 @@ export default NextAuth({
                     });
                 }
 
+                // console.log(user);
+
                 token.id = user.id;
                 token.email = user.email;
                 token.name = user.name;
                 token.jwt = user.jwt;
+                token.is_admin = user.is_admin;
             }
 
             return Promise.resolve(token);
