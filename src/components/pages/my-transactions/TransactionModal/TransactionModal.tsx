@@ -88,7 +88,7 @@ const TransactionModal = ({
       type === "create" ? newTransaction : editTransaction;
     const result = (await onSubmitFunction(
       data,
-      session.user.jwt
+      session?.user?.jwt
     )) as IApiResponse;
 
     if (result.success) {
