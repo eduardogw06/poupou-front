@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Input from "../../common/Input/Input";
 
 const Container = styled.div`
     padding: ${(props: any) => {
@@ -21,8 +22,11 @@ const FormContainer = styled.form`
 
     @media (${(props) => props.theme.media.md}) {
         width: 300px
-    
     };
+
+    & > .css-1u3bzj6-MuiFormControl-root-MuiTextField-root:nth-of-type(2)  {
+        margin-top: 20px;
+    }
 `;
 
 const PasswordRecovery = styled.div`
