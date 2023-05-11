@@ -23,7 +23,7 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
 
   useEffect(() => {
     const localTheme = JSON.parse(window.localStorage.getItem("theme"));
-    localTheme.title === "dark" ? setTheme(localTheme) : setTheme(light);
+    localTheme?.title === "light" ? setTheme(localTheme) : setTheme(dark);
     setMountedComponent(true);
   }, []);
 
