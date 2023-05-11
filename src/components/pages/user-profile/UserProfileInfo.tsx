@@ -1,4 +1,11 @@
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
 import Image from "next/image";
+import Link from "next/link";
+import { IAlertProps } from "../../../types/IAlertProps";
+import { IUserInfo } from "../../../types/IUserInfo";
+import { isMobile } from "../../../utils/isMobile";
+import Button from "../../common/Button/Button";
 import {
   Achivements,
   AchivementsText,
@@ -9,12 +16,6 @@ import {
   UserInfoRow,
   UserInfoText,
 } from "./UserProfile.styles";
-import { format } from "date-fns";
-import { ptBR } from "date-fns/locale";
-import { IUserInfo } from "../../../types/IUserInfo";
-import { isMobile } from "../../../utils/isMobile";
-import Button from "../../common/Button/Button";
-import Link from "next/link";
 
 interface UserProfileInfoProps {
   userData: IUserInfo;
@@ -22,21 +23,103 @@ interface UserProfileInfoProps {
   setEditModeOn: (boolean) => void;
 }
 
+// const defaultAlert: IAlertProps = {
+//   severity: "success",
+//   message: "Foto alterada com sucesso!",
+// };
+
+// const defaultError = {
+//   hasError: false,
+//   message: "",
+// };
+
 const UserProfileInfo = ({
   userData,
   editModeOn,
   setEditModeOn,
 }: UserProfileInfoProps): JSX.Element => {
   const mobile = isMobile();
+  // const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
+  // const [feedbackOpened, setFeedbackOpened] = useState<boolean>(false);
+  // const [alertProps, setAlertProps] = useState<IAlertProps>(defaultAlert);
+  // const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  // const { register, handleSubmit, setValue } = useForm();
+
+  // const handleClose = (): void => {
+  //   Router.reload();
+  // };
+
+  // const onSubmit = async (data) => {
+  //   const session = await getSession();
+  //   const result = (await editUserPhoto(
+  //     data,
+  //     session?.user?.jwt
+  //   )) as IApiResponse;
+  //   if (result.success) {
+  //     setIsLoading(false);
+  //     setButtonDisabled(false);
+  //     setFeedbackOpened(true);
+  //   } else {
+  //     setFeedbackOpened(true);
+  //     setAlertProps({
+  //       severity: "error",
+  //       message: result.message,
+  //     });
+  //     setIsLoading(false);
+  //     setButtonDisabled(false);
+  //   }
+  // };
+
+  // useEffect((): void => {
+  //   register("photo");
+  // }, [register]);
+
   return (
     <>
-      <ProfilePhoto>
+      {/* <form
+        id="editUserPhotoForm"
+        encType="multipart/form-data"
+        onSubmit={handleSubmit(onSubmit)}
+      > */}
+      <ProfilePhoto
+      // htmlFor="photo"
+      >
         <Image
-          src="/assets/user-profile-default.png"
+          src={
+            userData.photo
+              ? `http://localhost:8080/tmp/photo/${userData.photo}`
+              : "/assets/user-profile-default.png"
+          }
           height="100"
           width="100"
-        ></Image>
+        />
+        {/* <input
+            type="file"
+            id="photo"
+            name="photo"
+            accept="image/png, image/jpeg"
+            style={{ display: "none" }}
+            onChange={(e) => {
+              setValue("photo", e.target.files[0]);
+              setButtonDisabled(false);
+            }}
+          /> */}
       </ProfilePhoto>
+      {/* <UpdatePhotoButtonContainer>
+          <Button
+            text="Alterar foto"
+            size={mobile ? "medium" : "small"}
+            fullWidth={mobile}
+            outlined={true}
+            type="submit"
+            form="editUserPhotoForm"
+            loading={isLoading}
+            disabled={buttonDisabled}
+          />
+        </UpdatePhotoButtonContainer> */}
+      {/* </form> */}
+
       <UserInfo>
         <UserInfoRow>
           <UserInfoLabel>Nome:</UserInfoLabel>
@@ -84,6 +167,12 @@ const UserProfileInfo = ({
           </Link>
         </ButtonContainer>
       </UserInfo>
+
+      {/* <Feedback
+        feedbackOpened={feedbackOpened}
+        alertProps={alertProps}
+        handleClose={handleClose}
+      /> */}
     </>
   );
 };

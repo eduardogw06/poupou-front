@@ -13,7 +13,7 @@ const UserProfileContainer = styled.div`
     }
 `
 
-const ProfilePhoto = styled.div`
+const ProfilePhoto = styled.label`
     width: 200px;
     height: 200px;
     background: ${props => props.theme.colors.tertiary};
@@ -110,6 +110,12 @@ const ButtonContainer = styled.div`
     }
 `;
 
+const UpdatePhotoButtonContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+`;
+
 export {
     UserProfileContainer,
     ProfilePhoto,
@@ -119,5 +125,6 @@ export {
     UserInfoLabel,
     UserInfoText,
     UserInfoRow,
-    AchivementsText
+    AchivementsText,
+    UpdatePhotoButtonContainer
 }
