@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styled from "styled-components";
 
 const UserProfileContainer = styled.div`
@@ -10,21 +11,6 @@ const UserProfileContainer = styled.div`
     @media (${(props: any): string => props.theme.media.md}) {      
         flex-direction: row;
         align-items: flex-start;
-    }
-`
-
-const ProfilePhoto = styled.label`
-    width: 200px;
-    height: 200px;
-    background: ${props => props.theme.colors.tertiary};
-    display: flex;
-    align-content: center;
-    align-items: center;
-    flex-direction: row;
-    justify-content: center;
-
-    @media (${(props: any): string => props.theme.media.md}) {      
-        flex-direction: row;
     }
 `;
 
@@ -110,15 +96,58 @@ const ButtonContainer = styled.div`
     }
 `;
 
+const UpdateProfilePhotoIcon = styled.div`
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+`;
+
+const ProfilePhoto = styled(Image)`
+    filter: none;
+    position: relative;
+
+    &:hover {
+        filter: blur(3px);
+    }
+`;
+
+const ProfilePhotoContainer = styled.label`
+    width: 200px;
+    height: 200px;
+    background: ${props => props.theme.colors.tertiary};
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+
+    filter: none;
+    position: relative;
+
+    &:hover ${UpdateProfilePhotoIcon} {
+        display: block;
+    }
+
+    @media (${(props: any): string => props.theme.media.md}) {      
+        flex-direction: row;
+    }
+`;
+
 const UpdatePhotoButtonContainer = styled.div`
     display: flex;
     flex-direction: row;
+    justify-content: center;
     margin-top: 20px;
 `;
+
+const UpdatePhotoForm = styled.form``;
 
 export {
     UserProfileContainer,
     ProfilePhoto,
+    ProfilePhotoContainer,
     UserInfo,
     Achivements,
     ButtonContainer,
@@ -126,5 +155,7 @@ export {
     UserInfoText,
     UserInfoRow,
     AchivementsText,
-    UpdatePhotoButtonContainer
+    UpdatePhotoButtonContainer,
+    UpdatePhotoForm,
+    UpdateProfilePhotoIcon
 }
