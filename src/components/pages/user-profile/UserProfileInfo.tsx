@@ -1,14 +1,26 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import Image from "next/image";
+import { getSession } from "next-auth/react";
 import Link from "next/link";
+import Router from "next/router";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { editUserPhoto } from "../../../services/editUserPhoto";
 import { IAlertProps } from "../../../types/IAlertProps";
-import { IUserInfo } from "../../../types/IUserInfo";
+import { IApiResponse } from "../../../types/IApiResponse";
+import {
+  Achievement as AchievementType,
+  IUserInfo,
+} from "../../../types/IUserInfo";
 import { isMobile } from "../../../utils/isMobile";
 import Button from "../../common/Button/Button";
+import Feedback from "../../common/Feedback/Feedback";
 import {
-  Achivements,
-  AchivementsText,
+  Achievements,
+  AchievementsCircle,
+  AchievementsText,
   ButtonContainer,
   ProfilePhoto,
   ProfilePhotoContainer,
@@ -20,15 +32,6 @@ import {
   UserInfoRow,
   UserInfoText,
 } from "./UserProfile.styles";
-import { useEffect, useState } from "react";
-import { getSession } from "next-auth/react";
-import { editUserPhoto } from "../../../services/editUserPhoto";
-import { IApiResponse } from "../../../types/IApiResponse";
-import { useForm } from "react-hook-form";
-import Feedback from "../../common/Feedback/Feedback";
-import Router from "next/router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 interface UserProfileInfoProps {
   userData: IUserInfo;
@@ -39,11 +42,6 @@ interface UserProfileInfoProps {
 const defaultAlert: IAlertProps = {
   severity: "success",
   message: "Foto alterada com sucesso!",
-};
-
-const defaultError = {
-  hasError: false,
-  message: "",
 };
 
 const UserProfileInfo = ({
@@ -64,7 +62,7 @@ const UserProfileInfo = ({
     Router.reload();
   };
 
-  const handleImageInputChange = (event) => {
+  const handleImageInputChange = (event): void => {
     setValue("photo", event.target.files[0]);
     setButtonDisabled(false);
 
@@ -180,11 +178,22 @@ const UserProfileInfo = ({
           <UserInfoLabel>Selos consquistados:</UserInfoLabel>
         </UserInfoRow>
 
-        <Achivements>
-          <AchivementsText>
-            Nenhum selo consquistado. Crie um objetivo e comece a poupar.
-          </AchivementsText>
-        </Achivements>
+        <Achievements>
+          {userData?.achievements.keys ? (
+            Object.entries(userData.achievements).map(
+              ([key, achievement]: [string, AchievementType]) =>
+                achievement.value && (
+                  <AchievementsCircle key={key}>
+                    {achievement.text}
+                  </AchievementsCircle>
+                )
+            )
+          ) : (
+            <AchievementsText>
+              Nenhum selo conquistado. Crie um objetivo e comece a poupar.
+            </AchievementsText>
+          )}
+        </Achievements>
         <ButtonContainer>
           <Button
             text="Editar"

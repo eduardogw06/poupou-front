@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { darken } from "polished";
 import styled from "styled-components";
 
 const UserProfileContainer = styled.div`
@@ -69,9 +70,7 @@ const UserInfoText = styled.p`
     }
 `;
 
-const Achivements = styled.div``;
-
-const AchivementsText = styled.div`
+const AchievementsText = styled.div`
     font-family: 'Circular Light';
     font-style: normal;
     font-weight: 300;
@@ -79,10 +78,65 @@ const AchivementsText = styled.div`
     line-height: ${props => props.theme.sizes.medium1};
     color: ${props => props.theme.colors.text};
 
-    @media (${(props: any): string => props.theme.media.md}) {      
+    @media(${(props: any): string => props.theme.media.md}) {
         font-size: ${props => props.theme.sizes.medium1};
         line-height: ${props => props.theme.sizes.medium3};
     }
+`;
+
+const AchievementsCircle = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+
+    font-family: 'WorkSans Bold';
+    font-style: normal;
+    font-weight: 300;
+    font-size: ${props => props.theme.sizes.medium3};
+`;
+
+const Achievements = styled.div`
+    display: flex;
+    flex-direction: row;
+
+    & > :first-child ${AchievementsCircle}{
+        background-color: #FFF;
+        color: #1A1A40;
+    }
+
+    &:first-child ${AchievementsText} {
+    }
+
+    & > :nth-child(2) {
+        background-color: #6200EE;
+        color: #FFF;
+    }
+
+    & > :nth-child(3) {
+        
+        background-color: #FA58B6;
+        color: #FFF;
+    }
+
+    & > :nth-child(4) {
+         background-color:  #111128;
+        color: #FFF;
+        
+    }
+
+    & > :nth-child(5) {
+        background-color: ${darken(0.1, '#1A1A40')};
+        color: #FFF;
+    }
+
+    & > :last-child {
+    margin-right: 0px;
+}
 `;
 
 const ButtonContainer = styled.div`
@@ -91,7 +145,7 @@ const ButtonContainer = styled.div`
     justify-content: space-between;
     margin-top: ${props => props.theme.sizes.medium3};
 
-    @media (${(props: any): string => props.theme.media.md}) {      
+    @media(${(props: any): string => props.theme.media.md}) {
         flex-direction: row;
     }
 `;
@@ -101,8 +155,8 @@ const UpdateProfilePhotoIcon = styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-`;
+    transform: translate(-50 %, -50 %);
+    `;
 
 const ProfilePhoto = styled(Image)`
     filter: none;
@@ -126,11 +180,11 @@ const ProfilePhotoContainer = styled.label`
     filter: none;
     position: relative;
 
-    &:hover ${UpdateProfilePhotoIcon} {
+        &:hover ${UpdateProfilePhotoIcon} {
         display: block;
     }
 
-    @media (${(props: any): string => props.theme.media.md}) {      
+    @media(${(props: any): string => props.theme.media.md}) {
         flex-direction: row;
     }
 `;
@@ -149,13 +203,14 @@ export {
     ProfilePhoto,
     ProfilePhotoContainer,
     UserInfo,
-    Achivements,
+    Achievements,
     ButtonContainer,
     UserInfoLabel,
     UserInfoText,
     UserInfoRow,
-    AchivementsText,
+    AchievementsText,
     UpdatePhotoButtonContainer,
     UpdatePhotoForm,
-    UpdateProfilePhotoIcon
+    UpdateProfilePhotoIcon,
+    AchievementsCircle
 }

@@ -4,4 +4,14 @@ export interface IUserInfo {
     name: string;
     photo: string | null;
     created_at: Date;
+    achievements: Achievements;
+}
+
+export interface Achievements {
+    [key: string]: Achievement;
+}
+
+export interface Achievement {
+    value: boolean;
+    text: string;
 }
