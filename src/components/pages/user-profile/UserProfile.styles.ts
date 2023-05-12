@@ -91,25 +91,28 @@ const AchievementsCircle = styled.div`
     align-items: center;
     margin-right: 10px;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
 
     font-family: 'WorkSans Bold';
     font-style: normal;
     font-weight: 300;
-    font-size: ${props => props.theme.sizes.medium3};
+    font-size: ${props => props.theme.sizes.medium1};
+
+    @media(${(props: any): string => props.theme.media.md}) {
+        width: 75px;
+        height: 75px;
+        font-size: ${props => props.theme.sizes.medium3};
+    }
 `;
 
 const Achievements = styled.div`
     display: flex;
     flex-direction: row;
 
-    & > :first-child ${AchievementsCircle}{
+    & > :first-child:is(${AchievementsCircle}){
         background-color: #FFF;
         color: #1A1A40;
-    }
-
-    &:first-child ${AchievementsText} {
     }
 
     & > :nth-child(2) {
@@ -155,7 +158,7 @@ const UpdateProfilePhotoIcon = styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50 %, -50 %);
+    transform: translate(-50%, -50%);
     `;
 
 const ProfilePhoto = styled(Image)`
@@ -191,9 +194,13 @@ const ProfilePhotoContainer = styled.label`
 
 const UpdatePhotoButtonContainer = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     margin-top: 20px;
+
+    @media(${(props: any): string => props.theme.media.md}) {
+        flex-direction: row;
+    }
 `;
 
 const UpdatePhotoForm = styled.form``;
