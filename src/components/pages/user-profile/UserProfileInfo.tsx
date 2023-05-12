@@ -179,7 +179,7 @@ const UserProfileInfo = ({
         </UserInfoRow>
 
         <Achievements>
-          {userData?.achievements.keys ? (
+          {Object.keys(userData?.achievements).length ? (
             Object.entries(userData.achievements).map(
               ([key, achievement]: [string, AchievementType]) =>
                 achievement.value && (
