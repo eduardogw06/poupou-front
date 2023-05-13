@@ -44,6 +44,7 @@ const CompletedStatus = styled.div<{ currentAmount: number, targetAmount: number
     display: flex;
     height: 100%;
     width: ${(props: any): string => `${props.percent}%`};
+    max-width: 100%;
     background-color: ${(props: any): string => props.theme.colors.tertiary};
     border-radius: inherit;
     text-align: right;
