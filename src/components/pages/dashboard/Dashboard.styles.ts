@@ -13,6 +13,9 @@ const Container = styled.div`
 const TotalSavedContainer = styled.div`
     display: flex;
     width: calc(100vw - 96px);
+    & > div {
+        width: 100%;
+    }
 
     @media (${(props) => props.theme.media.md}) {
         width: calc(100vw - 216px);
@@ -29,6 +32,7 @@ const SafeProgressContainer = styled.div`
 
     & > div {
         margin-bottom: ${(props: any): string => props.theme.sizes.medium2};
+         width: 100%;
     }
 
     @media (${(props: any): string => props.theme.media.md}) {
@@ -67,6 +71,7 @@ const MySafesProgressContainer = styled.div`
     height: 100%;
 
     & > div {
+        width: 100%;
         max-height: 100%;
     }
 
