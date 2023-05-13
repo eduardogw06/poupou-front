@@ -106,7 +106,7 @@ function Login({ providers: any }): JSX.Element {
           helperText={error.message}
         />
 
-        <Link href="#">
+        <Link href="/recuperar-senha">
           <PasswordRecovery>Recuperar senha</PasswordRecovery>
         </Link>
 
