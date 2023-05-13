@@ -7,7 +7,7 @@ export const updatePassword = async (payload: IUpdatePasswordPayload, sessionTok
         const config = {
             headers: { Authorization: `Bearer ${sessionToken}` }
         };
-        const response = await api.patch('/users/update-password', payload, config);
+        const response = await api.put('/users/update-password', payload, config);
         if (response.status === 200) {
             return new Promise((resolve: (value: IApiResponse) => void): any =>
                 resolve({ success: true }));

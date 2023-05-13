@@ -1,5 +1,5 @@
 import { Alert, Snackbar } from "@mui/material";
-import { getSession } from "next-auth/react";
+import { getSession, signOut } from "next-auth/react";
 import Router from "next/router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -14,6 +14,8 @@ import {
 import { updatePassword } from "../../services/updatePassword";
 import { IApiResponse } from "../../types/IApiResponse";
 import { IUpdatePasswordPayload } from "../../types/IUpdatePasswordPayload";
+import { IAlertProps } from "../../types/IAlertProps";
+import Feedback from "../../components/common/Feedback/Feedback";
 
 interface IError {
   hasError: boolean;
@@ -29,6 +31,11 @@ const defaultValues: IUpdatePasswordPayload = {
 const defaultError = {
   hasError: false,
   message: "",
+};
+
+const defaultAlert: IAlertProps = {
+  severity: "success",
+  message: "Senha alterada com sucesso!",
 };
 
 const UpdatePassword = () => {
@@ -51,9 +58,8 @@ const UpdatePassword = () => {
   const [error, setError] = useState<IError>(defaultError);
   const [feedbackOpened, setFeedbackOpened] = useState<boolean>(false);
 
-  const handleClose = () => {
-    localStorage.removeItem("sessionToken");
-    Router.reload();
+  const handleFeedbackClose = () => {
+    signOut({ callbackUrl: "/login" });
   };
 
   const onSubmit = async (data: IUpdatePasswordPayload) => {
@@ -99,7 +105,7 @@ const UpdatePassword = () => {
           />
           <Input
             id="newPassword"
-            label="Confirmar Senha"
+            label="Nova Senha"
             type="password"
             variant="outlined"
             size="medium"
@@ -135,15 +141,11 @@ const UpdatePassword = () => {
         </FormContainer>
       </InputContainer>
 
-      <Snackbar
-        open={feedbackOpened}
-        autoHideDuration={3000}
-        onClose={handleClose}
-      >
-        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-          Senha alterada com sucesso!
-        </Alert>
-      </Snackbar>
+      <Feedback
+        feedbackOpened={feedbackOpened}
+        alertProps={defaultAlert}
+        handleClose={handleFeedbackClose}
+      />
     </Container>
   );
 };
