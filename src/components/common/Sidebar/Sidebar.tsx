@@ -14,18 +14,11 @@ import {
 } from "./Sidebar.styles";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
-const Sidebar = (): JSX.Element => {
-  const [menus, setMenus] = useState<IGetMenus[] | null>(null);
+interface SidebarProps {
+  menus: IGetMenus[] | null;
+}
 
-  useEffect((): void => {
-    const getMenus = async (): Promise<void> => {
-      const session = await getSession();
-      setMenus(session?.menu);
-    };
-
-    getMenus();
-  }, []);
-
+const Sidebar = ({ menus }: SidebarProps): JSX.Element => {
   const theme = useTheme() as DefaultTheme;
   const { menuIcon } = theme.colors;
 

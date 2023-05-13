@@ -9,6 +9,7 @@ declare module "next-auth" {
             jwt?: accessToken;
             id?: string;
             is_admin?: boolean;
+            photo?: string;
         } & DefaultSession["user"];
     }
 
@@ -16,5 +17,6 @@ declare module "next-auth" {
         jwt?: accessToken;
         id?: string;
         is_admin?: boolean;
+        photo?: string
     } DefaultUser
 }

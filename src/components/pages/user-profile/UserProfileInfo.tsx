@@ -2,7 +2,7 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import { getSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import Link from "next/link";
 import Router from "next/router";
 import { useEffect, useState } from "react";
@@ -87,6 +87,7 @@ const UserProfileInfo = ({
       session?.user?.jwt
     )) as IApiResponse;
     if (result.success) {
+      session.user.photo = result.data.photo;
       setIsLoading(false);
       setButtonDisabled(false);
       setFeedbackOpened(true);

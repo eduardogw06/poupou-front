@@ -22,6 +22,7 @@ interface NavbarProps {
   setMenuOpened: (boolean) => void;
   toggleTheme: () => void;
   isDarkTheme: boolean;
+  profilePhoto: string;
 }
 
 const Navbar = ({
@@ -29,6 +30,7 @@ const Navbar = ({
   setMenuOpened,
   toggleTheme,
   isDarkTheme,
+  profilePhoto,
 }: NavbarProps): JSX.Element => {
   const theme = useTheme() as DefaultTheme;
   const [dropdownMenuOpened, setDropdownMenuOpened] = useState<boolean>(false);
@@ -69,7 +71,11 @@ const Navbar = ({
           ref={wrapperRef}
         >
           <Image
-            src="/assets/user-profile-default.png"
+            src={
+              profilePhoto
+                ? `data:image/png;base64,${profilePhoto}`
+                : "/assets/user-profile-default.png"
+            }
             width="60"
             height="60"
           />

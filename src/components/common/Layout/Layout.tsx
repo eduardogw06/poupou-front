@@ -10,6 +10,8 @@ import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 import { ContentContainer } from "./Layout.styles";
+import { IGetMenus } from "../../../types/IGetMenus";
+import { getSession } from "next-auth/react";
 
 interface LayoutProps {
   children: any;
@@ -20,8 +22,18 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
   const [theme, setTheme] = useState<DefaultTheme>(dark);
   const [menuOpened, setMenuOpened] = useState(false);
   const [mountedComponent, setMountedComponent] = useState(false);
+  const [menus, setMenus] = useState<IGetMenus[] | null>(null);
+  const [profilePhoto, setProfilePhoto] = useState<string | null>(null);
 
   useEffect(() => {
+    const getMenus = async (): Promise<void> => {
+      const session = await getSession();
+      setMenus(session?.menu);
+      setProfilePhoto(session?.user?.photo);
+    };
+
+    getMenus();
+
     const localTheme = JSON.parse(window.localStorage.getItem("theme"));
     localTheme?.title === "light" ? setTheme(localTheme) : setTheme(dark);
     setMountedComponent(true);
@@ -46,10 +58,11 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
           setMenuOpened={setMenuOpened}
           toggleTheme={toggleTheme}
           isDarkTheme={theme.title === "dark"}
+          profilePhoto={profilePhoto}
         />
 
         <ContentContainer>
-          {menuOpened && <Sidebar />}
+          {menuOpened && <Sidebar menus={menus} />}
           <Content menuOpened={menuOpened} children={children} />
         </ContentContainer>
         <Footer />

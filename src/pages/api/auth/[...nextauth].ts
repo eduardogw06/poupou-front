@@ -12,6 +12,7 @@ import { IApiResponse } from "../../../types/IApiResponse";
 import { IGetMenus } from "../../../types/IGetMenus";
 import { ILoginPayload } from "../../../types/ILoginPayload";
 import { IJwtProps, ILoginCredentials, IRedirectProps, ISessionProps } from "../../../types/INextAuthApi";
+import { getUser } from "../../../services/getUser";
 
 
 export default NextAuth({
@@ -31,13 +32,13 @@ export default NextAuth({
                     const loginData = await login({ email, password } as ILoginPayload) as IApiResponse;
 
                     if (!loginData.success) return Promise.reject(new Error(loginData.message));
-
                     return {
                         id: loginData.data.user.id,
                         name: loginData.data.user.name,
                         email: loginData.data.user.email,
                         jwt: loginData.data.token,
-                        is_admin: loginData.data.user.is_admin
+                        is_admin: loginData.data.user.is_admin,
+                        photo: loginData.data.user.photo
                     }
                 } catch (error) {
                     return Promise.reject(new Error(process.env.NEXT_PUBLIC_API_DEFAULT_ERROR));
@@ -86,7 +87,12 @@ export default NextAuth({
             return true;
         },
 
-        async session({ session, token }: ISessionProps): Promise<Session> {
+        async session({ session, user, token }: ISessionProps): Promise<Session> {
+
+            const userData = await getUser(token.jwt as string);
+            if (userData.success) {
+                session.user.photo = userData.data.photo;
+            }
             session.user.jwt = token.jwt;
             session.user.id = token.id as string;
             session.user.is_admin = token.is_admin as boolean;
@@ -106,8 +112,6 @@ export default NextAuth({
                         expiresIn: "1d",
                     });
                 }
-
-                // console.log(user);
 
                 token.id = user.id;
                 token.email = user.email;

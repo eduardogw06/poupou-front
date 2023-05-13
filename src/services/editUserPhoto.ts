@@ -1,5 +1,4 @@
 import { IApiResponse } from "../types/IApiResponse";
-import { IEditUserPayload } from "../types/IEditUserPayload";
 import api from "../utils/api";
 
 export const editUserPhoto = async (payload: any, sessionToken: string): Promise<IApiResponse> => {
@@ -10,10 +9,8 @@ export const editUserPhoto = async (payload: any, sessionToken: string): Promise
         const response = await api.post('/users/update-photo', payload, config);
         if (response.status === 204) {
             return new Promise((resolve: (value: IApiResponse) => void): any =>
-                resolve({ success: true }));
+                resolve({ success: true, data: response.data }));
         }
-        // // console.log(response);
-        // if (response.status === 500) throw new Error(response.statusText);
 
     } catch (error) {
         const { message } = error.response.data
