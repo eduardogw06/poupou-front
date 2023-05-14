@@ -2,7 +2,7 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import { getSession, useSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 import Link from "next/link";
 import Router from "next/router";
 import { useEffect, useState } from "react";
