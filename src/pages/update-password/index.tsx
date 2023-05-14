@@ -1,9 +1,8 @@
-import { Alert, Snackbar } from "@mui/material";
 import { getSession, signOut } from "next-auth/react";
-import Router from "next/router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "../../components/common/Button/Button";
+import Feedback from "../../components/common/Feedback/Feedback";
 import Input from "../../components/common/Input/Input";
 import PageTitle from "../../components/common/PageTitle/PageTitle";
 import {
@@ -12,10 +11,9 @@ import {
   InputContainer,
 } from "../../components/pages/update-password/UpdatePassword.styles";
 import { updatePassword } from "../../services/updatePassword";
+import { IAlertProps } from "../../types/IAlertProps";
 import { IApiResponse } from "../../types/IApiResponse";
 import { IUpdatePasswordPayload } from "../../types/IUpdatePasswordPayload";
-import { IAlertProps } from "../../types/IAlertProps";
-import Feedback from "../../components/common/Feedback/Feedback";
 
 interface IError {
   hasError: boolean;
