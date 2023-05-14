@@ -5,25 +5,20 @@ import Button from "../../components/common/Button/Button";
 import Dialog from "../../components/common/Dialog/Dialog";
 import PageTitle from "../../components/common/PageTitle/PageTitle";
 import { Container } from "../../components/pages/my-transactions/MyTransactions.styles";
-import MyTransationsTable from "../../components/pages/my-transactions/MyTransactionsTable";
-import TransactionModal from "../../components/pages/my-transactions/TransactionModal/TransactionModal";
-import { MyTransactions } from "../../types/IMyTransactions";
 import { isMobile } from "../../utils/isMobile";
 
 import EmptyPageAdvice from "../../components/common/EmptyPageAdvice/EmptyPageAdvice";
 import Feedback from "../../components/common/Feedback/Feedback";
+import { AutomaticInvestmentModal } from "../../components/pages/automatic-investments/AutomaticInvestmentModal/AutomaticInvestmentModal";
+import { AutomaticInvestmentsTable } from "../../components/pages/automatic-investments/AutomaticInvestmentsTable";
+import { getAutomaticTransactions } from "../../services/getAutomaticTransactions";
 import { getTargets as getTargetsService } from "../../services/getTargets";
-import { getTransactions as getTransactionsService } from "../../services/getTransactions";
 import { IAlertProps } from "../../types/IAlertProps";
+import { IAutomaticInvestments } from "../../types/IAutomaticInvestments";
+import { IGetAutomaticInvestments } from "../../types/IGetAutomaticInvestments";
 import { IGetTarget } from "../../types/IGetTarget";
 import { ModalType } from "../../types/ModalType";
 import { isValidToken } from "../../utils/isValidToken";
-import { IGetTransaction } from "../../types/IGetTransaction";
-import { getAutomaticTransactions } from "../../services/getAutomaticTransactions";
-import { IGetAutomaticInvestments } from "../../types/IGetAutomaticInvestments";
-import { IAutomaticInvestments } from "../../types/IAutomaticInvestments";
-import { AutomaticInvestmentsTable } from "../../components/pages/automatic-investments/AutomaticInvestmentsTable";
-import { AutomaticInvestmentModal } from "../../components/pages/automatic-investments/AutomaticInvestmentModal/AutomaticInvestmentModal";
 
 const defaultAlert: IAlertProps = {
   severity: "success",
