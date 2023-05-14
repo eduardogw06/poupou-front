@@ -42,4 +42,9 @@ module.exports = [
     source: "/emails/:uuid",
     destination: "/emails/:uuid",
   },
+
+  {
+    source: "/recuperar-senha",
+    destination: "/password-recovery",
+  },
 ];

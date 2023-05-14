@@ -3,4 +3,5 @@ export interface IRegisterPayload {
     email: string;
     password: string;
     confirmPassword: string;
+    isGoogle?: boolean;
 }

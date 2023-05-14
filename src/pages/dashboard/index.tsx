@@ -56,10 +56,13 @@ const Dashboard = (): JSX.Element => {
     getTotalSaved();
   }, []);
 
-  const selectTargetGrid = (): void => {
-    if (notDisplayedGrid) {
+  const setTargetGrid = (): void => {
+    if (notDisplayedGrid.length > 0) {
       setTargetsGrid([...targetsGrid, ...notDisplayedGrid.slice(0, 2)]);
-      setnotDisplayedTargetsGrid(targets.slice(2));
+
+      setnotDisplayedTargetsGrid(
+        notDisplayedGrid.length === 1 ? [] : notDisplayedGrid.slice(2)
+      );
     }
   };
 
@@ -99,8 +102,8 @@ const Dashboard = (): JSX.Element => {
               <Button
                 type="button"
                 text="Ver mais"
-                size="large"
-                onClick={selectTargetGrid}
+                size="small"
+                onClick={setTargetGrid}
               ></Button>
             </SeeMoreTargetsContainer>
           )}

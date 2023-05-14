@@ -1,4 +1,9 @@
-import { getCsrfToken, getSession, signIn } from "next-auth/react";
+import {
+  SignInResponse,
+  getCsrfToken,
+  getSession,
+  signIn,
+} from "next-auth/react";
 import Link from "next/link";
 import Router from "next/router";
 import { useEffect, useState } from "react";
@@ -100,7 +105,7 @@ function Login({ providers: any }): JSX.Element {
           helperText={error.message}
         />
 
-        <Link href="#">
+        <Link href="/recuperar-senha">
           <PasswordRecovery>Recuperar senha</PasswordRecovery>
         </Link>
 
@@ -118,10 +123,10 @@ function Login({ providers: any }): JSX.Element {
           size="medium"
           fullWidth={true}
           outlined={true}
-          onClick={() =>
+          onClick={(): Promise<SignInResponse> =>
             signIn("google", {
               redirect: false,
-              callbackUrl: "http://localhost:8080/dashboard",
+              callbackUrl: process.env.NEXT_PUBLIC_LOGIN_CALLBACK_URL,
             })
           }
         />

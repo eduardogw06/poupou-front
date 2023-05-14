@@ -1,4 +1,4 @@
-import { getSession, signOut } from "next-auth/react";
+import Router from "next/router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "../../components/common/Button/Button";
@@ -10,20 +10,18 @@ import {
   FormContainer,
   InputContainer,
 } from "../../components/pages/update-password/UpdatePassword.styles";
-import { updatePassword } from "../../services/updatePassword";
+import { passwordRecovery } from "../../services/passwordRecovery";
 import { IAlertProps } from "../../types/IAlertProps";
 import { IApiResponse } from "../../types/IApiResponse";
-import { IUpdatePasswordPayload } from "../../types/IUpdatePasswordPayload";
+import { IPasswordRecovery } from "../../types/IPasswordRecovery";
 
 interface IError {
   hasError: boolean;
   message: string;
 }
 
-const defaultValues: IUpdatePasswordPayload = {
-  oldPassword: "",
-  newPassword: "",
-  newPasswordConfirm: "",
+const defaultValues: IPasswordRecovery = {
+  email: "",
 };
 
 const defaultError = {
@@ -36,7 +34,7 @@ const defaultAlert: IAlertProps = {
   message: "Senha alterada com sucesso!",
 };
 
-const UpdatePassword = () => {
+const PasswordRecovery = () => {
   const {
     register,
     watch,
@@ -46,9 +44,7 @@ const UpdatePassword = () => {
   } = useForm({ defaultValues });
 
   useEffect(() => {
-    register("oldPassword");
-    register("newPassword");
-    register("newPasswordConfirm");
+    register("email");
   }, [register]);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -56,20 +52,16 @@ const UpdatePassword = () => {
   const [error, setError] = useState<IError>(defaultError);
   const [feedbackOpened, setFeedbackOpened] = useState<boolean>(false);
 
-  const handleFeedbackClose = () => {
-    signOut({ callbackUrl: "/login" });
+  const handleFeedbackClose = (): void => {
+    Router.push("/login");
   };
 
-  const onSubmit = async (data: IUpdatePasswordPayload) => {
+  const onSubmit = async (data: IPasswordRecovery): Promise<void> => {
     setError(defaultError);
     setIsLoading(true);
     setButtonDisabled(true);
 
-    const session = await getSession();
-    const result = (await updatePassword(
-      data,
-      session.user.jwt
-    )) as IApiResponse;
+    const result = (await passwordRecovery(data)) as IApiResponse;
 
     if (result.success) {
       setIsLoading(false);
@@ -91,46 +83,21 @@ const UpdatePassword = () => {
       <InputContainer>
         <FormContainer method="post" onSubmit={handleSubmit(onSubmit)}>
           <Input
-            id="oldPassword"
-            label="Senha"
-            type="password"
+            id="email"
+            label="Email"
+            type="email"
             variant="outlined"
             size="medium"
-            value={watch("oldPassword")}
+            value={watch("email")}
             fullWidth={true}
-            onChange={(e: any): void => setValue("oldPassword", e.target.value)}
-            error={error.hasError}
-          />
-          <Input
-            id="newPassword"
-            label="Nova Senha"
-            type="password"
-            variant="outlined"
-            size="medium"
-            value={watch("newPassword")}
-            fullWidth={true}
-            onChange={(e: any): void => setValue("newPassword", e.target.value)}
-            error={error.hasError}
-          />
-
-          <Input
-            id="newPasswordConfirm"
-            label="Confirmar Senha"
-            type="password"
-            variant="outlined"
-            size="medium"
-            value={watch("newPasswordConfirm")}
-            fullWidth={true}
-            onChange={(e: any): void =>
-              setValue("newPasswordConfirm", e.target.value)
-            }
+            onChange={(e: any): void => setValue("email", e.target.value)}
             error={error.hasError}
             helperText={error.message}
           />
 
           <Button
             type="submit"
-            text="Alterar Senha"
+            text="Enviar"
             size="medium"
             fullWidth={true}
             loading={isLoading}
@@ -148,4 +115,4 @@ const UpdatePassword = () => {
   );
 };
 
-export default UpdatePassword;
+export default PasswordRecovery;

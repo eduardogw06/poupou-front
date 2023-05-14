@@ -8,11 +8,15 @@ declare module "next-auth" {
             /** Oauth access token */
             jwt?: accessToken;
             id?: string;
+            is_admin?: boolean;
+            photo?: string;
         } & DefaultSession["user"];
     }
 
     interface User {
         jwt?: accessToken;
         id?: string;
+        is_admin?: boolean;
+        photo?: string
     } DefaultUser
 }

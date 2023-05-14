@@ -5,9 +5,8 @@ export const isValidToken = (token: string): boolean => {
         try {
             verify(
                 token.replace(/["]/g, ''),
-                process.env.NEXT_PUBLIC_SECRET_TOKEN,
+                process.env.NEXTAUTH_SECRET,
             );
-
             return true;
         } catch {
             return false;

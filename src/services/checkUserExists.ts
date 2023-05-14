@@ -1,16 +1,17 @@
 import { IApiResponse } from "../types/IApiResponse";
-import { IUpdatePasswordPayload } from "../types/IUpdatePasswordPayload";
+import { IUserInfo } from "../types/IUserInfo";
 import api from "../utils/api";
 
-export const updatePassword = async (payload: IUpdatePasswordPayload, sessionToken): Promise<IApiResponse> => {
+export const checkUserExists = async (email: string) => {
     try {
         const config = {
-            headers: { Authorization: `Bearer ${sessionToken}` }
+            params: { email }
         };
-        const response = await api.put('/users/update-password', payload, config);
-        if (response.status === 200) {
+        const response = await api.get('/users/check-email', config);
+
+        if (Object.keys(response.data).length) {
             return new Promise((resolve: (value: IApiResponse) => void): any =>
-                resolve({ success: true }));
+                resolve({ success: true, data: response.data as IUserInfo }));
         }
 
     } catch (error) {
@@ -26,4 +27,3 @@ export const updatePassword = async (payload: IUpdatePasswordPayload, sessionTok
         );
     }
 }
-

@@ -4,7 +4,7 @@ const Container = styled.div`
     padding: ${(props: any) => {
         const sizes = props.theme.sizes;
 
-        return `${sizes.medium4} ${sizes.none} ${sizes.medium4} ${sizes.none}`;
+        return `${sizes.medium4} ${sizes.none} ${sizes.none} ${sizes.none}`;
     }};
 
     display: flex;
@@ -21,17 +21,17 @@ const FormContainer = styled.form`
     padding: ${(props: any) => {
         const sizes = props.theme.sizes;
 
-        return `${sizes.large3} ${sizes.none}  ${sizes.large3} ${sizes.none}`;
+        return `${sizes.none} ${sizes.none}  ${sizes.none} ${sizes.none}`;
     }};
 
     @media (${(props) => props.theme.media.md}) {
         width: 300px
     
     };
-    
-    > div {
-    margin-bottom: ${props => props.theme.sizes.medium2};
-    }
 `;
 
-export { Container, FormContainer };
+const ButtonContainer = styled.div`
+    margin-top: ${props => props.theme.sizes.medium2};
+`;
+
+export { Container, FormContainer, ButtonContainer };

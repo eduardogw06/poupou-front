@@ -15,6 +15,7 @@ const Progress = styled.div`
 const CompletedStatus = styled.div<{ percent: number }>`
     display: flex;
     height: 100%;
+    max-width: 100%;
     width: ${(props: any): string => `${props.percent}%`};
     background-color: ${(props: any): string => props.theme.colors.quaternary};
     border-radius: ${(props: any): string => props.percent < 100 ? '10px 0px 0px 10px' : '10px'};

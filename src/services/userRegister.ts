@@ -9,7 +9,7 @@ export const userRegister = async (payload: IRegisterPayload): Promise<IApiRespo
 
         if (Object.keys(response).length) {
             return new Promise((resolve: (value: IApiResponse) => void): any =>
-                resolve({ success: true }));
+                resolve({ success: true, data: response.data }));
         }
 
     } catch (error) {
