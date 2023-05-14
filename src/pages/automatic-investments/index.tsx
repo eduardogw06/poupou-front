@@ -19,6 +19,11 @@ import { IGetTarget } from "../../types/IGetTarget";
 import { ModalType } from "../../types/ModalType";
 import { isValidToken } from "../../utils/isValidToken";
 import { IGetTransaction } from "../../types/IGetTransaction";
+import { getAutomaticTransactions } from "../../services/getAutomaticTransactions";
+import { IGetAutomaticInvestments } from "../../types/IGetAutomaticInvestments";
+import { IAutomaticInvestments } from "../../types/IAutomaticInvestments";
+import { AutomaticInvestmentsTable } from "../../components/pages/automatic-investments/AutomaticInvestmentsTable";
+import { AutomaticInvestmentModal } from "../../components/pages/automatic-investments/AutomaticInvestmentModal/AutomaticInvestmentModal";
 
 const defaultAlert: IAlertProps = {
   severity: "success",
@@ -33,10 +38,12 @@ const AutomaticTransactions = (): JSX.Element => {
   const [alertProps, setAlertProps] = useState<IAlertProps>(defaultAlert);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [targets, setTargets] = useState<IGetTarget[] | null>(null);
-  const [transactions, setTransactions] = useState<IGetTransaction[] | null>(
+  const [automaticInvestiments, setAutomaticInvestiments] = useState<
+    IGetAutomaticInvestments[] | null
+  >(null);
+  const [modalData, setModalData] = useState<IGetAutomaticInvestments | null>(
     null
   );
-  const [modalData, setModalData] = useState<IGetTransaction | null>(null);
   const mobile = isMobile();
 
   useEffect((): void => {
@@ -54,13 +61,10 @@ const AutomaticTransactions = (): JSX.Element => {
 
     const getTransactions = async (): Promise<void> => {
       const session = await getSession();
-      const response = await getTransactionsService({
-        userId: session?.user.id,
-        sessionToken: session?.user.jwt,
-      });
+      const response = await getAutomaticTransactions(session?.user.jwt);
 
       if (response && response.success) {
-        setTransactions(response.data);
+        setAutomaticInvestiments(response.data);
       }
     };
 
@@ -73,8 +77,8 @@ const AutomaticTransactions = (): JSX.Element => {
       type="submit"
       form={
         currentModalType === "create"
-          ? "newTransactionForm"
-          : "editTransactionForm"
+          ? "newAutomaticInvestmentForm"
+          : "editAutomaticInvestmentForm"
       }
       size={mobile ? "medium" : "small"}
       text={currentModalType === "create" ? "Cadastrar" : "Alterar"}
@@ -90,37 +94,41 @@ const AutomaticTransactions = (): JSX.Element => {
 
   const handleOpenModal = (
     modalType: ModalType,
-    transactionData: IGetTransaction
+    automaticInvestmentData: IGetAutomaticInvestments
   ): void => {
     setModalOpened(true);
     setCurrentModalType(modalType);
-    setModalData(transactionData);
+    setModalData(automaticInvestmentData);
   };
 
-  const columns = ["Valor Aporte", "Objetivo", "Data aporte", "Ações"];
+  const columns = ["Objetivo", "Valor Aporte", "Dia aporte", "Ativo", "Ações"];
 
-  let data: MyTransactions = {
+  let data: IAutomaticInvestments = {
     columns,
     rows: [],
   };
 
-  if (transactions) {
-    data = { ...data, rows: transactions };
+  if (automaticInvestiments) {
+    data = { ...data, rows: automaticInvestiments };
   }
 
   return (
     <>
       <Container>
-        <PageTitle>Aporte automático</PageTitle>
+        <PageTitle>
+          Aporte automático
+          <Button
+            text="Novo aporte automático"
+            size="small"
+            onClick={(): void => handleOpenModal("create", undefined)}
+          />
+        </PageTitle>
         {targets ? (
           <>
-            <Button
-              text="Novo aporte"
-              size="small"
-              onClick={(): void => handleOpenModal("create", undefined)}
-            ></Button>
-
-            <MyTransationsTable data={data} handleOpenModal={handleOpenModal} />
+            <AutomaticInvestmentsTable
+              data={data}
+              handleOpenModal={handleOpenModal}
+            />
 
             <Feedback
               feedbackOpened={feedbackOpened}
@@ -133,13 +141,13 @@ const AutomaticTransactions = (): JSX.Element => {
                 isOpen={modalOpened}
                 title={
                   currentModalType === "create"
-                    ? "Novo aporte"
-                    : "Alterar aporte"
+                    ? "Novo aporte automático"
+                    : "Alterar aporte automático"
                 }
                 handleClose={handleClose}
                 buttons={DialogButtons}
               >
-                <TransactionModal
+                <AutomaticInvestmentModal
                   type={currentModalType}
                   modalData={modalData}
                   setAlertProps={setAlertProps}
@@ -148,16 +156,12 @@ const AutomaticTransactions = (): JSX.Element => {
                   setFeedbackOpened={setFeedbackOpened}
                   setModalOpened={setModalOpened}
                   targets={targets}
-                ></TransactionModal>
+                />
               </Dialog>
             )}
           </>
         ) : (
-          <EmptyPageAdvice
-            text="Não encontramos nenhum objetivo cadastrado. Para cadastrar um objetivo e poder começar a investir no seu sonho clique "
-            href="/meus-objetivos"
-            hrefText="AQUI."
-          />
+          <EmptyPageAdvice text='Não encontramos nenhum objetivo cadastrado. Para cadastrar um objetivo e poder começar a investir no seu sonho clique no botão "Novo aporte automático"' />
         )}
       </Container>
     </>
@@ -167,7 +171,7 @@ const AutomaticTransactions = (): JSX.Element => {
 export const getServerSideProps = async (context) => {
   const { req } = context;
   const session = await getSession({ req });
-  if (session && !isValidToken(session?.user.jwt)) {
+  if (!session || !isValidToken(session?.user.jwt)) {
     return {
       redirect: {
         destination: "/login",
