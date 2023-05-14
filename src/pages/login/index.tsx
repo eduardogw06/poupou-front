@@ -19,7 +19,6 @@ import {
 } from "../../components/pages/login/Login.styles";
 import { ILoginPayload } from "../../types/ILoginPayload";
 import { isValidToken } from "../../utils/isValidToken";
-import { isPropertyAccessChain } from "typescript";
 
 const defaultValues: ILoginPayload = {
   email: "",
