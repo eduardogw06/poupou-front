@@ -137,7 +137,7 @@ const CategoryModal = ({
       />
 
       <Input
-        id="name"
+        id="active"
         label="Ativo"
         type="text"
         variant="outlined"
