@@ -24,7 +24,7 @@ const FormContainer = styled.form`
     };
 
     & > .login-input:nth-of-type(2)  {
-        margin-top: 20px;
+        margin-top: 16px;
     }
 `;
 
