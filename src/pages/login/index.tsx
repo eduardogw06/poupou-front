@@ -84,6 +84,7 @@ function Login({ providers: any }): JSX.Element {
       <FormContainer method="post" onSubmit={handleSubmit(onSubmit)}>
         <Input
           id="email"
+          className="login-input"
           label="E-mail"
           type="email"
           variant="outlined"
@@ -95,6 +96,7 @@ function Login({ providers: any }): JSX.Element {
         />
         <Input
           id="password"
+          className="login-input"
           label="Senha"
           type="password"
           variant="outlined"
