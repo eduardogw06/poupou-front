@@ -5,6 +5,9 @@ module.exports = {
   compiler: {
     styledComponents: true,
   },
+  env: {
+    NEXTAUTH_URL: 'https://www.sistemapoupou.com.br/api/auth',
+  },
   async rewrites() {
     return [...routes];
   },
