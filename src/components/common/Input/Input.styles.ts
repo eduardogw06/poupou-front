@@ -18,7 +18,7 @@ const StyledTextField = styled(TextField)`
             }
         }
 
-        > .css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+        > .css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input, .css-182didf{
             color: ${props => props.theme.colors.text};
             background-color: ${rgba(255, 255, 255, 0.05)};
         }
