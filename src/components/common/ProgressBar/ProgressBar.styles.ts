@@ -36,7 +36,7 @@ const ValuesContainer = styled.div`
         font-weight: 700;
         font-size: ${props => props.theme.sizes.small3};
         line-height: ${props => props.theme.sizes.small3};
-        color: ${(props: any): string => props.theme.colors.text};
+        color: #FFF;
     }
 `;
 
@@ -62,7 +62,7 @@ const ProgressPercent = styled.div`
         font-weight: 700;
         font-size: ${props => props.theme.sizes.small3};
         line-height: ${props => props.theme.sizes.small3};
-        color: ${(props: any): string => props.theme.colors.text};
+        color: #FFF;
     }
 `;
 

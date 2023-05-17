@@ -156,7 +156,7 @@ const AutomaticTransactions = (): JSX.Element => {
             )}
           </>
         ) : (
-          <EmptyPageAdvice text='Não encontramos nenhum objetivo cadastrado. Para cadastrar um objetivo e poder começar a investir no seu sonho clique no botão "Novo aporte automático"' />
+          <EmptyPageAdvice text='Não encontramos nenhum aporte automático cadastrado. Para cadastrar um objetivo e poder começar a investir no seu sonho clique no botão "Novo aporte automático"' />
         )}
       </Container>
     </>

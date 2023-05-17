@@ -63,7 +63,7 @@ const MySafesProgress = ({ targets }: MySafesProgressProps): JSX.Element => {
 
   return (
     <Container>
-      {chartData.length && (
+      {chartData.length > 0 && (
         <BarChart
           width={mobile ? 300 : 600}
           height={mobile ? 200 : 300}

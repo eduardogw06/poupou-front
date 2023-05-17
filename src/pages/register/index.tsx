@@ -92,6 +92,7 @@ const Register = (): JSX.Element => {
         <Input
           id="name"
           label="Nome"
+          className="input"
           type="text"
           variant="outlined"
           size="small"
@@ -103,6 +104,7 @@ const Register = (): JSX.Element => {
         <Input
           id="email"
           label="E-mail"
+          className="input"
           type="email"
           variant="outlined"
           size="small"
@@ -113,6 +115,7 @@ const Register = (): JSX.Element => {
         <Input
           id="password"
           label="Senha"
+          className="input"
           type="password"
           variant="outlined"
           size="small"
@@ -123,6 +126,7 @@ const Register = (): JSX.Element => {
         <Input
           id="confirmPassword"
           label="Confirmar Senha"
+          className="input"
           type="password"
           variant="outlined"
           size="small"

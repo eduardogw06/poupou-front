@@ -23,7 +23,7 @@ const FormContainer = styled.form`
         width: 300px
     };
 
-    & > .css-1u3bzj6-MuiFormControl-root-MuiTextField-root:nth-of-type(2)  {
+    & > .login-input:nth-of-type(2)  {
         margin-top: 20px;
     }
 `;

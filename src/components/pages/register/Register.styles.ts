@@ -24,6 +24,10 @@ const FormContainer = styled.form`
         return `${sizes.none} ${sizes.none}  ${sizes.none} ${sizes.none}`;
     }};
 
+    & > .input {
+        margin-top: 16px;
+    }
+
     @media (${(props) => props.theme.media.md}) {
         width: 300px
     

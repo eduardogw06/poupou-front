@@ -83,7 +83,7 @@ const Dashboard = (): JSX.Element => {
 
       <SafeProgressContainer>
         <>
-          {targetsGrid &&
+          {targetsGrid.length > 0 &&
             targetsGrid.map((target: IGetTarget): JSX.Element => {
               return (
                 <Card
@@ -111,9 +111,11 @@ const Dashboard = (): JSX.Element => {
       </SafeProgressContainer>
 
       <MySafesProgressContainer>
-        <Card title="Meus cofres">
-          <MySafesProgress targets={targets}></MySafesProgress>
-        </Card>
+        {targetsGrid.length > 0 && (
+          <Card title="Meus cofres">
+            <MySafesProgress targets={targets}></MySafesProgress>
+          </Card>
+        )}
       </MySafesProgressContainer>
 
       <DeleteTarget
