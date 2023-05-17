@@ -48,8 +48,12 @@ const Dialog = ({
       keepMounted
       onClose={handleClose}
       aria-describedby="alert-dialog-slide-description"
-      theme={themeTitle}
       fullWidth={fullWidth}
+      PaperProps={{
+        style: {
+          backgroundColor: themeTitle === "dark" ? "#1A1A40" : "#FFF",
+        },
+      }}
     >
       <DialogTitle sx={{ color: `${textColor}` }}>{title}</DialogTitle>
       <DialogContent>{children}</DialogContent>

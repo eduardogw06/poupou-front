@@ -1,15 +1,13 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useTheme } from "styled-components";
-import { DefaultTheme } from "../../../../types/DefaultTheme";
 import {
   Container,
   Content,
+  DeleteButton,
   Header,
   Icon,
-  DeleteButton,
   Title,
 } from "./Card.styles";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 interface CardProps {
   title?: string;
@@ -36,9 +34,6 @@ const Card = ({
   deleteCardButton = false,
   handleDeleteCard,
 }: CardProps): JSX.Element => {
-  const theme = useTheme() as DefaultTheme;
-  const { menuIcon } = theme.colors;
-
   return (
     <Container color={color}>
       <Header>
@@ -48,7 +43,7 @@ const Card = ({
               <FontAwesomeIcon
                 icon={icon as IconProp}
                 size="1x"
-                color={menuIcon}
+                color="#FA58B6"
               />
             </Icon>
           )}

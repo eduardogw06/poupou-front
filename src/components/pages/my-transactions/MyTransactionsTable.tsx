@@ -119,7 +119,7 @@ const MyTransationsTable = ({
 
   return (
     <>
-      {Object.keys(rows).length ? (
+      {Object.keys(rows).length > 0 ? (
         <TableContainer
           component={Paper}
           sx={{
@@ -200,11 +200,7 @@ const MyTransationsTable = ({
           )}
         </TableContainer>
       ) : (
-        <EmptyPageAdvice
-          text="Não encontramos nenhum aporte cadastrado. Para cadastrar um aporte e poder começar a investir no seu sonho clique "
-          href="/meus-aportes"
-          hrefText="AQUI."
-        />
+        <EmptyPageAdvice text='Não encontramos nenhum aporte cadastrado. Para cadastrar um objetivo e poder começar a investir no seu sonho clique no botão "Novo aporte"' />
       )}
     </>
   );

@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Container = styled.div<{ color: string }>`
     display: flex;
     flex-direction: column;
-    background: ${props => props.color ?? props.theme.colors.secondary};
+    background: #1A1A40;
     border-radius: ${props => props.theme.sizes.medium2};
     width: calc(100vw - 144px);
     max-height: 200px;
@@ -50,7 +50,7 @@ const Title = styled.div`
     font-weight: bold;
     font-size: ${props => props.theme.sizes.medium3};
     line-height: ${props => props.theme.sizes.medium3};
-    color: ${props => props.theme.colors.text};
+    color: #FFF;
     cursor: default;
 `;
 
@@ -63,7 +63,7 @@ const DeleteButton = styled.div`
     font-weight: bold;
     font-size: ${props => props.theme.sizes.medium3};
     line-height: ${props => props.theme.sizes.medium3};
-    color: ${props => props.theme.colors.text};
+    color: #FFF;
     cursor: pointer;
 `;
 

@@ -16,7 +16,7 @@ const SeeMore = styled.div`
     font-weight: 700;
     font-size: ${props => props.theme.sizes.medium1};
     line-height: ${props => props.theme.sizes.small3};
-    color: ${(props: any): string => props.theme.colors.text};
+    color: #FFF;
     cursor: pointer;
 `;
 
