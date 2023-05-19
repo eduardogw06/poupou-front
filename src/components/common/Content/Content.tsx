@@ -6,7 +6,7 @@ interface ContentProps {
 }
 
 const Content = ({ children, menuOpened }: ContentProps): JSX.Element => {
-  return <Container menuOpened={menuOpened}>{children}</Container>;
+  return <Container menuOpened={false}>{children}</Container>;
 };
 
 export default Content;

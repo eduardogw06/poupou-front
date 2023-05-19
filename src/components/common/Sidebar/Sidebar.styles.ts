@@ -5,7 +5,8 @@ const Container = styled.div`
     background: ${(props: any): string => darken(0.03, props.theme.colors.primary)};
     display: flex;
     flex-direction: column;
-    position: relative;
+    position: absolute;
+    z-index: 999;
     height: calc(100vh - 150px);
     width: 100vw;
 
