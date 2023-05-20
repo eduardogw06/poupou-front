@@ -1,36 +1,35 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Paper from "@mui/material/Paper";
-import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { getSession } from "next-auth/react";
+import Router from "next/router";
 import { useState } from "react";
 import { useTheme } from "styled-components";
+import { deleteTransaction as deleteTransactionService } from "../../../services/deleteTransaction";
 import { DefaultTheme } from "../../../types/DefaultTheme";
+import { IAlertProps } from "../../../types/IAlertProps";
+import { IError } from "../../../types/IError";
+import { IGetTransaction } from "../../../types/IGetTransaction";
 import { MyTransactions as MyTransactionsData } from "../../../types/IMyTransactions";
 import { ModalType } from "../../../types/ModalType";
 import { isMobile } from "../../../utils/isMobile";
+import { numberToReal } from "../../../utils/numberToReal";
 import Button from "../../common/Button/Button";
 import Dialog from "../../common/Dialog/Dialog";
-import DeleteTransactionModal from "./DeleteTransactionModal/DeleteTransactionModal";
-import {
-  IconContainer,
-  StyledTable,
-  StyledTableCell,
-} from "./MyTransactions.styles";
-import { getSession } from "next-auth/react";
-import { deleteTransaction as deleteTransactionService } from "../../../services/deleteTransaction";
-import Router from "next/router";
-import Feedback from "../../common/Feedback/Feedback";
-import { IAlertProps } from "../../../types/IAlertProps";
-import { IError } from "../../../types/IError";
 import EmptyPageAdvice from "../../common/EmptyPageAdvice/EmptyPageAdvice";
-import { numberToReal } from "../../../utils/numberToReal";
-import { IGetTransaction } from "../../../types/IGetTransaction";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import Feedback from "../../common/Feedback/Feedback";
+import {
+  StyledTable,
+  TableActionIconContainer,
+} from "../../common/Table/Table.styles";
+import DeleteTransactionModal from "./DeleteTransactionModal/DeleteTransactionModal";
+import { StyledTableCell } from "./MyTransactions.styles";
 
 interface MyTransationsTableProps {
   data: MyTransactionsData;
@@ -156,7 +155,7 @@ const MyTransationsTable = ({
                     })}
                   </StyledTableCell>
                   <StyledTableCell>
-                    <IconContainer>
+                    <TableActionIconContainer>
                       <FontAwesomeIcon
                         icon={"gear" as IconProp}
                         size="1x"
@@ -173,7 +172,7 @@ const MyTransationsTable = ({
                         }
                         style={{ cursor: "pointer" }}
                       />
-                    </IconContainer>
+                    </TableActionIconContainer>
                   </StyledTableCell>
                 </TableRow>
               ))}
