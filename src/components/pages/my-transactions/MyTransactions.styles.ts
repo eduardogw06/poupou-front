@@ -1,4 +1,4 @@
-import { TableCell } from "@mui/material";
+import { Table, TableCell } from "@mui/material";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -16,11 +16,30 @@ const Container = styled.div`
 
 const StyledTableCell = styled(TableCell)`
   color: ${(props) => props.theme.colors.text} !important;
+  font-size: 10px !important;
+  line-height: 10px;
+
+  @media(${(props) => props.theme.media.md}) {
+    font-size: 14px !important;
+    line-height: 22px;
+  }
+`;
+
+const StyledTable = styled(Table)`
+  @media(${(props) => props.theme.media.md}) {
+    min-width: 650px;
+  }
 `;
 
 const IconContainer = styled.div`
   > * {
-    margin-right: 12px;
+    margin-right: 4px;
+  }
+
+  @media(${(props) => props.theme.media.md}) {
+    > * {
+      margin-right: 12px;
+    }
   }
 `;
 
@@ -28,5 +47,6 @@ const IconContainer = styled.div`
 export {
   Container,
   StyledTableCell,
-  IconContainer
+  IconContainer,
+  StyledTable
 };

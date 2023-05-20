@@ -16,7 +16,11 @@ import { isMobile } from "../../../utils/isMobile";
 import Button from "../../common/Button/Button";
 import Dialog from "../../common/Dialog/Dialog";
 import DeleteTransactionModal from "./DeleteTransactionModal/DeleteTransactionModal";
-import { IconContainer, StyledTableCell } from "./MyTransactions.styles";
+import {
+  IconContainer,
+  StyledTable,
+  StyledTableCell,
+} from "./MyTransactions.styles";
 import { getSession } from "next-auth/react";
 import { deleteTransaction as deleteTransactionService } from "../../../services/deleteTransaction";
 import Router from "next/router";
@@ -126,7 +130,7 @@ const MyTransationsTable = ({
             backgroundColor: theme.colors.secondary,
           }}
         >
-          <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+          <StyledTable size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
                 {columns.map((column: string): JSX.Element => {
@@ -174,7 +178,7 @@ const MyTransationsTable = ({
                 </TableRow>
               ))}
             </TableBody>
-          </Table>
+          </StyledTable>
 
           {deleteTransactionData && (
             <>
