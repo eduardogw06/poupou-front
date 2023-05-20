@@ -1,9 +1,14 @@
 import { Alert, Switch } from "@mui/material";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import Router, { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import Button from "../../components/common/Button/Button";
+import Feedback from "../../components/common/Feedback/Feedback";
+import Input from "../../components/common/Input/Input";
 import PageTitle from "../../components/common/PageTitle/PageTitle";
 import {
   Container,
@@ -13,19 +18,13 @@ import {
   PageTitleLink,
   SubmitButtonRow,
 } from "../../components/pages/emails/Emails.styles";
+import { editEmail } from "../../services/editEmail";
 import { getEmails as getEmailsService } from "../../services/getEmails";
+import { IAlertProps } from "../../types/IAlertProps";
+import { IApiResponse } from "../../types/IApiResponse";
+import { IError } from "../../types/IError";
 import { IGetEmail } from "../../types/IGetEmail";
 import { isValidToken } from "../../utils/isValidToken";
-import dynamic from "next/dynamic";
-import { useForm } from "react-hook-form";
-import Input from "../../components/common/Input/Input";
-import { IError } from "../../types/IError";
-import Button from "../../components/common/Button/Button";
-import { isMobile } from "../../utils/isMobile";
-import { editEmail } from "../../services/editEmail";
-import { IApiResponse } from "../../types/IApiResponse";
-import Feedback from "../../components/common/Feedback/Feedback";
-import { IAlertProps } from "../../types/IAlertProps";
 
 const defaultValues = {
   email_id: "",
@@ -48,7 +47,6 @@ const defaultAlert: IAlertProps = {
 const EmailDetails = (): JSX.Element => {
   const router = useRouter();
   const emailId = router.query.uuid as string;
-  const mobile = isMobile();
   const [emails, setEmails] = useState<IGetEmail[] | []>([]);
   const [emailActive, setEmailActive] = useState<boolean>(false);
   const [content, setContent] = useState<string>("");
