@@ -13,7 +13,7 @@ const Container = styled.div`
 const FormContainer = styled.form`
     display: flex;
     flex-direction: column;
-    width: calc(100vw - 96px);
+    width: calc(100vw - 56px);
 
     > div {
         &:first-child {
