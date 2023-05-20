@@ -5,8 +5,8 @@ const Container = styled.div`
     width: 100%;
     padding-right: 24px;
     padding-left: 24px;
-    padding-top: 36px;
-    padding-bottom: 36px;
+    padding-bottom: 24px;
+    padding-top: 24px;
 
     @media (${(props: any): string => props.theme.media.md}) {
         padding-right: 48px;
@@ -18,10 +18,9 @@ const Container = styled.div`
 
 const CardsContainer = styled.div`
     display: flex;
-   
     flex-direction: column;
     margin-top: ${(props: any): string => props.theme.sizes.medium2};
-    width: calc(100vw - 144px);
+    width: calc(100vw - 104px);
 
     & > div {
         margin-bottom: ${(props: any): string => props.theme.sizes.medium2};

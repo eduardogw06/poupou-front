@@ -6,7 +6,7 @@ const Container = styled.div<{ color: string }>`
     flex-direction: column;
     background: ${props => props.color ?? '#111128'};
     border-radius: ${props => props.theme.sizes.medium2};
-    width: calc(100vw - 144px);
+    width: calc(100vw - 104px);
     max-height: 200px;
 
     @media (${(props: any): string => props.theme.media.md}) {
