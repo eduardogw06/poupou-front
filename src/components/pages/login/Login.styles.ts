@@ -72,11 +72,21 @@ const RegisterNow = styled.p`
      cursor: pointer;
 `
 
+const ButtonContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    & > :nth-child(2) {
+        margin-top: 16px;
+    }
+`;
+
 export {
     Container,
     FormContainer,
     PasswordRecovery,
     NewAccountContainer,
     DontHaveAccountYet,
-    RegisterNow
+    RegisterNow,
+    ButtonContainer
 };
