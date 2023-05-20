@@ -41,6 +41,7 @@ const HeaderButtons = styled.div`
 
      & > :first-child {
         margin-right: 20px;
+        text-decoration: none;
     }
 
     @media(${(props) => props.theme.media.md}) {

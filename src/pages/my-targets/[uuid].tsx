@@ -1,7 +1,7 @@
 import { getSession } from "next-auth/react";
 import Link from "next/link";
 import Router, { useRouter } from "next/router";
-import { SyntheticEvent, useEffect, useState } from "react";
+import { SyntheticEvent, useEffect, useMemo, useState } from "react";
 import PageTitle from "../../components/common/PageTitle/PageTitle";
 import {
   Container,
@@ -27,6 +27,8 @@ import { isMobile } from "../../utils/isMobile";
 import TransactionModal from "../../components/pages/my-transactions/TransactionModal/TransactionModal";
 import Feedback from "../../components/common/Feedback/Feedback";
 import { IGetTransaction } from "../../types/IGetTransaction";
+import { CSVLink } from "react-csv";
+import { formatDate } from "../../utils/formatDate";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -123,6 +125,20 @@ const MyTargetPage = (): JSX.Element => {
     />
   );
 
+  const csvData = useMemo(() => {
+    const csvData =
+      targets &&
+      targets.map((target: IGetTarget) => ({
+        Objetivo: target.description,
+        "Data início": formatDate(target.date_begin.toString()),
+        "Data fim": formatDate(target.date_end.toString()),
+        "Valor objetivo": target.target_amount,
+        "Porcentagem completada": target.target_percent,
+        "Total aportado": target.total_saved,
+      }));
+    return csvData;
+  }, [targets]);
+
   return (
     <>
       {targets && targets.length > 0 && (
@@ -136,11 +152,14 @@ const MyTargetPage = (): JSX.Element => {
             </HeaderTitle>
 
             <HeaderButtons>
-              <Button
-                type="button"
-                text="Exportar"
-                size={mobile ? "small" : "medium"}
-              ></Button>
+              <CSVLink data={csvData} filename={"objetivo.csv"}>
+                <Button
+                  type="button"
+                  text="Exportar"
+                  size={mobile ? "small" : "medium"}
+                ></Button>
+              </CSVLink>
+
               <Button
                 type="button"
                 text="Novo aporte"
