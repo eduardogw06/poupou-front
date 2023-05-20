@@ -6,6 +6,7 @@ const Container = styled.div`
     width: 100%;
     padding-right: 24px;
     padding-left: 24px;
+    padding-bottom: 24px;
 
     @media (${(props: any): string => props.theme.media.md}) {
         padding-right: 48px;
