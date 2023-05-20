@@ -27,7 +27,7 @@ const StyledButton = styled.button < {
     cursor: pointer;
     margin-bottom: ${(props: any): string => props.theme.sizes.medium2};
     font-family: "Circular Medium";
-    font-size: 10px;
+    font-size: 16px;
     color: ${(props: any): string => (props.disabled ? darken('0.65', '#FFF') : (props.outlined ? props.theme.colors.text : props.theme.colors.buttonText))};
     text-decoration: none;
 
@@ -42,7 +42,6 @@ const StyledButton = styled.button < {
     @media(${(props) => props.theme.media.md}) {
         height: 40px;
         width:${(props: any): string => props.fullWidth ? "100%" : "160px"};
-        font-size: 16px;
     }
 `
 
