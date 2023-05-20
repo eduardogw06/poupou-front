@@ -4,7 +4,7 @@ const Title = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: calc(100vw - 144px);
+    width: calc(100vw - 104px);
     height: fit-content;
     margin-bottom: ${(props: any): string => props.theme.sizes.medium4};
     font-family: 'Circular Bold';
