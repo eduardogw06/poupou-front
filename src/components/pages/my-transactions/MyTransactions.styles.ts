@@ -1,4 +1,4 @@
-import { Table, TableCell } from "@mui/material";
+import { TableCell } from "@mui/material";
 import styled from "styled-components";
 
 const Container = styled.div`
