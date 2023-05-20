@@ -1,30 +1,33 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Paper,
-  Table,
   TableBody,
   TableContainer,
   TableHead,
   TableRow,
 } from "@mui/material";
+import { getSession } from "next-auth/react";
+import Router from "next/router";
+import { useState } from "react";
 import { useTheme } from "styled-components";
+import { deleteCategory as deleteCategoryService } from "../../../services/deleteCategory";
 import { DefaultTheme } from "../../../types/DefaultTheme";
+import { IAlertProps } from "../../../types/IAlertProps";
 import { ICategories } from "../../../types/ICategories";
+import { IDeleteCategoryPayload } from "../../../types/IDeleteCategoryPayload";
+import { IError } from "../../../types/IError";
 import { IGetCategory } from "../../../types/IGetCategory";
 import { ModalType } from "../../../types/ModalType";
-import { IconContainer, StyledTableCell } from "./Categories.styles";
-import { useState } from "react";
-import Dialog from "../../common/Dialog/Dialog";
-import Button from "../../common/Button/Button";
 import { isMobile } from "../../../utils/isMobile";
-import { getSession } from "next-auth/react";
-import { deleteCategory as deleteCategoryService } from "../../../services/deleteCategory";
-import { IError } from "../../../types/IError";
-import { IAlertProps } from "../../../types/IAlertProps";
+import Button from "../../common/Button/Button";
+import Dialog from "../../common/Dialog/Dialog";
 import Feedback from "../../common/Feedback/Feedback";
-import Router from "next/router";
+import {
+  StyledTable,
+  TableActionIconContainer,
+} from "../../common/Table/Table.styles";
+import { StyledTableCell } from "./Categories.styles";
 import DeleteCategoryModal from "./DeleteCategoryModal";
-import { IDeleteCategoryPayload } from "../../../types/IDeleteCategoryPayload";
 
 interface CategoriesTableProps {
   data: ICategories;
@@ -99,7 +102,7 @@ const CategoriesTable = ({
     <>
       <Button
         type="button"
-        size={mobile ? "medium" : "small"}
+        size={mobile ? "small" : "medium"}
         text="Não"
         outlined
         onClick={handleGiveUpButton}
@@ -107,7 +110,7 @@ const CategoriesTable = ({
       <Button
         type="submit"
         form="deleteCategoryForm"
-        size={mobile ? "medium" : "small"}
+        size={mobile ? "small" : "medium"}
         text="Confirmar"
         loading={isLoading}
         disabled={buttonDisabled}
@@ -122,7 +125,7 @@ const CategoriesTable = ({
         backgroundColor: theme.colors.secondary,
       }}
     >
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+      <StyledTable size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
             {columns.map((column: string): JSX.Element => {
@@ -143,7 +146,7 @@ const CategoriesTable = ({
                 <StyledTableCell>{row.icon}</StyledTableCell>
                 <StyledTableCell>{row.active ? "Sim" : "Não"}</StyledTableCell>
                 <StyledTableCell>
-                  <IconContainer>
+                  <TableActionIconContainer>
                     <FontAwesomeIcon
                       icon={"gear"}
                       size="1x"
@@ -158,13 +161,13 @@ const CategoriesTable = ({
                       onClick={(): void => handleDeleteCategoryModalOpen(row)}
                       style={{ cursor: "pointer" }}
                     />
-                  </IconContainer>
+                  </TableActionIconContainer>
                 </StyledTableCell>
               </TableRow>
             )
           )}
         </TableBody>
-      </Table>
+      </StyledTable>
 
       {deleteCategoryData && (
         <>

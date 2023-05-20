@@ -1,6 +1,10 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import PageTitle from "../../components/common/PageTitle/PageTitle";
-import { Container } from "../../components/pages/categories/Categories.styles";
+import {
+  Container,
+  HeaderButtons,
+  HeaderTitle,
+} from "../../components/pages/categories/Categories.styles";
 import { isValidToken } from "../../utils/isValidToken";
 import { getSession } from "next-auth/react";
 import CategoriesTable from "../../components/pages/categories/CategoriesTable";
@@ -52,7 +56,7 @@ const Categories = (): JSX.Element => {
       form={
         currentModalType === "create" ? "newCategoryForm" : "editCategoryForm"
       }
-      size={mobile ? "medium" : "small"}
+      size={mobile ? "small" : "medium"}
       text={currentModalType === "create" ? "Cadastrar" : "Alterar"}
       loading={isLoading}
       disabled={buttonDisabled}
@@ -89,12 +93,14 @@ const Categories = (): JSX.Element => {
   return (
     <Container>
       <PageTitle>
-        Categorias
-        <Button
-          text="Novo categoria"
-          size="small"
-          onClick={(): void => handleOpenModal("create", undefined)}
-        ></Button>
+        <HeaderTitle>Categorias</HeaderTitle>
+        <HeaderButtons>
+          <Button
+            text="Nova categoria"
+            size={mobile ? "small" : "medium"}
+            onClick={(): void => handleOpenModal("create", undefined)}
+          />
+        </HeaderButtons>
       </PageTitle>
 
       <CategoriesTable data={data} handleOpenModal={handleOpenModal} />
