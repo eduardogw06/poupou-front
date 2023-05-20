@@ -108,7 +108,7 @@ const TargetConfigs = ({ targetData }: TargetConfigsProps): JSX.Element => {
             <Button
               type="submit"
               form="editTargetForm"
-              size={mobile ? "medium" : "small"}
+              size={mobile ? "small" : "medium"}
               text="Editar"
               loading={isLoading}
               disabled={buttonDisabled}
