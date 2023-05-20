@@ -24,35 +24,60 @@ const StyledTableCell = styled(TableCell)`
 const HeaderTitle = styled.div`
     display: flex;
     flex-direction: row;
-`;
 
-const PageTitleLink = styled.div`
     font-family: 'Circular Bold';
     font-style: normal;
     font-weight: 700;
-    font-size: ${(props: any): string => props.theme.sizes.large1};
+    font-size: ${(props: any): string => props.theme.sizes.medium3};
     line-height: ${(props: any): string => props.theme.sizes.large3};
     color: ${(props: any): string => props.theme.colors.text};
     cursor: pointer;
+
+    @media(${(props) => props.theme.media.md}) {
+        font-size: ${(props: any): string => props.theme.sizes.large1};
+    }
 `;
 
+const PageTitleLink = styled.div``;
+
 const InputRow = styled.div`
-    width: calc(100vw - 96px);
+    width: calc(100vw - 104px);
     flex-wrap: wrap;
 
     grid-auto-rows: auto !important;
     flex-direction: row;
-    width: calc(100vw - 216px);
     margin-top: ${(props: any): string => props.theme.sizes.medium2};
     margin-bottom: ${(props: any): string => props.theme.sizes.medium2};
 
     & > :nth-child(odd) {
-        margin-right: 4%;
-        flex-basis: 48% !important;
+        flex-basis: 100% !important;
+        margin-bottom: ${(props: any): string => props.theme.sizes.medium2};
+        width: 100%
     }
 
     & > :nth-child(even) {
-        flex-basis: 48% !important;
+        flex-basis: 100% !important;
+        width: 100%
+    }
+
+    @media(${(props) => props.theme.media.md}) {
+        width: calc(100vw - 96px);
+        flex-wrap: wrap;
+
+        grid-auto-rows: auto !important;
+        flex-direction: row;
+        width: calc(100vw - 216px);
+        margin-top: ${(props: any): string => props.theme.sizes.medium2};
+        margin-bottom: ${(props: any): string => props.theme.sizes.medium2};
+
+        & > :nth-child(odd) {
+            margin-right: 4%;
+            flex-basis: 48% !important;
+        }
+
+        & > :nth-child(even) {
+            flex-basis: 48% !important;
+        }
     }
 `;
 

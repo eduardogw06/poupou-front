@@ -200,7 +200,7 @@ const EmailDetails = (): JSX.Element => {
               <Button
                 type="submit"
                 form="editEmailForm"
-                size={mobile ? "medium" : "small"}
+                size={"medium"}
                 text="Confirmar"
                 loading={isLoading}
                 disabled={buttonDisabled}
