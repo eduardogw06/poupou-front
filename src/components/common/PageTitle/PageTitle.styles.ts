@@ -17,6 +17,7 @@ const Title = styled.div`
     @media (${(props: any): string => props.theme.media.md}) {
         width: 100%;
         flex-direction: row;
+        font-size: ${(props: any): string => props.theme.sizes.large1};
     }
 `;
 
