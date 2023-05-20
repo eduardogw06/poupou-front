@@ -105,7 +105,7 @@ const MyTransationsTable = ({
     <>
       <Button
         type="button"
-        size={mobile ? "medium" : "small"}
+        size={mobile ? "small" : "medium"}
         text="Não"
         outlined
         onClick={(): void => setDeleteModalOpened(false)}
@@ -113,7 +113,7 @@ const MyTransationsTable = ({
       <Button
         type="submit"
         form="deleteTransactionForm"
-        size={mobile ? "medium" : "small"}
+        size={mobile ? "small" : "medium"}
         text="Confirmar"
         loading={isLoading}
         disabled={buttonDisabled}
