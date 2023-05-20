@@ -136,11 +136,15 @@ const MyTargetPage = (): JSX.Element => {
             </HeaderTitle>
 
             <HeaderButtons>
-              <Button type="button" text="Exportar" size="medium"></Button>
+              <Button
+                type="button"
+                text="Exportar"
+                size={mobile ? "small" : "medium"}
+              ></Button>
               <Button
                 type="button"
                 text="Novo aporte"
-                size="medium"
+                size={mobile ? "small" : "medium"}
                 onClick={(): void => handleOpenModal("create", undefined)}
                 outlined
               ></Button>

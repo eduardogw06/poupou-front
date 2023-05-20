@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Title = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     width: calc(100vw - 144px);
     height: fit-content;
@@ -16,6 +16,7 @@ const Title = styled.div`
 
     @media (${(props: any): string => props.theme.media.md}) {
         width: 100%;
+        flex-direction: row;
     }
 `;
 
