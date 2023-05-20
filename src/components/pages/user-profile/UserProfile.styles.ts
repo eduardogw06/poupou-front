@@ -18,11 +18,13 @@ const UserProfileContainer = styled.div`
 const UserInfo = styled.div`
     display: flex;
     flex-direction: column;
-    margin-left: ${props => props.theme.sizes.none};
+    margin-left: ${props => props.theme.sizes.medium3};
+    margin-right: ${props => props.theme.sizes.medium3};
     margin-top: ${props => props.theme.sizes.medium3};
 
     @media (${(props: any): string => props.theme.media.md}) {      
         margin-left: ${props => props.theme.sizes.xlarge2};
+        margin-right: ${props => props.theme.sizes.xlarge2};
         margin-top: ${props => props.theme.sizes.none};
     }
     
@@ -148,8 +150,16 @@ const ButtonContainer = styled.div`
     justify-content: space-between;
     margin-top: ${props => props.theme.sizes.medium3};
 
+    & > :nth-child(2) {
+        margin-top: 16px;
+    }
+
     @media(${(props: any): string => props.theme.media.md}) {
         flex-direction: row;
+        & > :nth-child(2) {
+            margin-top: 0px;
+        }
+
     }
 `;
 

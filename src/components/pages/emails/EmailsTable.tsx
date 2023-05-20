@@ -1,17 +1,17 @@
 import {
   Paper,
-  Table,
   TableBody,
   TableContainer,
   TableHead,
   TableRow,
 } from "@mui/material";
+import Link from "next/link";
 import { useTheme } from "styled-components";
 import { DefaultTheme } from "../../../types/DefaultTheme";
 import { IEmails } from "../../../types/IEmails";
-import { SeeContent, StyledTableCell } from "./Emails.styles";
-import Link from "next/link";
 import { IGetEmail } from "../../../types/IGetEmail";
+import { StyledTable } from "../../common/Table/Table.styles";
+import { SeeContent, StyledTableCell } from "./Emails.styles";
 
 interface EmailsTableProps {
   data: IEmails;
@@ -29,7 +29,7 @@ const EmailsTable = ({ data }: EmailsTableProps): JSX.Element => {
           backgroundColor: theme.colors.secondary,
         }}
       >
-        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+        <StyledTable size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
               {columns.map((column: string): JSX.Element => {
@@ -59,7 +59,7 @@ const EmailsTable = ({ data }: EmailsTableProps): JSX.Element => {
               )
             )}
           </TableBody>
-        </Table>
+        </StyledTable>
       </TableContainer>
     </>
   );

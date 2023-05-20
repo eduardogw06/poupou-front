@@ -118,7 +118,7 @@ const UserProfile = (): JSX.Element => {
     <Button
       type="submit"
       form="editUserForm"
-      size={mobile ? "medium" : "small"}
+      size={mobile ? "small" : "medium"}
       text="Alterar"
       loading={isLoading}
       disabled={buttonDisabled}

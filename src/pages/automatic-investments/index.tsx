@@ -4,7 +4,11 @@ import { useEffect, useState } from "react";
 import Button from "../../components/common/Button/Button";
 import Dialog from "../../components/common/Dialog/Dialog";
 import PageTitle from "../../components/common/PageTitle/PageTitle";
-import { Container } from "../../components/pages/my-transactions/MyTransactions.styles";
+import {
+  Container,
+  HeaderButtons,
+  HeaderTitle,
+} from "../../components/pages/my-transactions/MyTransactions.styles";
 import { isMobile } from "../../utils/isMobile";
 
 import EmptyPageAdvice from "../../components/common/EmptyPageAdvice/EmptyPageAdvice";
@@ -75,7 +79,7 @@ const AutomaticTransactions = (): JSX.Element => {
           ? "newAutomaticInvestmentForm"
           : "editAutomaticInvestmentForm"
       }
-      size={mobile ? "medium" : "small"}
+      size={mobile ? "small" : "medium"}
       text={currentModalType === "create" ? "Cadastrar" : "Alterar"}
       loading={isLoading}
       disabled={buttonDisabled}
@@ -111,12 +115,15 @@ const AutomaticTransactions = (): JSX.Element => {
     <>
       <Container>
         <PageTitle>
-          Aporte automático
-          <Button
-            text="Novo aporte automático"
-            size="small"
-            onClick={(): void => handleOpenModal("create", undefined)}
-          />
+          <HeaderTitle>Aporte automático</HeaderTitle>
+
+          <HeaderButtons>
+            <Button
+              text="Cadastrar"
+              size={mobile ? "small" : "medium"}
+              onClick={(): void => handleOpenModal("create", undefined)}
+            />
+          </HeaderButtons>
         </PageTitle>
         {targets ? (
           <>
@@ -156,7 +163,11 @@ const AutomaticTransactions = (): JSX.Element => {
             )}
           </>
         ) : (
-          <EmptyPageAdvice text='Não encontramos nenhum aporte automático cadastrado. Para cadastrar um objetivo e poder começar a investir no seu sonho clique no botão "Novo aporte automático"' />
+          <EmptyPageAdvice
+            text="Não encontramos nenhum objetivo cadastrado. Para cadastrar um objetivo e poder começar a investir no seu sonho clique "
+            href="/meus-objetivos"
+            hrefText="AQUI."
+          />
         )}
       </Container>
     </>

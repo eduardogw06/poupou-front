@@ -1,5 +1,11 @@
-import { TableCell } from "@mui/material";
+import { Table, TableCell } from "@mui/material";
 import styled from "styled-components";
+
+const StyledTable = styled(Table)`
+  @media(${(props) => props.theme.media.md}) {
+    min-width: 650px;
+  }
+`;
 
 const StyledTableCell = styled(TableCell)`
   color: ${(props) => props.theme.colors.text} !important;
@@ -7,11 +13,18 @@ const StyledTableCell = styled(TableCell)`
 
 const TableActionIconContainer = styled.div`
   > * {
-    margin-right: 12px;
+    margin-right: 4px;
+  }
+
+  @media(${(props) => props.theme.media.md}) {
+    > * {
+      margin-right: 12px;
+    }
   }
 `;
 
 export {
-    StyledTableCell,
-    TableActionIconContainer
+  StyledTable,
+  StyledTableCell,
+  TableActionIconContainer
 }

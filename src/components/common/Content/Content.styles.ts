@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Container = styled.div<{ menuOpened: boolean }>`
     width: 100vw;
-    padding: ${(props: any): string => `${props.theme.sizes.large3} ${props.theme.sizes.large4}`} ;
+    padding: ${(props: any): string => `${props.theme.sizes.large3} ${props.theme.sizes.medium4}`} ;
     display: ${(props: any): string => props.menuOpened ? "none" : "flex"};
 
     @media(${(props: any): string => props.theme.media.md}) {

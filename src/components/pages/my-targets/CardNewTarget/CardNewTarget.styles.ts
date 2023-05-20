@@ -7,10 +7,8 @@ const Container = styled.div`
     justify-content: center;
     background: #1A1A40;
     border-radius: ${props => props.theme.sizes.medium2};
-    width: calc(100vw - 144px); 
+    width: calc(100vw - 104px); 
     height: 150px;
-
-   
 
     @media (${(props: any): string => props.theme.media.md}) { 
         width: calc(100vw - 96px); 

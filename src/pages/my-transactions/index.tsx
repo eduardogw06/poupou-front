@@ -4,7 +4,11 @@ import { useEffect, useState } from "react";
 import Button from "../../components/common/Button/Button";
 import Dialog from "../../components/common/Dialog/Dialog";
 import PageTitle from "../../components/common/PageTitle/PageTitle";
-import { Container } from "../../components/pages/my-transactions/MyTransactions.styles";
+import {
+  Container,
+  HeaderButtons,
+  HeaderTitle,
+} from "../../components/pages/my-transactions/MyTransactions.styles";
 import MyTransationsTable from "../../components/pages/my-transactions/MyTransactionsTable";
 import TransactionModal from "../../components/pages/my-transactions/TransactionModal/TransactionModal";
 import { MyTransactions as MyTransactionsData } from "../../types/IMyTransactions";
@@ -76,7 +80,7 @@ const MyTransactions = (): JSX.Element => {
           ? "newTransactionForm"
           : "editTransactionForm"
       }
-      size={mobile ? "medium" : "small"}
+      size={mobile ? "small" : "medium"}
       text={currentModalType === "create" ? "Cadastrar" : "Alterar"}
       loading={isLoading}
       disabled={buttonDisabled}
@@ -112,13 +116,16 @@ const MyTransactions = (): JSX.Element => {
     <>
       <Container>
         <PageTitle>
-          Meus aportes
-          <Button
-            text="Novo aporte"
-            size="small"
-            onClick={(): void => handleOpenModal("create", undefined)}
-          ></Button>
+          <HeaderTitle>Meus aportes</HeaderTitle>
+          <HeaderButtons>
+            <Button
+              text="Novo aporte"
+              size={mobile ? "small" : "medium"}
+              onClick={(): void => handleOpenModal("create", undefined)}
+            />
+          </HeaderButtons>
         </PageTitle>
+
         {targets ? (
           <>
             <MyTransationsTable data={data} handleOpenModal={handleOpenModal} />

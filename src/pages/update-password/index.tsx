@@ -36,7 +36,7 @@ const defaultAlert: IAlertProps = {
   message: "Senha alterada com sucesso!",
 };
 
-const UpdatePassword = () => {
+const UpdatePassword = (): JSX.Element => {
   const {
     register,
     watch,

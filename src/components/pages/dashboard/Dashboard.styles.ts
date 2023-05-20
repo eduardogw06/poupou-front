@@ -4,15 +4,22 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
 
+    & > :first-child {
+        width: calc(100vw - 56px)
+    }
+
     @media (${(props) => props.theme.media.md}) {
         width: calc(100vw - 216px);
         padding: ${(props: any): string => props.menuOpened ? `${props.theme.sizes.none}  ${props.theme.sizes.large3} ${props.theme.sizes.none} ${props.theme.sizes.large3}` : `${props.theme.sizes.large3} ${props.theme.sizes.large4}`} ;
+        & > :first-child {
+            width: calc(100vw - 128px);
+        }
     }
 `;
 
 const TotalSavedContainer = styled.div`
     display: flex;
-    width: calc(100vw - 96px);
+    width: calc(100vw - 56px);
     & > div {
         width: 100%;
     }
@@ -26,7 +33,7 @@ const SafeProgressContainer = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: ${(props: any): string => props.theme.sizes.medium2};
-    width: calc(100vw - 96px);
+    width: calc(100vw - 56px);
 
     
 
@@ -37,7 +44,7 @@ const SafeProgressContainer = styled.div`
 
     @media (${(props: any): string => props.theme.media.md}) {
         flex-direction: row;
-        width: calc(100vw - 96px);
+        width: calc(100vw - 216px);
         margin-top: ${(props: any): string => props.theme.sizes.medium2};
         flex-wrap: wrap;
 
@@ -63,11 +70,9 @@ const SeeMoreTargetsContainer = styled.div`
     justify-content: center;
 `;
 
-
-
 const MySafesProgressContainer = styled.div`
     display: flex;
-    width: calc(100vw - 96px);
+    width: calc(100vw - 56px);
     height: 100%;
 
     & > div {

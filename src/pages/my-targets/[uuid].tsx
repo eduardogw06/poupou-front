@@ -65,7 +65,7 @@ const MyTargetPage = (): JSX.Element => {
         aria-labelledby={`simple-tab-${index}`}
         {...other}
       >
-        {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+        {value === index && <Box>{children}</Box>}
       </div>
     );
   };
@@ -136,11 +136,15 @@ const MyTargetPage = (): JSX.Element => {
             </HeaderTitle>
 
             <HeaderButtons>
-              <Button type="button" text="Exportar" size="medium"></Button>
+              <Button
+                type="button"
+                text="Exportar"
+                size={mobile ? "small" : "medium"}
+              ></Button>
               <Button
                 type="button"
                 text="Novo aporte"
-                size="medium"
+                size={mobile ? "small" : "medium"}
                 onClick={(): void => handleOpenModal("create", undefined)}
                 outlined
               ></Button>

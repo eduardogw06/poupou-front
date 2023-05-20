@@ -13,6 +13,7 @@ import Input from "../../components/common/Input/Input";
 import Logo from "../../components/common/Logo/Logo";
 import QuestionText from "../../components/common/QuestionText/QuestionText";
 import {
+  ButtonContainer,
   Container,
   FormContainer,
   PasswordRecovery,
@@ -106,32 +107,32 @@ function Login({ providers: any }): JSX.Element {
           error={error.hasError}
           helperText={error.message}
         />
-
         <Link href="/recuperar-senha">
           <PasswordRecovery>Recuperar senha</PasswordRecovery>
         </Link>
 
-        <Button
-          type="submit"
-          text="Login"
-          size="medium"
-          fullWidth={true}
-          loading={isLoading}
-          disabled={buttonDisabled}
-        />
-
-        <Button
-          text="Fazer login com o Google"
-          size="medium"
-          fullWidth={true}
-          outlined={true}
-          onClick={(): Promise<SignInResponse> =>
-            signIn("google", {
-              redirect: false,
-              callbackUrl: process.env.NEXT_PUBLIC_LOGIN_CALLBACK_URL,
-            })
-          }
-        />
+        <ButtonContainer>
+          <Button
+            type="submit"
+            text="Login"
+            size="medium"
+            fullWidth={true}
+            loading={isLoading}
+            disabled={buttonDisabled}
+          />
+          <Button
+            text="Fazer login com o Google"
+            size="medium"
+            fullWidth={true}
+            outlined={true}
+            onClick={(): Promise<SignInResponse> =>
+              signIn("google", {
+                redirect: false,
+                callbackUrl: process.env.NEXT_PUBLIC_LOGIN_CALLBACK_URL,
+              })
+            }
+          />
+        </ButtonContainer>
 
         <QuestionText
           text="Ainda não tem conta?"

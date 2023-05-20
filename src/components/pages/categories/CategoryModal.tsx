@@ -68,7 +68,7 @@ const CategoryModal = ({
     setButtonDisabled(true);
 
     const errors = categoriesValidate(data);
-    console.log(errors);
+
     if (Object.keys(errors).length) {
       setError({
         hasError: true,

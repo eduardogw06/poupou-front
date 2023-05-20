@@ -35,7 +35,13 @@ const FormContainer = styled.form`
 `;
 
 const ButtonContainer = styled.div`
-    margin-top: ${props => props.theme.sizes.medium2};
+    display: flex;
+    flex-direction: column;
+    margin-top: 16px;
+
+    & > :nth-child(2) {
+        margin-top: 16px;
+    }
 `;
 
 export { Container, FormContainer, ButtonContainer };

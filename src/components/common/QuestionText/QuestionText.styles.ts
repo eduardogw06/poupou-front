@@ -5,6 +5,8 @@ const Container = styled.div`
     flex-direction: row;
     justify-content: flex-end;
     width: 100%;
+    margin-bottom: ${(props: any): string => props.theme.sizes.small3};
+    margin-top: ${(props: any): string => props.theme.sizes.small3};
 `;
 
 const NormalText = styled.p`

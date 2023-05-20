@@ -144,7 +144,7 @@ const UserProfileInfo = ({
         <UpdatePhotoButtonContainer>
           <Button
             text="Alterar foto"
-            size={mobile ? "medium" : "small"}
+            size={mobile ? "small" : "medium"}
             fullWidth={mobile}
             outlined={true}
             type="submit"
@@ -198,7 +198,7 @@ const UserProfileInfo = ({
         <ButtonContainer>
           <Button
             text="Editar"
-            size={mobile ? "medium" : "small"}
+            size={mobile ? "small" : "medium"}
             fullWidth={mobile}
             onClick={(): void => setEditModeOn(!editModeOn)}
           />
@@ -206,7 +206,7 @@ const UserProfileInfo = ({
           <Link href="/alterar-senha">
             <Button
               text="Alterar senha"
-              size={mobile ? "medium" : "small"}
+              size={mobile ? "small" : "medium"}
               fullWidth={mobile}
               outlined={true}
             />
