@@ -1,35 +1,35 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Paper,
-  Table,
   TableBody,
   TableContainer,
   TableHead,
   TableRow,
 } from "@mui/material";
-import { useTheme } from "styled-components";
-import { isMobile } from "../../../utils/isMobile";
-import { DefaultTheme } from "../../../types/DefaultTheme";
+import { getSession } from "next-auth/react";
+import Router from "next/router";
 import { useState } from "react";
-import { ModalType } from "../../../types/ModalType";
+import { useTheme } from "styled-components";
+import { deleteAutomaticInvestment as deleteAutomaticInvestmentService } from "../../../services/deleteAutomaticInvestment";
+import { DefaultTheme } from "../../../types/DefaultTheme";
+import { IAlertProps } from "../../../types/IAlertProps";
 import { IAutomaticInvestments } from "../../../types/IAutomaticInvestments";
+import { IError } from "../../../types/IError";
 import { IGetAutomaticInvestments } from "../../../types/IGetAutomaticInvestments";
+import { ModalType } from "../../../types/ModalType";
+import { isMobile } from "../../../utils/isMobile";
+import { numberToReal } from "../../../utils/numberToReal";
+import Button from "../../common/Button/Button";
+import Dialog from "../../common/Dialog/Dialog";
+import EmptyPageAdvice from "../../common/EmptyPageAdvice/EmptyPageAdvice";
+import Feedback from "../../common/Feedback/Feedback";
 import {
+  StyledTable,
   StyledTableCell,
   TableActionIconContainer,
 } from "../../common/Table/Table.styles";
-import { numberToReal } from "../../../utils/numberToReal";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import Dialog from "../../common/Dialog/Dialog";
-import Feedback from "../../common/Feedback/Feedback";
-import EmptyPageAdvice from "../../common/EmptyPageAdvice/EmptyPageAdvice";
-import { IError } from "../../../types/IError";
-import { IAlertProps } from "../../../types/IAlertProps";
 import DeleteAutomaticInvestmentModal from "./DeleteAutomaticInvestmentModal/DeleteAutomaticInvestmentModal";
-import { deleteAutomaticInvestment as deleteAutomaticInvestmentService } from "../../../services/deleteAutomaticInvestment";
-import { getSession } from "next-auth/react";
-import Router from "next/router";
-import Button from "../../common/Button/Button";
 
 interface AutomaticInvestmentsTableProps {
   data: IAutomaticInvestments;
@@ -106,7 +106,7 @@ const AutomaticInvestmentsTable = ({
     <>
       <Button
         type="button"
-        size={mobile ? "medium" : "small"}
+        size={mobile ? "small" : "medium"}
         text="Não"
         outlined
         onClick={(): void => setDeleteModalOpened(false)}
@@ -114,7 +114,7 @@ const AutomaticInvestmentsTable = ({
       <Button
         type="submit"
         form="deleteAutomaticInvestmentForm"
-        size={mobile ? "medium" : "small"}
+        size={mobile ? "small" : "medium"}
         text="Confirmar"
         loading={isLoading}
         disabled={buttonDisabled}
@@ -131,7 +131,7 @@ const AutomaticInvestmentsTable = ({
             backgroundColor: theme.colors.secondary,
           }}
         >
-          <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+          <StyledTable size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
                 {columns.map((column: string): JSX.Element => {
@@ -178,7 +178,7 @@ const AutomaticInvestmentsTable = ({
                 </TableRow>
               ))}
             </TableBody>
-          </Table>
+          </StyledTable>
 
           {deleteAutomaticInvestmentData && (
             <>
@@ -204,7 +204,7 @@ const AutomaticInvestmentsTable = ({
           )}
         </TableContainer>
       ) : (
-        <EmptyPageAdvice text='Não encontramos nenhum aporte automático cadastrado. Para cadastrar um aporte e poder começar a investir no seu sonho clique no botão "Novo aporte automático"' />
+        <EmptyPageAdvice text='Não encontramos nenhum aporte automático cadastrado. Para cadastrar um aporte e poder começar a investir no seu sonho clique no botão "Cadastrar"' />
       )}
     </>
   );
