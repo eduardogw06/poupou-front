@@ -118,7 +118,7 @@ const MyTargetPage = (): JSX.Element => {
           ? "newTransactionForm"
           : "editTransactionForm"
       }
-      size={mobile ? "medium" : "small"}
+      size={mobile ? "small" : "medium"}
       text={currentModalType === "create" ? "Cadastrar" : "Alterar"}
       loading={isLoading}
       disabled={buttonDisabled}

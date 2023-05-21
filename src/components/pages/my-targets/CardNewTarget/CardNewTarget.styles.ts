@@ -44,7 +44,7 @@ const Row = styled.div`
         }
 
         & > div:only-child{
-        width: calc(50vw - 170px);
+        width: calc(50vw - 147px);
         margin-right: ${props => props.theme.sizes.none};
     }
     }
